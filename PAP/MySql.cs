@@ -38,10 +38,9 @@ namespace PAP
             cmd.ExecuteNonQuery();
         }
 
-        public Artista ProcurarArtistas(string nome, int qtd)
+        public Artista[] ProcurarArtistas(string nome, int qtd)
         {
-            //TODO: Mudar isto para Spotify
-            Artista artista = new Artista();
+            Artista[] artista = new Artista[qtd];
             string sql = "SELECT nome, img FROM artistas WHERE nome LIKE '%" + nome + "%'";
             MySqlCommand cmd = new MySqlCommand(sql, _conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
@@ -49,8 +48,8 @@ namespace PAP
             for (int i = 0; i < qtd; i++)
             {
                 rdr.Read();
-                Console.WriteLine(rdr[0] + " -- " + rdr[1]);
-                //TODO: Atribuir isto para artista e dar return
+                artista[i].nome = rdr[0].ToString();
+                artista[i].img = rdr[1].ToString();
             }
             rdr.Close();
 

@@ -23,7 +23,7 @@ namespace PAP
 
         private void mysql_Click(object sender, EventArgs e)
         {
-            Dictionary<string, string> artistas = new Dictionary<string, string>();
+            /*Dictionary<string, string> artistas = new Dictionary<string, string>();
             Dictionary<string, string> artistasPeli = new Dictionary<string, string>();
             for (int i = 97; i < 123; i++)
             {
@@ -79,7 +79,6 @@ namespace PAP
                 }
                 
             }
-            //_sql.InserirArtistas(art[j].Name);
 
             foreach (KeyValuePair<string, string> kvp in artistasPeli)
             {
@@ -89,14 +88,19 @@ namespace PAP
             foreach (KeyValuePair<string, string> kvp in artistas)
             {
                 _sql.InserirArtistas(kvp.Key, kvp.Value);
-            }
+            }*/
 
 
         }
 
         private void searchBtn_Click(object sender, EventArgs e)
         {
-            _sql.ProcurarArtistas("lo", 5);
+            var artistas = _spotify.ProcurarArtistas("Lo");
+            for (int i = 0; i < artistas.Count; i++)
+            {
+                Console.WriteLine(artistas[i].nome);
+                Console.WriteLine(artistas[i].img);
+            }
         }
     }
 }

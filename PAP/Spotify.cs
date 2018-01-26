@@ -60,9 +60,24 @@ namespace PAP
             InitialSetup();
         }
 
-        public List<FullArtist> ProcurarArtistas(string procura)
+        public List<FullArtist> ProcurarArtistasSpotify(string procura)
         {
             return _spotify.SearchItems(procura, SearchType.Artist, 50).Artists.Items;
+        }
+
+        public List<Artista> ProcurarArtistas(string procura, int qtd = 5)
+        {
+            Sql sql = new Sql();
+            List<Artista> artistas = new List<Artista>();
+            Artista[] sqlArt = new Artista[qtd];
+            sqlArt = sql.ProcurarArtistas(procura, qtd);
+
+            for (int i = 0; i < sqlArt.Length; i++)
+            {
+                artistas.Add(sqlArt[i]);
+            }
+
+            return artistas;
         }
     }
 }
