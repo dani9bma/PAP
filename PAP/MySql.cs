@@ -44,12 +44,21 @@ namespace PAP
             string sql = "SELECT nome, img FROM artistas WHERE nome LIKE '%" + nome + "%'";
             MySqlCommand cmd = new MySqlCommand(sql, _conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
-
+            string art = "";
             for (int i = 0; i < qtd; i++)
             {
                 rdr.Read();
-                artista[i].nome = rdr[0].ToString();
-                artista[i].img = rdr[1].ToString();
+                if (!(art == rdr[0]))
+                {
+                    art = rdr[0].ToString();
+                    artista[i].Nome = rdr[0].ToString();
+                    artista[i].Img = rdr[1].ToString();
+                }
+                else
+                {
+                    artista[i].Nome = "";
+                    artista[i].Img = "";
+                }
             }
             rdr.Close();
 

@@ -15,14 +15,14 @@ namespace PAP
 {
     public struct Artista
     {
-        public string nome;
-        public string img;
+        public string Nome;
+        public string Img;
     }
 
     public partial class Spotify : UserControl
     {
         private SpotifyWebAPI _spotify;
-        private PrivateProfile _profile;
+        private bool isAuthtenticated = false;
 
         public Spotify()
         {
@@ -57,12 +57,21 @@ namespace PAP
                 return;
 
             Console.WriteLine("Spotify Working");
+            isAuthtenticated = true;
             InitialSetup();
         }
 
         public List<FullArtist> ProcurarArtistasSpotify(string procura)
         {
-            return _spotify.SearchItems(procura, SearchType.Artist, 50).Artists.Items;
+            List<FullArtist> artistas = new List<FullArtist>();
+            if (isAuthtenticated)
+            {
+                artistas = _spotify.SearchItems(procura, SearchType.Artist, 50).Artists.Items;
+                return artistas;
+            }
+
+            MessageBox.Show("Precisa de se autenticar no spotify antes de procurar pelo spotify");
+            return artistas;
         }
 
         public List<Artista> ProcurarArtistas(string procura, int qtd = 5)
@@ -78,6 +87,11 @@ namespace PAP
             }
 
             return artistas;
+        }
+
+        public bool GetAutenticado()
+        {
+            return isAuthtenticated;
         }
     }
 }

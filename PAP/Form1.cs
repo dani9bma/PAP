@@ -10,6 +10,9 @@ namespace PAP
     {
         private Spotify _spotify = new Spotify();
         private Sql _sql = new Sql();
+        private List<FullArtist> _artistsSpotify = new List<FullArtist>();
+        private List<Artista> _artists = new List<Artista>();
+        private bool _spotifyArt = false;
 
         public Form1()
         {
@@ -95,12 +98,37 @@ namespace PAP
 
         private void searchBtn_Click(object sender, EventArgs e)
         {
-            var artistas = _spotify.ProcurarArtistas("Lo");
-            for (int i = 0; i < artistas.Count; i++)
+            _artists = _spotify.ProcurarArtistas(artistaTB.Text, 10);
+            artistasLB.Items.Clear();
+            for (int i = 0; i < _artists.Count; i++)
             {
-                Console.WriteLine(artistas[i].nome);
-                Console.WriteLine(artistas[i].img);
+                artistasLB.Items.Add(_artists[i].Nome);
+                artistaImgPB.ImageLocation = _artists[i].Img;
             }
+
+            _spotifyArt = false;
+        }
+
+        private void searchSpoBtn_Click(object sender, EventArgs e)
+        {
+            _artistsSpotify = _spotify.ProcurarArtistasSpotify(artistaTB.Text);
+            artistasLB.Items.Clear();
+            for (int i = 0; i < _artistsSpotify.Count; i++)
+            {
+                artistasLB.Items.Add(_artistsSpotify[i].Name);
+                artistaImgPB.ImageLocation = _artistsSpotify[i].Images[0].Url;
+            }
+            _spotifyArt = true;
+        }
+
+        private void artistasLB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int pos = artistasLB.SelectedIndex;
+
+            if (_spotifyArt)
+                artistaImgPB.ImageLocation = _artistsSpotify[pos].Images[0].Url;
+            else
+                artistaImgPB.ImageLocation = _artists[pos].Img;
         }
     }
 }
