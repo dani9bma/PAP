@@ -19,6 +19,12 @@ namespace PAP
         public string Img;
     }
 
+    public struct Musica
+    {
+        public string Nome;
+        public Artista artista;
+    }
+
     public partial class Spotify : UserControl
     {
         private SpotifyWebAPI _spotify;
@@ -60,13 +66,13 @@ namespace PAP
             isAuthtenticated = true;
             InitialSetup();
         }
-
-        public List<FullArtist> ProcurarArtistasSpotify(string procura)
+        
+        public List<FullArtist> ProcurarArtistasSpotify(string procura, int qtd)
         {
             List<FullArtist> artistas = new List<FullArtist>();
             if (isAuthtenticated)
             {
-                artistas = _spotify.SearchItems(procura, SearchType.Artist, 50).Artists.Items;
+                artistas = _spotify.SearchItems(procura, SearchType.Artist, qtd).Artists.Items;
                 return artistas;
             }
 
@@ -74,13 +80,22 @@ namespace PAP
             return artistas;
         }
 
-        public List<FullTrack> ProcurarMusicaSpotify(string procura)
+        public List<FullTrack> ProcurarMusicaSpotify(string procura, int qtd)
         {
             List<FullTrack> musicas = new List<FullTrack>();
             if (isAuthtenticated)
             {
-                musicas = _spotify.SearchItems(procura, SearchType.Track, 50).Tracks.Items;
-                return musicas;
+                try
+                {
+                    musicas = _spotify.SearchItems(procura, SearchType.Track, qtd).Tracks.Items;
+                    return musicas;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+                
             }
 
             MessageBox.Show("Precisa de se autenticar no spotify antes de procurar pelo spotify");
@@ -102,6 +117,21 @@ namespace PAP
             return artistas;
         }
 
+        public List<Musica> ProcurarMusicas(string procura, int qtd)
+        {
+            Database sql = new Database();
+            List<Musica> musicas = new List<Musica>();
+            Musica[] sqlArt = new Musica[qtd];
+            sqlArt = sql.ProcurarMusicas(procura, qtd);
+
+            for (int i = 0; i < sqlArt.Length; i++)
+            {
+                musicas.Add(sqlArt[i]);
+            }
+
+            return musicas;
+        }
+        
         public bool GetAutenticado()
         {
             return isAuthtenticated;

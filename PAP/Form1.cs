@@ -26,18 +26,13 @@ namespace PAP
 
         private void mysql_Click(object sender, EventArgs e)
         {
-            var tracks = _spotify.ProcurarMusicaSpotify("Logic");
-            for (int i = 0; i < tracks.Count; i++)
-            {
-                Console.WriteLine(tracks[i].Name);
-                Console.WriteLine(tracks[i].Artists[0].Name);
-                //TODO: Pesquisar musicas por artista no spotify e adicionar a base de dados
-            }
+            
+            
         }
 
         private void searchBtn_Click(object sender, EventArgs e)
         {
-            _artists = _spotify.ProcurarArtistas(artistaTB.Text, 10);
+            /*_artists = _spotify.ProcurarArtistas(artistaTB.Text, 10);
             artistasLB.Items.Clear();
             for (int i = 0; i < _artists.Count; i++)
             {
@@ -45,12 +40,24 @@ namespace PAP
                 artistaImgPB.ImageLocation = _artists[i].Img;
             }
 
+            _spotifyArt = false;*/
+
+            var musicas = _spotify.ProcurarMusicas(artistaTB.Text, 10);
+            for (int i = 0; i < musicas.Count; i++)
+            {
+                //artistasLB.Items.Add(_artists[i].Nome);
+                //artistaImgPB.ImageLocation = _artists[i].Img;
+                Console.WriteLine(musicas[i].Nome);
+                Console.WriteLine(musicas[i].artista.Nome);
+            }
+
             _spotifyArt = false;
+
         }
 
         private void searchSpoBtn_Click(object sender, EventArgs e)
         {
-            _artistsSpotify = _spotify.ProcurarArtistasSpotify(artistaTB.Text);
+            _artistsSpotify = _spotify.ProcurarArtistasSpotify(artistaTB.Text, 5);
             artistasLB.Items.Clear();
             for (int i = 0; i < _artistsSpotify.Count; i++)
             {
@@ -140,7 +147,32 @@ namespace PAP
 
 
         #endregion
+        #region Codigo para inserir musicas na base de dados pelo spotify
+        /*List<Artista> artistas = new List<Artista>();
 
+        artistas = _sql.GetTodosArtistas();
+        for (int i = 0; i<artistas.Count; i++)
+        {
+            var tracks = _spotify.ProcurarMusicaSpotify(artistas[i].Nome, 10);
+            for (int j = 0; j<tracks.Count; j++)
+            {
+                if (tracks[j].Artists[0].Name == artistas[i].Nome)
+                {
+                    if (!tracks[j].Name.Contains("'"))
+                    {
+                        //Console.WriteLine(artistas[i].Nome);
+                        _sql.InserirMusicas(tracks[j].Name, _sql.GetCodigoArtista(artistas[i].Nome));
+                    }
+                    else
+                    {
+                        var t = tracks[j].Name.Replace("'", " ");
+    _sql.InserirMusicas(t, _sql.GetCodigoArtista(artistas[i].Nome));
+                    }
+                }
+            } 
+        }
 
+        Console.WriteLine("Finished");*/
+        #endregion
     }
 }

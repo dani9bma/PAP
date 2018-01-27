@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using MySql.Data;
 using System.Data;
 using System.IO;
@@ -63,7 +64,7 @@ namespace PAP
 
         public void InserirMusicas(string nomeMusica, int codArtista)
         {
-            string sql = "INSERT INTO musicas (id_artista, nome) VALUES ('" + codArtista + "', '" + nomeMusica + "')";
+            string sql = "INSERT INTO musicas (id_artista, nome) VALUES ('" + codArtista + "', '" + nomeMusica + "\')";
             MySqlCommand cmd = new MySqlCommand(sql, _conn);
             cmd.ExecuteNonQuery();
         }
@@ -93,6 +94,107 @@ namespace PAP
             rdr.Close();
 
             return artista;
+        }
+
+        public Artista ProcurarArtista(int cod)
+        {
+            Artista artista = new Artista();
+            string sql = "SELECT nome, img FROM artistas WHERE id_artista = " + cod;
+            MySqlCommand cmd = new MySqlCommand(sql, _conn);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            string art = "";
+            
+            rdr.Read();
+            if (art != rdr[0].ToString())
+            {
+                art = rdr[0].ToString();
+                artista.Nome = rdr[0].ToString();
+                artista.Img = rdr[1].ToString();
+            }
+            else
+            {
+                artista.Nome = "";
+                artista.Img = "";
+            }
+            rdr.Close();
+
+            return artista;
+        }
+
+        public Musica[] ProcurarMusicas(string nome, int qtd)
+        {
+            Musica[] musica = new Musica[qtd];
+            List<Artista> artista = new List<Artista>();
+            artista = GetTodosArtistas();
+            string sql = "SELECT nome, id_artista FROM musicas WHERE nome LIKE '%" + nome + "%'";
+            MySqlCommand cmd = new MySqlCommand(sql, _conn);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            string art = "";
+
+            if (rdr.Read())
+            {
+                for (int i = 0; i < qtd; i++)
+                {
+                    if (art != rdr[0].ToString())
+                    {
+                        var m = rdr[1].ToString();
+                        art = rdr[0].ToString();
+                        musica[i].Nome = art;
+                        musica[i].artista = artista[int.Parse(m) - 1];
+                    }
+                    else
+                    {
+                        musica[i].Nome = "";
+                        musica[i].artista = new Artista();
+                    }
+                }
+            }
+
+            return musica;
+        }
+
+        public int GetCodigoArtista(string nome)
+        {
+            string sql = "SELECT id_artista FROM artistas WHERE nome LIKE '%" + nome + "%'";
+            MySqlCommand cmd = new MySqlCommand(sql, _conn);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            rdr.Read();
+            int cod = int.Parse(rdr[0].ToString());
+            rdr.Close();
+            return cod;
+        }
+
+        public List<Artista> GetTodosArtistas()
+        {
+            List<Artista> artistas = new List<Artista>();
+            string sql = "SELECT nome, img FROM artistas";
+            MySqlCommand cmd = new MySqlCommand(sql, _conn);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            string art = "";
+            int i = 0;
+            while (rdr.Read())
+            {
+                if (!(art == rdr[0]))
+                {
+                    art = rdr[0].ToString();
+                    Artista artista = new Artista();
+                    artista.Nome = rdr[0].ToString();
+                    artista.Img = rdr[1].ToString();
+                    artistas.Add(artista);
+                }
+                else
+                {
+                    Artista artista = new Artista();
+                    artista.Nome = rdr[0].ToString();
+                    artista.Img = rdr[1].ToString();
+                    artistas.Add(artista);
+                }
+
+                i++;
+            }
+            rdr.Close();
+
+            return artistas;
         }
     }
 }
