@@ -61,6 +61,58 @@ namespace PAP
             return "";
         }
 
+        public void AzureToMySql()
+        {
+            var artists = GetTodosArtistas();
+
+            foreach (var fileItem in rootDir.ListFilesAndDirectories())
+            {
+                if (fileItem is CloudFile file)
+                {
+                    var nomeMusica = file.Name;
+                    for (int i = 0; i < artists.Count; i++)
+                    {
+                        if (nomeMusica.Contains(artists[i].Nome))
+                        {
+                            var nome = nomeMusica.Replace(artists[i].Nome, "");
+                            nome = nome.Replace(".mp3", "");
+                            if (nome.Contains("Lyrics"))
+                                nome = nome.Replace("Lyrics", "");
+                            if (nome.Contains("Video"))
+                                nome = nome.Replace("Video", "");
+                            if (nome.Contains("-"))
+                                nome = nome.Replace("-", "");
+                            if (nome.Contains("Audio"))
+                                nome = nome.Replace("Audio", "");
+                            if (nome.Contains("Official"))
+                                nome = nome.Replace("Official", "");
+                            if (nome.Contains("("))
+                                nome = nome.Replace("(", "");
+                            if (nome.Contains(")"))
+                                nome = nome.Replace(")", "");
+                            if (nome.Contains("Explicit"))
+                                nome = nome.Replace("-", "");
+                            if (nome.Contains("["))
+                                nome = nome.Replace("[", "");
+                            if (nome.Contains("]"))
+                                nome = nome.Replace("]", "");
+                            if (nome.Contains("Music"))
+                                nome = nome.Replace("Music", "");
+                            if (nome.Contains("'"))
+                                nome = nome.Replace("'", " ");
+                            if (nome.Contains("&"))
+                                nome = nome.Replace("&", " ");
+
+                            var cod = GetCodigoArtista(artists[i].Nome);
+                            InserirMusicas(nome, cod);
+                        }
+                    }
+                }
+            }
+
+            Console.WriteLine("Done Azure To Mysql");
+        }
+
         public void InserirArtistas(string nome, string img = "")
         {
             string sql = "INSERT INTO artistas (nome, img) VALUES ('" + nome + "', '" + img + "')";
@@ -75,6 +127,7 @@ namespace PAP
             cmd.ExecuteNonQuery();
         }
 
+        //Retorna Artista procurando pelo nome
         public Artista[] ProcurarArtistas(string nome, int qtd)
         {
             Artista[] artista = new Artista[qtd];
@@ -102,6 +155,7 @@ namespace PAP
             return artista;
         }
 
+        //Retorna Artista procurando pelo codigo
         public Artista ProcurarArtista(int cod)
         {
             Artista artista = new Artista();
@@ -158,18 +212,28 @@ namespace PAP
                 }
             }
 
+            rdr.Close();
+
             return musica;
         }
 
         public int GetCodigoArtista(string nome)
         {
-            string sql = "SELECT id_artista FROM artistas WHERE nome LIKE '%" + nome + "%'";
+            if (nome.Contains("'"))
+                nome = nome.Replace("'", " ");
+            string sql = "SELECT id_artista FROM artistas WHERE nome = '" + nome + "'";
             MySqlCommand cmd = new MySqlCommand(sql, _conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
-            rdr.Read();
-            int cod = int.Parse(rdr[0].ToString());
+            if (rdr.Read())
+            {
+                int cod = int.Parse(rdr[0].ToString());
+                rdr.Close();
+                return cod;
+            }
+
             rdr.Close();
-            return cod;
+
+            return 0;
         }
 
         public List<Artista> GetTodosArtistas()

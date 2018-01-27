@@ -28,7 +28,7 @@ namespace PAP
         private void mysql_Click(object sender, EventArgs e)
         {
             
-            
+            _sql.AzureToMySql();
         }
 
         private void searchBtn_Click(object sender, EventArgs e)
@@ -44,6 +44,7 @@ namespace PAP
             _spotifyArt = false;*/
 
             _tracks = _spotify.ProcurarMusicas(artistaTB.Text, 10);
+            artistasLB.Items.Clear();
             for (int i = 0; i < _tracks.Count; i++)
             {
                 artistasLB.Items.Add(_tracks[i].Nome);
@@ -76,7 +77,7 @@ namespace PAP
                 artistaImgPB.ImageLocation = _artistsSpotify[pos].Images[0].Url;
             else
                 artistaImgPB.ImageLocation = _artists[pos].Img;*/
-            playMP.URL = _sql.DownloadFiles(_tracks[pos].Nome, "Drake");
+            playMP.URL = _sql.DownloadFiles(_tracks[pos].Nome, "");
             Console.WriteLine(playMP.URL);
         }
 
