@@ -74,9 +74,22 @@ namespace PAP
             return artistas;
         }
 
+        public List<FullTrack> ProcurarMusicaSpotify(string procura)
+        {
+            List<FullTrack> musicas = new List<FullTrack>();
+            if (isAuthtenticated)
+            {
+                musicas = _spotify.SearchItems(procura, SearchType.Track, 50).Tracks.Items;
+                return musicas;
+            }
+
+            MessageBox.Show("Precisa de se autenticar no spotify antes de procurar pelo spotify");
+            return musicas;
+        }
+
         public List<Artista> ProcurarArtistas(string procura, int qtd = 5)
         {
-            Sql sql = new Sql();
+            Database sql = new Database();
             List<Artista> artistas = new List<Artista>();
             Artista[] sqlArt = new Artista[qtd];
             sqlArt = sql.ProcurarArtistas(procura, qtd);

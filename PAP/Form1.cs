@@ -9,7 +9,7 @@ namespace PAP
     public partial class Form1 : MetroForm
     {
         private Spotify _spotify = new Spotify();
-        private Sql _sql = new Sql();
+        private Database _sql = new Database();
         private List<FullArtist> _artistsSpotify = new List<FullArtist>();
         private List<Artista> _artists = new List<Artista>();
         private bool _spotifyArt = false;
@@ -26,74 +26,13 @@ namespace PAP
 
         private void mysql_Click(object sender, EventArgs e)
         {
-            /*Dictionary<string, string> artistas = new Dictionary<string, string>();
-            Dictionary<string, string> artistasPeli = new Dictionary<string, string>();
-            for (int i = 97; i < 123; i++)
+            var tracks = _spotify.ProcurarMusicaSpotify("Logic");
+            for (int i = 0; i < tracks.Count; i++)
             {
-                var chara = (char)i + "*";
-                Console.WriteLine(chara);
-                var art = _spotify.ProcurarArtistas(chara);
-                for (int j = 0; j < art.Count; j++)
-                {
-                    if (art[j].Name.Contains("'"))
-                    {
-                        if (art[j].Images != null)
-                            try
-                            {
-                                artistasPeli.Add(art[j].Name, art[j].Images[0].Url);
-                            }
-                            catch (Exception exception)
-                            {
-                                Console.WriteLine(exception);
-                            }
-                            
-                        else
-                            try
-                            {
-                                artistasPeli.Add(art[j].Name, "");
-                            }
-                            catch (Exception exception)
-                            {
-                                Console.WriteLine(exception);
-                            }
-                    }
-                    else
-                    {
-                        if(art[j].Images != null)
-                            try
-                            {
-                                artistas.Add(art[j].Name, art[j].Images[0].Url);
-                            }
-                            catch (Exception exception)
-                            {
-                                Console.WriteLine(exception);
-                            }
-                        else
-                            try
-                            {
-                                artistas.Add(art[j].Name, "");
-                            }
-                            catch (Exception exception)
-                            {
-                                Console.WriteLine(exception);
-                            }
-                    }
-                    
-                }
-                
+                Console.WriteLine(tracks[i].Name);
+                Console.WriteLine(tracks[i].Artists[0].Name);
+                //TODO: Pesquisar musicas por artista no spotify e adicionar a base de dados
             }
-
-            foreach (KeyValuePair<string, string> kvp in artistasPeli)
-            {
-                Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
-            }
-
-            foreach (KeyValuePair<string, string> kvp in artistas)
-            {
-                _sql.InserirArtistas(kvp.Key, kvp.Value);
-            }*/
-
-
         }
 
         private void searchBtn_Click(object sender, EventArgs e)
@@ -130,5 +69,78 @@ namespace PAP
             else
                 artistaImgPB.ImageLocation = _artists[pos].Img;
         }
+
+        #region Codigo para inserir na base de dados pelo spotify
+        /*Dictionary<string, string> artistas = new Dictionary<string, string>();
+           Dictionary<string, string> artistasPeli = new Dictionary<string, string>();
+           for (int i = 97; i < 123; i++)
+           {
+               var chara = (char)i + "*";
+               Console.WriteLine(chara);
+               var art = _spotify.ProcurarArtistas(chara);
+               for (int j = 0; j < art.Count; j++)
+               {
+                   if (art[j].Name.Contains("'"))
+                   {
+                       if (art[j].Images != null)
+                           try
+                           {
+                               artistasPeli.Add(art[j].Name, art[j].Images[0].Url);
+                           }
+                           catch (Exception exception)
+                           {
+                               Console.WriteLine(exception);
+                           }
+
+                       else
+                           try
+                           {
+                               artistasPeli.Add(art[j].Name, "");
+                           }
+                           catch (Exception exception)
+                           {
+                               Console.WriteLine(exception);
+                           }
+                   }
+                   else
+                   {
+                       if(art[j].Images != null)
+                           try
+                           {
+                               artistas.Add(art[j].Name, art[j].Images[0].Url);
+                           }
+                           catch (Exception exception)
+                           {
+                               Console.WriteLine(exception);
+                           }
+                       else
+                           try
+                           {
+                               artistas.Add(art[j].Name, "");
+                           }
+                           catch (Exception exception)
+                           {
+                               Console.WriteLine(exception);
+                           }
+                   }
+
+               }
+
+           }
+
+           foreach (KeyValuePair<string, string> kvp in artistasPeli)
+           {
+               Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
+           }
+
+           foreach (KeyValuePair<string, string> kvp in artistas)
+           {
+               _sql.InserirArtistas(kvp.Key, kvp.Value);
+           }*/
+
+
+        #endregion
+
+
     }
 }
