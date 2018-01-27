@@ -43,16 +43,22 @@ namespace PAP
             rootDir = share.GetRootDirectoryReference();
         }
 
-        public void DownloadFiles()
+        public string DownloadFiles(string musica, string artista)
         {
-            /*foreach (var fileItem in rootDir.ListFilesAndDirectories())
+            foreach (var fileItem in rootDir.ListFilesAndDirectories())
             {
                 if (fileItem is CloudFile file)
                 {
-                    //var nomeMusica = file.Name.;
+                    var nomeMusica = file.Name;
+                    if (nomeMusica.Contains(musica) && nomeMusica.Contains(artista))
+                    {
+                        file.DownloadToFile("E:/music.mp3", FileMode.Create);
+                        return "E:/music.mp3";
+                    }
                 }
-            }*/
+            }
 
+            return "";
         }
 
         public void InserirArtistas(string nome, string img = "")
@@ -123,10 +129,12 @@ namespace PAP
 
         public Musica[] ProcurarMusicas(string nome, int qtd)
         {
+            //TODO: Procurar por nome do artista
+            //TODO: Aparecer Mensagem ,quando nao encontra musicas, para contribuir para a base de dados
             Musica[] musica = new Musica[qtd];
             List<Artista> artista = new List<Artista>();
             artista = GetTodosArtistas();
-            string sql = "SELECT nome, id_artista FROM musicas WHERE nome LIKE '%" + nome + "%'";
+            string sql = "SELECT nome, id_artista FROM musicas WHERE nome = '" + nome + "'";
             MySqlCommand cmd = new MySqlCommand(sql, _conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
             string art = "";

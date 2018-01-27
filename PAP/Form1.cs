@@ -12,6 +12,7 @@ namespace PAP
         private Database _sql = new Database();
         private List<FullArtist> _artistsSpotify = new List<FullArtist>();
         private List<Artista> _artists = new List<Artista>();
+        private List<Musica> _tracks = new List<Musica>();
         private bool _spotifyArt = false;
 
         public Form1()
@@ -42,13 +43,13 @@ namespace PAP
 
             _spotifyArt = false;*/
 
-            var musicas = _spotify.ProcurarMusicas(artistaTB.Text, 10);
-            for (int i = 0; i < musicas.Count; i++)
+            _tracks = _spotify.ProcurarMusicas(artistaTB.Text, 10);
+            for (int i = 0; i < _tracks.Count; i++)
             {
-                //artistasLB.Items.Add(_artists[i].Nome);
+                artistasLB.Items.Add(_tracks[i].Nome);
                 //artistaImgPB.ImageLocation = _artists[i].Img;
-                Console.WriteLine(musicas[i].Nome);
-                Console.WriteLine(musicas[i].artista.Nome);
+                Console.WriteLine(_tracks[i].Nome);
+                Console.WriteLine(_tracks[i].artista.Nome);
             }
 
             _spotifyArt = false;
@@ -71,10 +72,12 @@ namespace PAP
         {
             int pos = artistasLB.SelectedIndex;
 
-            if (_spotifyArt)
+            /*if (_spotifyArt)
                 artistaImgPB.ImageLocation = _artistsSpotify[pos].Images[0].Url;
             else
-                artistaImgPB.ImageLocation = _artists[pos].Img;
+                artistaImgPB.ImageLocation = _artists[pos].Img;*/
+            playMP.URL = _sql.DownloadFiles(_tracks[pos].Nome, "Drake");
+            Console.WriteLine(playMP.URL);
         }
 
         #region Codigo para inserir na base de dados pelo spotify

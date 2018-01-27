@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.authButton = new MetroFramework.Controls.MetroButton();
             this.mysql = new MetroFramework.Controls.MetroButton();
             this.searchBtn = new MetroFramework.Controls.MetroButton();
@@ -35,7 +36,9 @@
             this.artistaImgPB = new System.Windows.Forms.PictureBox();
             this.searchSpoBtn = new MetroFramework.Controls.MetroButton();
             this.artistaTB = new MetroFramework.Controls.MetroTextBox();
+            this.playMP = new AxWMPLib.AxWindowsMediaPlayer();
             ((System.ComponentModel.ISupportInitialize)(this.artistaImgPB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playMP)).BeginInit();
             this.SuspendLayout();
             // 
             // authButton
@@ -109,9 +112,9 @@
             // 
             // 
             this.artistaTB.CustomButton.Image = null;
-            this.artistaTB.CustomButton.Location = new System.Drawing.Point(53, 1);
+            this.artistaTB.CustomButton.Location = new System.Drawing.Point(79, 1);
             this.artistaTB.CustomButton.Name = "";
-            this.artistaTB.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.artistaTB.CustomButton.Size = new System.Drawing.Size(41, 41);
             this.artistaTB.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.artistaTB.CustomButton.TabIndex = 1;
             this.artistaTB.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -137,11 +140,21 @@
             this.artistaTB.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.artistaTB.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             // 
+            // playMP
+            // 
+            this.playMP.Enabled = true;
+            this.playMP.Location = new System.Drawing.Point(419, 523);
+            this.playMP.Name = "playMP";
+            this.playMP.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("playMP.OcxState")));
+            this.playMP.Size = new System.Drawing.Size(225, 45);
+            this.playMP.TabIndex = 9;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.playMP);
             this.Controls.Add(this.artistaTB);
             this.Controls.Add(this.searchSpoBtn);
             this.Controls.Add(this.artistaImgPB);
@@ -151,6 +164,7 @@
             this.Controls.Add(this.authButton);
             this.Name = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.artistaImgPB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playMP)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -163,6 +177,7 @@
         private System.Windows.Forms.PictureBox artistaImgPB;
         private MetroFramework.Controls.MetroButton searchSpoBtn;
         private MetroFramework.Controls.MetroTextBox artistaTB;
+        private AxWMPLib.AxWindowsMediaPlayer playMP;
     }
 }
 
