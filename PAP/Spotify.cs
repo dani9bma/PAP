@@ -93,7 +93,6 @@ namespace PAP
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
-                    throw;
                 }
                 
             }

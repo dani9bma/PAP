@@ -52,6 +52,7 @@ namespace PAP
                     var nomeMusica = file.Name;
                     if (nomeMusica.Contains(musica) && nomeMusica.Contains(artista))
                     {
+                        Console.WriteLine(nomeMusica);
                         file.DownloadToFile("E:/music.mp3", FileMode.Create);
                         return "E:/music.mp3";
                     }
@@ -80,28 +81,24 @@ namespace PAP
                                 nome = nome.Replace("Lyrics", "");
                             if (nome.Contains("Video"))
                                 nome = nome.Replace("Video", "");
-                            if (nome.Contains("-"))
-                                nome = nome.Replace("-", "");
-                            if (nome.Contains("Audio"))
-                                nome = nome.Replace("Audio", "");
-                            if (nome.Contains("Official"))
-                                nome = nome.Replace("Official", "");
-                            if (nome.Contains("("))
-                                nome = nome.Replace("(", "");
-                            if (nome.Contains(")"))
-                                nome = nome.Replace(")", "");
-                            if (nome.Contains("Explicit"))
-                                nome = nome.Replace("-", "");
-                            if (nome.Contains("["))
-                                nome = nome.Replace("[", "");
-                            if (nome.Contains("]"))
-                                nome = nome.Replace("]", "");
-                            if (nome.Contains("Music"))
-                                nome = nome.Replace("Music", "");
-                            if (nome.Contains("'"))
-                                nome = nome.Replace("'", " ");
-                            if (nome.Contains("&"))
-                                nome = nome.Replace("&", " ");
+                            //if (nome.Contains("-"))
+                            //    nome = nome.Replace("-", "");
+                            //if (nome.Contains("Audio") || nome.Contains("audio"))
+                            //    nome = nome.Replace("Audio", "");
+                            //if (nome.Contains("Official"))
+                            //    nome = nome.Replace("Official", "");
+                            //if (nome.Contains("Explicit"))
+                            //    nome = nome.Replace("-", "");
+                            //if (nome.Contains("["))
+                            //    nome = nome.Replace("[", "");
+                            //if (nome.Contains("]"))
+                            //    nome = nome.Replace("]", "");
+                            //if (nome.Contains("Music"))
+                            //    nome = nome.Replace("Music", "");
+                            //if (nome.Contains("'"))
+                            //    nome = nome.Replace("'", " ");
+                            //if (nome.Contains("&"))
+                            //    nome = nome.Replace("&", " ");
 
                             var cod = GetCodigoArtista(artists[i].Nome);
                             InserirMusicas(nome, cod);
@@ -115,6 +112,8 @@ namespace PAP
 
         public void InserirArtistas(string nome, string img = "")
         {
+            if (nome.Contains("'"))
+                nome = nome.Replace("'", " ");
             string sql = "INSERT INTO artistas (nome, img) VALUES ('" + nome + "', '" + img + "')";
             MySqlCommand cmd = new MySqlCommand(sql, _conn);
             cmd.ExecuteNonQuery();
@@ -122,6 +121,8 @@ namespace PAP
 
         public void InserirMusicas(string nomeMusica, int codArtista)
         {
+            if (nomeMusica.Contains("'"))
+                nomeMusica = nomeMusica.Replace("'", " ");
             string sql = "INSERT INTO musicas (id_artista, nome) VALUES ('" + codArtista + "', '" + nomeMusica + "\')";
             MySqlCommand cmd = new MySqlCommand(sql, _conn);
             cmd.ExecuteNonQuery();
@@ -188,19 +189,21 @@ namespace PAP
             Musica[] musica = new Musica[qtd];
             List<Artista> artista = new List<Artista>();
             artista = GetTodosArtistas();
-            string sql = "SELECT nome, id_artista FROM musicas WHERE nome = '" + nome + "'";
+            string sql = "SELECT nome, id_artista FROM musicas WHERE nome LIKE '%" + nome + "%'";
             MySqlCommand cmd = new MySqlCommand(sql, _conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
             string art = "";
+            int artId = -1;
 
-            if (rdr.Read())
+            for (int i = 0; i < qtd; i++)
             {
-                for (int i = 0; i < qtd; i++)
+                if (rdr.Read())
                 {
-                    if (art != rdr[0].ToString())
+                    if (art != rdr[0].ToString() || artId != int.Parse(rdr[1].ToString()))
                     {
                         var m = rdr[1].ToString();
                         art = rdr[0].ToString();
+                        artId = int.Parse(rdr[1].ToString());
                         musica[i].Nome = art;
                         musica[i].artista = artista[int.Parse(m) - 1];
                     }
@@ -209,6 +212,11 @@ namespace PAP
                         musica[i].Nome = "";
                         musica[i].artista = new Artista();
                     }
+                }
+                else
+                {
+                    musica[i].Nome = "";
+                    musica[i].artista = new Artista();
                 }
             }
 

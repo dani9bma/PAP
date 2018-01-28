@@ -27,7 +27,6 @@ namespace PAP
 
         private void mysql_Click(object sender, EventArgs e)
         {
-            
             _sql.AzureToMySql();
         }
 
@@ -77,7 +76,10 @@ namespace PAP
                 artistaImgPB.ImageLocation = _artistsSpotify[pos].Images[0].Url;
             else
                 artistaImgPB.ImageLocation = _artists[pos].Img;*/
-            playMP.URL = _sql.DownloadFiles(_tracks[pos].Nome, "");
+            Console.WriteLine(_tracks[pos].Nome);
+            Console.WriteLine(_tracks[pos].artista.Nome);
+            playMP.URL = "";
+            playMP.URL = _sql.DownloadFiles(_tracks[pos].Nome, _tracks[pos].artista.Nome);
             Console.WriteLine(playMP.URL);
         }
 
