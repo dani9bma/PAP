@@ -29,8 +29,9 @@ namespace PAP
     {
         private SpotifyWebAPI _spotify;
         private bool isAuthtenticated = false;
+	    private Database _sql = new Database();
 
-        public Spotify()
+		public Spotify()
         {
         }
 
@@ -103,10 +104,9 @@ namespace PAP
 
         public List<Artista> ProcurarArtistas(string procura, int qtd = 5)
         {
-            Database sql = new Database();
             List<Artista> artistas = new List<Artista>();
             Artista[] sqlArt = new Artista[qtd];
-            sqlArt = sql.ProcurarArtistas(procura, qtd);
+            sqlArt = _sql.ProcurarArtistas(procura, qtd);
 
             for (int i = 0; i < sqlArt.Length; i++)
             {
@@ -118,10 +118,10 @@ namespace PAP
 
         public List<Musica> ProcurarMusicas(string procura, int qtd)
         {
-            Database sql = new Database();
+            
             List<Musica> musicas = new List<Musica>();
             Musica[] sqlArt = new Musica[qtd];
-            sqlArt = sql.ProcurarMusicas(procura, qtd);
+            sqlArt = _sql.ProcurarMusicas(procura, qtd);
 
             for (int i = 0; i < sqlArt.Length; i++)
             {

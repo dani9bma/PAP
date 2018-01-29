@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using MetroFramework.Forms;
 using SpotifyAPI.Web.Models;
@@ -14,10 +15,11 @@ namespace PAP
         private List<Artista> _artists = new List<Artista>();
         private List<Musica> _tracks = new List<Musica>();
         private bool _spotifyArt = false;
+		private List<Musica> _musicas = new List<Musica>();
 
         public Form1()
         {
-            InitializeComponent();
+	        InitializeComponent();
         }
 
         private void authButton_Click(object sender, EventArgs e)
@@ -27,12 +29,12 @@ namespace PAP
 
         private void mysql_Click(object sender, EventArgs e)
         {
-            _sql.AzureToMySql();
+            //_sql.AzureToMySql();
         }
 
         private void searchBtn_Click(object sender, EventArgs e)
         {
-            /*_artists = _spotify.ProcurarArtistas(artistaTB.Text, 10);
+			/*_artists = _spotify.ProcurarArtistas(artistaTB.Text, 10);
             artistasLB.Items.Clear();
             for (int i = 0; i < _artists.Count; i++)
             {
@@ -42,19 +44,19 @@ namespace PAP
 
             _spotifyArt = false;*/
 
-            _tracks = _spotify.ProcurarMusicas(artistaTB.Text, 10);
-            artistasLB.Items.Clear();
-            for (int i = 0; i < _tracks.Count; i++)
-            {
-                artistasLB.Items.Add(_tracks[i].Nome);
-                //artistaImgPB.ImageLocation = _artists[i].Img;
-                Console.WriteLine(_tracks[i].Nome);
-                Console.WriteLine(_tracks[i].artista.Nome);
-            }
+	        _tracks = _spotify.ProcurarMusicas(artistaTB.Text, 10);
+			artistasLB.Items.Clear();
+			for (int i = 0; i < _tracks.Count; i++)
+			{
+				artistasLB.Items.Add(_tracks[i].Nome);
+				//artistaImgPB.ImageLocation = _artists[i].Img;
+				Console.WriteLine(_tracks[i].Nome);
+				Console.WriteLine(_tracks[i].artista.Nome);
+			}
 
-            _spotifyArt = false;
+			_spotifyArt = false;
 
-        }
+		}
 
         private void searchSpoBtn_Click(object sender, EventArgs e)
         {
