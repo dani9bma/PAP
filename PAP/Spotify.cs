@@ -120,13 +120,7 @@ namespace PAP
         {
             
             List<Musica> musicas = new List<Musica>();
-            Musica[] sqlArt = new Musica[qtd];
-            sqlArt = _sql.ProcurarMusicas(procura, qtd);
-
-            for (int i = 0; i < sqlArt.Length; i++)
-            {
-                musicas.Add(sqlArt[i]);
-            }
+            musicas = _sql.ProcurarMusicas(procura, qtd);
 
             return musicas;
         }

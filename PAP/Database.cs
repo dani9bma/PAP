@@ -182,10 +182,10 @@ namespace PAP
             return artista;
         }
 
-        public Musica[] ProcurarMusicas(string nome, int qtd)
+        public List<Musica> ProcurarMusicas(string nome, int qtd)
         {
             //TODO: Procurar por nome do artista
-            //TODO: Aparecer Mensagem ,quando nao encontra musicas, para contribuir para a base de dados
+            //TODO: Rever codigo 
             Musica[] musica = new Musica[qtd];
             List<Artista> artista = new List<Artista>();
             artista = GetTodosArtistas();
@@ -219,10 +219,25 @@ namespace PAP
                     musica[i].artista = new Artista();
                 }
             }
-
+			
             rdr.Close();
 
-            return musica;
+			List<Musica> mu = new List<Musica>();
+	        for (int i = 0; i < musica.Length; i++)
+	        {
+		        if (musica[i].Nome != "")
+		        {
+			        mu.Add(musica[i]);
+		        }
+	        }
+
+	        if (mu.Count > 0)
+	        {
+		        return mu;
+			}
+
+	        MessageBox.Show("A musica que tentou pesquisar não existe na nossa base de dados, por favor entre aqui (LINK) e contribua com a música que deseja");
+	        return mu;
         }
 
         public int GetCodigoArtista(string nome)
