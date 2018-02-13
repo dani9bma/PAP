@@ -46,17 +46,34 @@ namespace PAP
 
 	        _tracks = _spotify.ProcurarMusicas(artistaTB.Text, 10);
 			artistasLB.Items.Clear();
-			for (int i = 0; i < _tracks.Count; i++)
-			{
-				artistasLB.Items.Add(_tracks[i].Nome);
-				//artistaImgPB.ImageLocation = _artists[i].Img;
-				Console.WriteLine(_tracks[i].Nome);
-				Console.WriteLine(_tracks[i].artista.Nome);
-			}
 
-			_spotifyArt = false;
+            List<Musica> m = _spotify.ProcurarMusicasPorArtista(artistaTB.Text, 5);
+            for (int i = 0; i < m.Count; i++)
+            {
+                _tracks.Add(m[i]);
+            }
 
-		}
+            for (int i = 0; i < _tracks.Count; i++)
+            {
+                artistasLB.Items.Add(_tracks[i].Nome);
+                //artistaImgPB.ImageLocation = _artists[i].Img;
+                Console.WriteLine(_tracks[i].Nome);
+                Console.WriteLine(_tracks[i].artista.Nome);
+            }
+
+            _spotifyArt = false;
+
+            _artists = _spotify.ProcurarArtistas(artistaTB.Text, 10);
+            musicasLB.Items.Clear();
+            for (int i = 0; i < _artists.Count; i++)
+            {
+                musicasLB.Items.Add(_artists[i].Nome);
+                artistaImgPB.ImageLocation = _artists[i].Img;
+                Console.WriteLine(_artists[i].Nome);
+            }
+
+            _spotifyArt = false;
+        }
 
         private void searchSpoBtn_Click(object sender, EventArgs e)
         {

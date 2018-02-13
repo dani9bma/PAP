@@ -73,7 +73,7 @@ namespace PAP
             List<FullArtist> artistas = new List<FullArtist>();
             if (isAuthtenticated)
             {
-                artistas = _spotify.SearchItems(procura, SearchType.Artist, qtd).Artists.Items;
+                artistas = _spotify.SearchItems(procura, SearchType.Artist, qtd, 0, "US").Artists.Items;
                 return artistas;
             }
 
@@ -124,7 +124,16 @@ namespace PAP
 
             return musicas;
         }
-        
+
+        public List<Musica> ProcurarMusicasPorArtista(string procura, int qtd)
+        {
+            var artista = _sql.GetCodigoArtista(procura);
+            List<Musica> musicas = new List<Musica>();
+            musicas = _sql.ProcurarMusicasPorArtista(artista, qtd);
+
+            return musicas;
+        }
+
         public bool GetAutenticado()
         {
             return isAuthtenticated;

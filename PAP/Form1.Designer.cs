@@ -37,6 +37,7 @@
             this.searchSpoBtn = new MetroFramework.Controls.MetroButton();
             this.artistaTB = new MetroFramework.Controls.MetroTextBox();
             this.playMP = new AxWMPLib.AxWindowsMediaPlayer();
+            this.musicasLB = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.artistaImgPB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.playMP)).BeginInit();
             this.SuspendLayout();
@@ -81,13 +82,13 @@
             this.artistasLB.FormattingEnabled = true;
             this.artistasLB.Location = new System.Drawing.Point(418, 249);
             this.artistasLB.Name = "artistasLB";
-            this.artistasLB.Size = new System.Drawing.Size(157, 199);
+            this.artistasLB.Size = new System.Drawing.Size(152, 199);
             this.artistasLB.TabIndex = 5;
             this.artistasLB.SelectedIndexChanged += new System.EventHandler(this.artistasLB_SelectedIndexChanged);
             // 
             // artistaImgPB
             // 
-            this.artistaImgPB.Location = new System.Drawing.Point(618, 249);
+            this.artistaImgPB.Location = new System.Drawing.Point(485, 95);
             this.artistaImgPB.Name = "artistaImgPB";
             this.artistaImgPB.Size = new System.Drawing.Size(159, 118);
             this.artistaImgPB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -149,11 +150,20 @@
             this.playMP.Size = new System.Drawing.Size(225, 45);
             this.playMP.TabIndex = 9;
             // 
+            // musicasLB
+            // 
+            this.musicasLB.FormattingEnabled = true;
+            this.musicasLB.Location = new System.Drawing.Point(610, 249);
+            this.musicasLB.Name = "musicasLB";
+            this.musicasLB.Size = new System.Drawing.Size(152, 199);
+            this.musicasLB.TabIndex = 10;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.musicasLB);
             this.Controls.Add(this.playMP);
             this.Controls.Add(this.artistaTB);
             this.Controls.Add(this.searchSpoBtn);
@@ -178,6 +188,7 @@
         private MetroFramework.Controls.MetroButton searchSpoBtn;
         private MetroFramework.Controls.MetroTextBox artistaTB;
         private AxWMPLib.AxWindowsMediaPlayer playMP;
+        private System.Windows.Forms.ListBox musicasLB;
     }
 }
 

@@ -112,8 +112,11 @@ namespace PAP
 
         public void InserirArtistas(string nome, string img = "")
         {
+            Artista[] art = ProcurarArtistas(nome, 1);
             if (nome.Contains("'"))
                 nome = nome.Replace("'", " ");
+            if (img == art[0].Img)
+                return;
             string sql = "INSERT INTO artistas (nome, img) VALUES ('" + nome + "', '" + img + "')";
             MySqlCommand cmd = new MySqlCommand(sql, _conn);
             cmd.ExecuteNonQuery();
@@ -131,7 +134,8 @@ namespace PAP
         //Retorna Artista procurando pelo nome
         public Artista[] ProcurarArtistas(string nome, int qtd)
         {
-            Artista[] artista = new Artista[qtd];
+	        //TODO: Verificar se existe na base dados (fazer mesma coisa que no ProcurarMusicas)
+			Artista[] artista = new Artista[qtd];
             string sql = "SELECT nome, img FROM artistas WHERE nome LIKE '%" + nome + "%'";
             MySqlCommand cmd = new MySqlCommand(sql, _conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
@@ -151,7 +155,8 @@ namespace PAP
                     artista[i].Img = "";
                 }
             }
-            rdr.Close();
+			
+			rdr.Close();
 
             return artista;
         }
@@ -182,9 +187,64 @@ namespace PAP
             return artista;
         }
 
+        public List<Musica> ProcurarMusicasPorArtista(int cod, int qtd)
+        {
+            Musica[] musica = new Musica[qtd];
+            List<Artista> artista = new List<Artista>();
+            artista = GetTodosArtistas();
+            string sql = "SELECT nome, id_artista FROM musicas WHERE id_artista = " + cod;
+            MySqlCommand cmd = new MySqlCommand(sql, _conn);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            string art = "";
+            int artId = -1;
+
+            for (int i = 0; i < qtd; i++)
+            {
+                if (rdr.Read())
+                {
+                    if (art != rdr[0].ToString() || artId != int.Parse(rdr[1].ToString()))
+                    {
+                        var m = rdr[1].ToString();
+                        art = rdr[0].ToString();
+                        artId = int.Parse(rdr[1].ToString());
+                        musica[i].Nome = art;
+                        musica[i].artista = artista[int.Parse(m) - 1];
+                    }
+                    else
+                    {
+                        musica[i].Nome = "";
+                        musica[i].artista = new Artista();
+                    }
+                }
+                else
+                {
+                    musica[i].Nome = "";
+                    musica[i].artista = new Artista();
+                }
+            }
+
+            rdr.Close();
+
+            List<Musica> mu = new List<Musica>();
+            for (int i = 0; i < musica.Length; i++)
+            {
+                if (musica[i].Nome != "")
+                {
+                    mu.Add(musica[i]);
+                }
+            }
+
+            if (mu.Count > 0)
+            {
+                return mu;
+            }
+
+            return mu;
+        }
+
         public List<Musica> ProcurarMusicas(string nome, int qtd)
         {
-            //TODO: Procurar por nome do artista
+            //TODO: Na procura, procurar mostra musicas, artistas e albuns
             //TODO: Rever codigo 
             Musica[] musica = new Musica[qtd];
             List<Artista> artista = new List<Artista>();
@@ -237,14 +297,16 @@ namespace PAP
 			}
 
 	        MessageBox.Show("A musica que tentou pesquisar não existe na nossa base de dados, por favor entre aqui (LINK) e contribua com a música que deseja");
+            //TODO: Quando nao encontra musica abrir outra janela com um formulario com o nome da musica, link da musica, artista(<select>) e um botao de "Enviar", clicado no botao este deverá fazer o download da musica e adicionala na base de dados
 	        return mu;
         }
 
         public int GetCodigoArtista(string nome)
         {
+			//TODO: Verificar se existe na base dados (fazer mesma coisa que no ProcurarMusicas)
             if (nome.Contains("'"))
                 nome = nome.Replace("'", " ");
-            string sql = "SELECT id_artista FROM artistas WHERE nome = '" + nome + "'";
+            string sql = "SELECT id_artista FROM artistas WHERE nome LIKE '%" + nome + "%'";
             MySqlCommand cmd = new MySqlCommand(sql, _conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
             if (rdr.Read())
@@ -256,7 +318,8 @@ namespace PAP
 
             rdr.Close();
 
-            return 0;
+            MessageBox.Show("O artista que procurou nao existe na base de dados");
+            return -1;
         }
 
         public List<Artista> GetTodosArtistas()
