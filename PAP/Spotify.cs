@@ -21,6 +21,7 @@ namespace PAP
 
     public struct Musica
     {
+        public int id;
         public string Nome;
         public Artista artista;
     }

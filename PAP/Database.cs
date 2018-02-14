@@ -122,6 +122,15 @@ namespace PAP
             cmd.ExecuteNonQuery();
         }
 
+        public void InserirAlbum(int cod, string nome, int codMusica)
+        {
+            if (nome.Contains("'"))
+                nome = nome.Replace("'", " ");
+            string sql = "INSERT INTO albums (id_album, nome, id_musica) VALUES (" + cod + ", '" + nome + "', "+ codMusica +")";
+            MySqlCommand cmd = new MySqlCommand(sql, _conn);
+            cmd.ExecuteNonQuery();
+        }
+
         public void InserirMusicas(string nomeMusica, int codArtista)
         {
             if (nomeMusica.Contains("'"))
@@ -322,6 +331,42 @@ namespace PAP
             return -1;
         }
 
+        public int GetTotalAlbums()
+        {
+            string sql = "SELECT COUNT(id_album) FROM albums";
+            MySqlCommand cmd = new MySqlCommand(sql, _conn);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            if (rdr.Read())
+            {
+                int cod = int.Parse(rdr[0].ToString());
+                rdr.Close();
+                return cod;
+            }
+
+            rdr.Close();
+
+            return -1;
+        }
+
+        public int GetCodigoAlbum(string nome)
+        {
+            if (nome.Contains("'"))
+                nome = nome.Replace("'", " ");
+            string sql = "SELECT id_album FROM albums WHERE nome LIKE '" + nome + "'";
+            MySqlCommand cmd = new MySqlCommand(sql, _conn);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            if (rdr.Read())
+            {
+                int cod = int.Parse(rdr[0].ToString());
+                rdr.Close();
+                return cod;
+            }
+
+            rdr.Close();
+
+            return -1;
+        }
+
         public List<Artista> GetTodosArtistas()
         {
             List<Artista> artistas = new List<Artista>();
@@ -353,6 +398,35 @@ namespace PAP
             rdr.Close();
 
             return artistas;
+        }
+
+        public List<Musica> GetTodasMusicas()
+        {
+            List<Musica> musicas = new List<Musica>();
+            string sql = "SELECT id_musica, nome FROM musicas";
+            MySqlCommand cmd = new MySqlCommand(sql, _conn);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            string art = "";
+            int i = 0;
+            while (rdr.Read())
+            {
+                if (!(art == rdr[0]))
+                {
+                    art = rdr[0].ToString();
+                    Musica musica = new Musica {id = int.Parse(rdr[0].ToString()), Nome = rdr[1].ToString()};
+                    musicas.Add(musica);
+                }
+                else
+                {
+                    Musica musica = new Musica {Nome = rdr[0].ToString()};
+                    musicas.Add(musica);
+                }
+
+                i++;
+            }
+            rdr.Close();
+
+            return musicas;
         }
     }
 }

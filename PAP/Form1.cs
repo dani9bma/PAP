@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 using MetroFramework.Forms;
 using SpotifyAPI.Web.Models;
@@ -29,7 +28,29 @@ namespace PAP
 
         private void mysql_Click(object sender, EventArgs e)
         {
-            //_sql.AzureToMySql();
+            List<FullTrack> tracks = new List<FullTrack>();
+            List<Musica> musicas = new List<Musica>();
+            musicas = _sql.GetTodasMusicas();
+            for (int i = 0; i < musicas.Count; i++)
+            {
+                tracks = _spotify.ProcurarMusicaSpotify(musicas[i].Nome, 1);
+                if (tracks.Count > 0)
+                {
+                    int cod = _sql.GetCodigoAlbum(tracks[0].Album.Name);
+                    if (cod == -1)
+                    {
+                        cod = _sql.GetTotalAlbums();
+                        cod++;
+                        _sql.InserirAlbum(cod, tracks[0].Album.Name, musicas[i].id);
+                        Console.WriteLine(tracks[0].Album.Name);
+                    }
+                    else
+                    {
+                        _sql.InserirAlbum(cod, tracks[0].Album.Name, musicas[i].id);
+                        Console.WriteLine(tracks[0].Album.Name);
+                    }
+                }
+            }
         }
 
         private void searchBtn_Click(object sender, EventArgs e)

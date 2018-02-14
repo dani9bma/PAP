@@ -1,4 +1,4 @@
-Quando pesquisa mostrar artistas, musicas e albuns
+Quando pesquisa mostrar albuns
 Adicionar Albuns, musicas, artistas favoritos
 Adicionar Playlists
 Adicionar conexao com spotify para converter playlists de um sitio para o outro
