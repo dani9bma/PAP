@@ -38,6 +38,7 @@
             this.artistaTB = new MetroFramework.Controls.MetroTextBox();
             this.playMP = new AxWMPLib.AxWindowsMediaPlayer();
             this.musicasLB = new System.Windows.Forms.ListBox();
+            this.albumsLB = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.artistaImgPB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.playMP)).BeginInit();
             this.SuspendLayout();
@@ -68,7 +69,7 @@
             // searchBtn
             // 
             this.searchBtn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.searchBtn.Location = new System.Drawing.Point(219, 249);
+            this.searchBtn.Location = new System.Drawing.Point(55, 249);
             this.searchBtn.Name = "searchBtn";
             this.searchBtn.Size = new System.Drawing.Size(147, 54);
             this.searchBtn.TabIndex = 4;
@@ -80,7 +81,7 @@
             // artistasLB
             // 
             this.artistasLB.FormattingEnabled = true;
-            this.artistasLB.Location = new System.Drawing.Point(418, 249);
+            this.artistasLB.Location = new System.Drawing.Point(253, 249);
             this.artistasLB.Name = "artistasLB";
             this.artistasLB.Size = new System.Drawing.Size(152, 199);
             this.artistasLB.TabIndex = 5;
@@ -98,7 +99,7 @@
             // searchSpoBtn
             // 
             this.searchSpoBtn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.searchSpoBtn.Location = new System.Drawing.Point(23, 249);
+            this.searchSpoBtn.Location = new System.Drawing.Point(23, 176);
             this.searchSpoBtn.Name = "searchSpoBtn";
             this.searchSpoBtn.Size = new System.Drawing.Size(147, 54);
             this.searchSpoBtn.TabIndex = 7;
@@ -153,16 +154,25 @@
             // musicasLB
             // 
             this.musicasLB.FormattingEnabled = true;
-            this.musicasLB.Location = new System.Drawing.Point(610, 249);
+            this.musicasLB.Location = new System.Drawing.Point(451, 249);
             this.musicasLB.Name = "musicasLB";
             this.musicasLB.Size = new System.Drawing.Size(152, 199);
             this.musicasLB.TabIndex = 10;
+            // 
+            // albumsLB
+            // 
+            this.albumsLB.FormattingEnabled = true;
+            this.albumsLB.Location = new System.Drawing.Point(625, 249);
+            this.albumsLB.Name = "albumsLB";
+            this.albumsLB.Size = new System.Drawing.Size(152, 199);
+            this.albumsLB.TabIndex = 11;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 600);
+            this.Controls.Add(this.albumsLB);
             this.Controls.Add(this.musicasLB);
             this.Controls.Add(this.playMP);
             this.Controls.Add(this.artistaTB);
@@ -189,6 +199,7 @@
         private MetroFramework.Controls.MetroTextBox artistaTB;
         private AxWMPLib.AxWindowsMediaPlayer playMP;
         private System.Windows.Forms.ListBox musicasLB;
+        private System.Windows.Forms.ListBox albumsLB;
     }
 }
 

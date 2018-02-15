@@ -13,6 +13,7 @@ namespace PAP
         private List<FullArtist> _artistsSpotify = new List<FullArtist>();
         private List<Artista> _artists = new List<Artista>();
         private List<Musica> _tracks = new List<Musica>();
+        private List<Album> _albums = new List<Album>();
         private bool _spotifyArt = false;
 		private List<Musica> _musicas = new List<Musica>();
 
@@ -65,7 +66,7 @@ namespace PAP
 
             _spotifyArt = false;*/
 
-	        _tracks = _spotify.ProcurarMusicas(artistaTB.Text, 10);
+	        /*_tracks = _spotify.ProcurarMusicas(artistaTB.Text, 10);
 			artistasLB.Items.Clear();
 
             List<Musica> m = _spotify.ProcurarMusicasPorArtista(artistaTB.Text, 5);
@@ -91,6 +92,16 @@ namespace PAP
                 musicasLB.Items.Add(_artists[i].Nome);
                 artistaImgPB.ImageLocation = _artists[i].Img;
                 Console.WriteLine(_artists[i].Nome);
+            }
+            _spotifyArt = false;*/
+
+            _albums = _spotify.ProcurarAlbums(artistaTB.Text, 10);
+            albumsLB.Items.Clear();
+            for (int i = 0; i < _albums.Count; i++)
+            {
+                albumsLB.Items.Add(_albums[i].Nome);
+                //artistaImgPB.ImageLocation = _artists[i].Img;
+                Console.WriteLine(_albums[i].Nome);
             }
 
             _spotifyArt = false;

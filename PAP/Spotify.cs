@@ -26,6 +26,13 @@ namespace PAP
         public Artista artista;
     }
 
+    public struct Album
+    {
+        public int id;
+        public string Nome;
+        public List<Musica> Musicas;
+    }
+
     public partial class Spotify : UserControl
     {
         private SpotifyWebAPI _spotify;
@@ -124,6 +131,14 @@ namespace PAP
             musicas = _sql.ProcurarMusicas(procura, qtd);
 
             return musicas;
+        }
+
+        public List<Album> ProcurarAlbums(string procura, int qtd)
+        {
+            List<Album> albums = new List<Album>();
+            albums = _sql.ProcurarAlbums(procura, qtd);
+
+            return albums;
         }
 
         public List<Musica> ProcurarMusicasPorArtista(string procura, int qtd)

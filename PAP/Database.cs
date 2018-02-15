@@ -151,7 +151,8 @@ namespace PAP
             string art = "";
             for (int i = 0; i < qtd; i++)
             {
-                rdr.Read();
+                if (!rdr.Read())
+                    return artista;
                 if (!(art == rdr[0]))
                 {
                     art = rdr[0].ToString();
@@ -308,6 +309,56 @@ namespace PAP
 	        MessageBox.Show("A musica que tentou pesquisar não existe na nossa base de dados, por favor entre aqui (LINK) e contribua com a música que deseja");
             //TODO: Quando nao encontra musica abrir outra janela com um formulario com o nome da musica, link da musica, artista(<select>) e um botao de "Enviar", clicado no botao este deverá fazer o download da musica e adicionala na base de dados
 	        return mu;
+        }
+
+        public List<Album> ProcurarAlbums(string nome, int qtd)
+        {
+            Album[] album = new Album[qtd];
+            string sql = "SELECT nome FROM albums WHERE nome LIKE '%" + nome + "%'";
+            MySqlCommand cmd = new MySqlCommand(sql, _conn);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            string art = "";
+            int artId = -1;
+
+            for (int i = 0; i < qtd; i++)
+            {
+                if (rdr.Read())
+                {
+                    if (art != rdr[0].ToString())
+                    {
+                        art = rdr[0].ToString();
+                        album[i].Nome = art;
+                    }
+                    else
+                    {
+                        album[i].Nome = "";
+                    }
+                }
+                else
+                {
+                    album[i].Nome = "";
+                }
+            }
+
+            rdr.Close();
+
+            List<Album> albums = new List<Album>();
+            for (int i = 0; i < album.Length; i++)
+            {
+                if (album[i].Nome != "")
+                {
+                    albums.Add(album[i]);
+                }
+            }
+
+            if (albums.Count > 0)
+            {
+                return albums;
+            }
+
+            MessageBox.Show("O album que tentou pesquisar não existe na nossa base de dados, por favor entre aqui (LINK) e contribua com a música que deseja");
+            //TODO: Quando nao encontra musica abrir outra janela com um formulario com o nome da musica, link da musica, artista(<select>) e um botao de "Enviar", clicado no botao este deverá fazer o download da musica e adicionala na base de dados
+            return albums;
         }
 
         public int GetCodigoArtista(string nome)
