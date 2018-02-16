@@ -204,6 +204,7 @@ namespace PAP
 
 
         #endregion
+
         #region Codigo para inserir musicas na base de dados pelo spotify
         /*List<Artista> artistas = new List<Artista>();
 
@@ -231,5 +232,15 @@ namespace PAP
 
         Console.WriteLine("Finished");*/
         #endregion
+
+        private void registerBtn_Click(object sender, EventArgs e)
+        {
+            _sql.RegistarUtilizador(usernameTB.Text, passwordTB.Text);
+        }
+
+        private void loginBtn_Click(object sender, EventArgs e)
+        {
+            _sql.LoginUtilizador(usernameTB.Text, passwordTB.Text);
+        }
     }
 }

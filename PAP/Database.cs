@@ -479,5 +479,46 @@ namespace PAP
 
             return musicas;
         }
+
+        public void RegistarUtilizador(string username, string password)
+        {
+            if (username.Contains("'"))
+            {
+                MessageBox.Show("Nao pode ter \' no username");
+                return;
+            }
+
+            string sql = "INSERT INTO users (username, password) VALUES ('" + username + "', '" + password + "')";
+            MySqlCommand cmd = new MySqlCommand(sql, _conn);
+            cmd.ExecuteNonQuery();
+        }
+
+        public void LoginUtilizador(string username, string password)
+        {
+            string sql = "SELECT username, password FROM users";
+            MySqlCommand cmd = new MySqlCommand(sql, _conn);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            
+            while (rdr.Read())
+            {
+                if (rdr[0].ToString() == username)
+                {
+                    if (rdr[1].ToString() == password)
+                    {
+                        MessageBox.Show("Sucesso ao fazer login");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Password incorreta");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Username incorreto");
+                }
+                
+            }
+            rdr.Close();
+        }
     }
 }
