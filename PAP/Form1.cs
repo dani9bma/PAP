@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using MetroFramework.Forms;
 using SpotifyAPI.Web.Models;
 
 namespace PAP
 {
-    public partial class Form1 : MetroForm
+
+	public partial class Form1 : MetroForm
     {
         private Spotify _spotify = new Spotify();
         private Database _sql = new Database();
@@ -240,7 +242,11 @@ namespace PAP
 
         private void loginBtn_Click(object sender, EventArgs e)
         {
-            _sql.LoginUtilizador(usernameTB.Text, passwordTB.Text);
+	        if (LoginInfo.username != "")
+		        MessageBox.Show("Voce ja esta logado");
+	        else
+		        _sql.LoginUtilizador(usernameTB.Text, passwordTB.Text);
+
         }
     }
 }

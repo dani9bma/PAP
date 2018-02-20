@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using MySql.Data;
-using System.Data;
+using System.Diagnostics.Eventing.Reader;
+using System.Web;
 using System.IO;
 using System.Windows.Forms;
 using Microsoft.WindowsAzure.Storage;
@@ -11,7 +11,14 @@ using MySql.Data.MySqlClient;
 
 namespace PAP
 {
-    public class Database
+
+	public struct LoginInfo
+	{
+		public static string username = "";
+		public static int id = -1;
+	}
+
+	public class Database
     {
         private MySql.Data.MySqlClient.MySqlConnection _conn;
         private string _myConnectionString;
@@ -495,17 +502,19 @@ namespace PAP
 
         public void LoginUtilizador(string username, string password)
         {
-            string sql = "SELECT username, password FROM users";
+            string sql = "SELECT id_user, username, password FROM users";
             MySqlCommand cmd = new MySqlCommand(sql, _conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
             
             while (rdr.Read())
             {
-                if (rdr[0].ToString() == username)
+                if (rdr[1].ToString() == username)
                 {
-                    if (rdr[1].ToString() == password)
+                    if (rdr[2].ToString() == password)
                     {
                         MessageBox.Show("Sucesso ao fazer login");
+	                    LoginInfo.username = username;
+	                    LoginInfo.id = int.Parse(rdr[0].ToString());
                     }
                     else
                     {
