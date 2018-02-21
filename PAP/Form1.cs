@@ -68,7 +68,7 @@ namespace PAP
 
             _spotifyArt = false;*/
 
-	        /*_tracks = _spotify.ProcurarMusicas(artistaTB.Text, 10);
+	        _tracks = _spotify.ProcurarMusicas(artistaTB.Text, 10);
 			artistasLB.Items.Clear();
 
             List<Musica> m = _spotify.ProcurarMusicasPorArtista(artistaTB.Text, 5);
@@ -95,7 +95,7 @@ namespace PAP
                 artistaImgPB.ImageLocation = _artists[i].Img;
                 Console.WriteLine(_artists[i].Nome);
             }
-            _spotifyArt = false;*/
+            _spotifyArt = false;
 
             _albums = _spotify.ProcurarAlbums(artistaTB.Text, 10);
             albumsLB.Items.Clear();
@@ -134,6 +134,8 @@ namespace PAP
             playMP.URL = "";
             playMP.URL = _sql.DownloadFiles(_tracks[pos].Nome, _tracks[pos].artista.Nome);
             Console.WriteLine(playMP.URL);
+
+			_sql.InserirMusicasFavoritas(_tracks[pos].id, LoginInfo.id);
         }
 
         #region Codigo para inserir na base de dados pelo spotify

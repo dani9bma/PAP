@@ -119,7 +119,7 @@ namespace PAP
 
         public void InserirArtistas(string nome, string img = "")
         {
-            Artista[] art = ProcurarArtistas(nome, 1);
+            List<Artista> art = ProcurarArtistas(nome, 1);
             if (nome.Contains("'"))
                 nome = nome.Replace("'", " ");
             if (img == art[0].Img)
@@ -147,36 +147,66 @@ namespace PAP
             cmd.ExecuteNonQuery();
         }
 
+	    public void InserirMusicasFavoritas(int id_musica, int id_user)
+	    {
+			string sql = "INSERT INTO musicas_favoritas (id_musica, id_user) VALUES (" + id_musica+ ", " + id_user + ")";
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			cmd.ExecuteNonQuery();
+		}
+
         //Retorna Artista procurando pelo nome
-        public Artista[] ProcurarArtistas(string nome, int qtd)
+        public List<Artista> ProcurarArtistas(string nome, int qtd)
         {
-	        //TODO: Verificar se existe na base dados (fazer mesma coisa que no ProcurarMusicas)
-			Artista[] artista = new Artista[qtd];
-            string sql = "SELECT nome, img FROM artistas WHERE nome LIKE '%" + nome + "%'";
-            MySqlCommand cmd = new MySqlCommand(sql, _conn);
-            MySqlDataReader rdr = cmd.ExecuteReader();
-            string art = "";
-            for (int i = 0; i < qtd; i++)
-            {
-                if (!rdr.Read())
-                    return artista;
-                if (!(art == rdr[0]))
-                {
-                    art = rdr[0].ToString();
-                    artista[i].Nome = rdr[0].ToString();
-                    artista[i].Img = rdr[1].ToString();
-                }
-                else
-                {
-                    artista[i].Nome = "";
-                    artista[i].Img = "";
-                }
-            }
-			
+			//TODO: Verificar se existe na base dados (fazer mesma coisa que no ProcurarMusicas)
+			Artista[] musica = new Artista[qtd];
+			string sql = "SELECT nome FROM artistas WHERE nome LIKE '%" + nome + "%'";
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			MySqlDataReader rdr = cmd.ExecuteReader();
+			string art = "";
+			//int artId = -1;
+
+			for (int i = 0; i < qtd; i++)
+			{
+				if (rdr.Read())
+				{
+					if (art != rdr[0].ToString() /*|| artId != int.Parse(rdr[1].ToString())*/)
+					{
+						//var m = rdr[1].ToString();
+						art = rdr[0].ToString();
+						//artId = int.Parse(rdr[1].ToString());
+						musica[i].Nome = art;
+					}
+					else
+					{
+						musica[i].Nome = "";
+					}
+				}
+				else
+				{
+					musica[i].Nome = "";
+				}
+			}
+
 			rdr.Close();
 
-            return artista;
-        }
+			List<Artista> mu = new List<Artista>();
+			for (int i = 0; i < musica.Length; i++)
+			{
+				if (musica[i].Nome != "")
+				{
+					mu.Add(musica[i]);
+				}
+			}
+
+			if (mu.Count > 0)
+			{
+				return mu;
+			}
+
+			MessageBox.Show("O artista que tentou pesquisar não existe na nossa base de dados, por favor entre aqui (LINK) e contribua com a música que deseja");
+			//TODO: Quando nao encontra musica abrir outra janela com um formulario com o nome da musica, link da musica, artista(<select>) e um botao de "Enviar", clicado no botao este deverá fazer o download da musica e adicionala na base de dados
+			return new List<Artista>();
+		}
 
         //Retorna Artista procurando pelo codigo
         public Artista ProcurarArtista(int cod)
@@ -266,7 +296,7 @@ namespace PAP
             Musica[] musica = new Musica[qtd];
             List<Artista> artista = new List<Artista>();
             artista = GetTodosArtistas();
-            string sql = "SELECT nome, id_artista FROM musicas WHERE nome LIKE '%" + nome + "%'";
+            string sql = "SELECT nome, id_artista, id_musica FROM musicas WHERE nome LIKE '%" + nome + "%'";
             MySqlCommand cmd = new MySqlCommand(sql, _conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
             string art = "";
@@ -283,18 +313,21 @@ namespace PAP
                         artId = int.Parse(rdr[1].ToString());
                         musica[i].Nome = art;
                         musica[i].artista = artista[int.Parse(m) - 1];
+	                    musica[i].id = int.Parse(rdr[2].ToString());
                     }
                     else
                     {
                         musica[i].Nome = "";
                         musica[i].artista = new Artista();
+	                    musica[i].id = -1;
                     }
                 }
                 else
                 {
                     musica[i].Nome = "";
                     musica[i].artista = new Artista();
-                }
+	                musica[i].id = -1;
+				}
             }
 			
             rdr.Close();
@@ -315,7 +348,7 @@ namespace PAP
 
 	        MessageBox.Show("A musica que tentou pesquisar não existe na nossa base de dados, por favor entre aqui (LINK) e contribua com a música que deseja");
             //TODO: Quando nao encontra musica abrir outra janela com um formulario com o nome da musica, link da musica, artista(<select>) e um botao de "Enviar", clicado no botao este deverá fazer o download da musica e adicionala na base de dados
-	        return mu;
+	        return new List<Musica>();
         }
 
         public List<Album> ProcurarAlbums(string nome, int qtd)
@@ -364,9 +397,9 @@ namespace PAP
             }
 
             MessageBox.Show("O album que tentou pesquisar não existe na nossa base de dados, por favor entre aqui (LINK) e contribua com a música que deseja");
-            //TODO: Quando nao encontra musica abrir outra janela com um formulario com o nome da musica, link da musica, artista(<select>) e um botao de "Enviar", clicado no botao este deverá fazer o download da musica e adicionala na base de dados
-            return albums;
-        }
+			//TODO: Quando nao encontra musica abrir outra janela com um formulario com o nome da musica, link da musica, artista(<select>) e um botao de "Enviar", clicado no botao este deverá fazer o download da musica e adicionala na base de dados
+			return new List<Album>();
+		}
 
         public int GetCodigoArtista(string nome)
         {
@@ -385,7 +418,6 @@ namespace PAP
 
             rdr.Close();
 
-            MessageBox.Show("O artista que procurou nao existe na base de dados");
             return -1;
         }
 

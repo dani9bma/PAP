@@ -113,10 +113,9 @@ namespace PAP
         public List<Artista> ProcurarArtistas(string procura, int qtd = 5)
         {
             List<Artista> artistas = new List<Artista>();
-            Artista[] sqlArt = new Artista[qtd];
-            sqlArt = _sql.ProcurarArtistas(procura, qtd);
+            List<Artista> sqlArt = _sql.ProcurarArtistas(procura, qtd);
 
-            for (int i = 0; i < sqlArt.Length; i++)
+            for (int i = 0; i < sqlArt.Count; i++)
             {
                 artistas.Add(sqlArt[i]);
             }
