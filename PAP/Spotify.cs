@@ -15,6 +15,7 @@ namespace PAP
 {
     public struct Artista
     {
+	    public int id;
         public string Nome;
         public string Img;
     }

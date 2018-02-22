@@ -154,12 +154,20 @@ namespace PAP
 			cmd.ExecuteNonQuery();
 		}
 
+	    public void InserirArtistasFavoritos(int id_artista, int id_user)
+	    {
+			//TODO: Verificar se artista ja foi adicionado aos favoritos
+			string sql = "INSERT INTO artistas_favoritos (id_artista, id_user) VALUES (" + id_artista + ", " + id_user + ")";
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			cmd.ExecuteNonQuery();
+		}
+
         //Retorna Artista procurando pelo nome
         public List<Artista> ProcurarArtistas(string nome, int qtd)
         {
-			//TODO: Verificar se existe na base dados (fazer mesma coisa que no ProcurarMusicas)
+			//TODO: Mudar o nome das vars
 			Artista[] musica = new Artista[qtd];
-			string sql = "SELECT nome FROM artistas WHERE nome LIKE '%" + nome + "%'";
+			string sql = "SELECT nome, id_artista, img FROM artistas WHERE nome LIKE '%" + nome + "%'";
 			MySqlCommand cmd = new MySqlCommand(sql, _conn);
 			MySqlDataReader rdr = cmd.ExecuteReader();
 			string art = "";
@@ -175,15 +183,21 @@ namespace PAP
 						art = rdr[0].ToString();
 						//artId = int.Parse(rdr[1].ToString());
 						musica[i].Nome = art;
+						musica[i].id = int.Parse(rdr[1].ToString());
+						musica[i].Img = rdr[2].ToString();
 					}
 					else
 					{
 						musica[i].Nome = "";
+						musica[i].id = -1;
+						musica[i].Img = "";
 					}
 				}
 				else
 				{
 					musica[i].Nome = "";
+					musica[i].id = -1;
+					musica[i].Img = "";
 				}
 			}
 

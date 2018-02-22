@@ -68,7 +68,8 @@ namespace PAP
 
             _spotifyArt = false;*/
 
-	        _tracks = _spotify.ProcurarMusicas(artistaTB.Text, 10);
+			// TODO: Tirar spotifyArt
+			_tracks = _spotify.ProcurarMusicas(artistaTB.Text, 10);
 			artistasLB.Items.Clear();
 
             List<Musica> m = _spotify.ProcurarMusicasPorArtista(artistaTB.Text, 5);
@@ -80,7 +81,6 @@ namespace PAP
             for (int i = 0; i < _tracks.Count; i++)
             {
                 artistasLB.Items.Add(_tracks[i].Nome);
-                //artistaImgPB.ImageLocation = _artists[i].Img;
                 Console.WriteLine(_tracks[i].Nome);
                 Console.WriteLine(_tracks[i].artista.Nome);
             }
@@ -92,7 +92,6 @@ namespace PAP
             for (int i = 0; i < _artists.Count; i++)
             {
                 musicasLB.Items.Add(_artists[i].Nome);
-                artistaImgPB.ImageLocation = _artists[i].Img;
                 Console.WriteLine(_artists[i].Nome);
             }
             _spotifyArt = false;
@@ -102,7 +101,6 @@ namespace PAP
             for (int i = 0; i < _albums.Count; i++)
             {
                 albumsLB.Items.Add(_albums[i].Nome);
-                //artistaImgPB.ImageLocation = _artists[i].Img;
                 Console.WriteLine(_albums[i].Nome);
             }
 
@@ -250,5 +248,14 @@ namespace PAP
 		        _sql.LoginUtilizador(usernameTB.Text, passwordTB.Text);
 
         }
-    }
+
+		private void musicasLB_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			int pos = musicasLB.SelectedIndex;
+			
+            artistaImgPB.ImageLocation = _artists[pos].Img;
+
+			_sql.InserirArtistasFavoritos(_artists[pos].id, LoginInfo.id);
+		}
+	}
 }
