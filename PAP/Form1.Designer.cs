@@ -171,6 +171,7 @@
 			this.albumsLB.Name = "albumsLB";
 			this.albumsLB.Size = new System.Drawing.Size(152, 199);
 			this.albumsLB.TabIndex = 11;
+			this.albumsLB.SelectedIndexChanged += new System.EventHandler(this.albumsLB_SelectedIndexChanged);
 			// 
 			// registerBtn
 			// 

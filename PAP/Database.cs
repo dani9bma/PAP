@@ -154,7 +154,14 @@ namespace PAP
 			cmd.ExecuteNonQuery();
 		}
 
-	    public void InserirArtistasFavoritos(int id_artista, int id_user)
+		public void InserirAlbumsFavoritos(int id_album, int id_user)
+		{
+			string sql = "INSERT INTO albums_favoritos (id_album, id_user) VALUES (" + id_album + ", " + id_user + ")";
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			cmd.ExecuteNonQuery();
+		}
+
+		public void InserirArtistasFavoritos(int id_artista, int id_user)
 	    {
 			//TODO: Verificar se artista ja foi adicionado aos favoritos
 			string sql = "INSERT INTO artistas_favoritos (id_artista, id_user) VALUES (" + id_artista + ", " + id_user + ")";
@@ -368,7 +375,7 @@ namespace PAP
         public List<Album> ProcurarAlbums(string nome, int qtd)
         {
             Album[] album = new Album[qtd];
-            string sql = "SELECT nome FROM albums WHERE nome LIKE '%" + nome + "%'";
+            string sql = "SELECT nome, id_album FROM albums WHERE nome LIKE '%" + nome + "%'";
             MySqlCommand cmd = new MySqlCommand(sql, _conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
             string art = "";
@@ -382,16 +389,19 @@ namespace PAP
                     {
                         art = rdr[0].ToString();
                         album[i].Nome = art;
+	                    album[i].id = int.Parse(rdr[1].ToString());
                     }
                     else
                     {
                         album[i].Nome = "";
-                    }
+	                    album[i].id = -1;
+					}
                 }
                 else
                 {
                     album[i].Nome = "";
-                }
+	                album[i].id = -1;
+				}
             }
 
             rdr.Close();

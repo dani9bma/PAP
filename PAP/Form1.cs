@@ -136,105 +136,6 @@ namespace PAP
 			_sql.InserirMusicasFavoritas(_tracks[pos].id, LoginInfo.id);
         }
 
-        #region Codigo para inserir na base de dados pelo spotify
-        /*Dictionary<string, string> artistas = new Dictionary<string, string>();
-           Dictionary<string, string> artistasPeli = new Dictionary<string, string>();
-           for (int i = 97; i < 123; i++)
-           {
-               var chara = (char)i + "*";
-               Console.WriteLine(chara);
-               var art = _spotify.ProcurarArtistas(chara);
-               for (int j = 0; j < art.Count; j++)
-               {
-                   if (art[j].Name.Contains("'"))
-                   {
-                       if (art[j].Images != null)
-                           try
-                           {
-                               artistasPeli.Add(art[j].Name, art[j].Images[0].Url);
-                           }
-                           catch (Exception exception)
-                           {
-                               Console.WriteLine(exception);
-                           }
-
-                       else
-                           try
-                           {
-                               artistasPeli.Add(art[j].Name, "");
-                           }
-                           catch (Exception exception)
-                           {
-                               Console.WriteLine(exception);
-                           }
-                   }
-                   else
-                   {
-                       if(art[j].Images != null)
-                           try
-                           {
-                               artistas.Add(art[j].Name, art[j].Images[0].Url);
-                           }
-                           catch (Exception exception)
-                           {
-                               Console.WriteLine(exception);
-                           }
-                       else
-                           try
-                           {
-                               artistas.Add(art[j].Name, "");
-                           }
-                           catch (Exception exception)
-                           {
-                               Console.WriteLine(exception);
-                           }
-                   }
-
-               }
-
-           }
-
-           foreach (KeyValuePair<string, string> kvp in artistasPeli)
-           {
-               Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
-           }
-
-           foreach (KeyValuePair<string, string> kvp in artistas)
-           {
-               _sql.InserirArtistas(kvp.Key, kvp.Value);
-           }*/
-
-
-        #endregion
-
-        #region Codigo para inserir musicas na base de dados pelo spotify
-        /*List<Artista> artistas = new List<Artista>();
-
-        artistas = _sql.GetTodosArtistas();
-        for (int i = 0; i<artistas.Count; i++)
-        {
-            var tracks = _spotify.ProcurarMusicaSpotify(artistas[i].Nome, 10);
-            for (int j = 0; j<tracks.Count; j++)
-            {
-                if (tracks[j].Artists[0].Name == artistas[i].Nome)
-                {
-                    if (!tracks[j].Name.Contains("'"))
-                    {
-                        //Console.WriteLine(artistas[i].Nome);
-                        _sql.InserirMusicas(tracks[j].Name, _sql.GetCodigoArtista(artistas[i].Nome));
-                    }
-                    else
-                    {
-                        var t = tracks[j].Name.Replace("'", " ");
-    _sql.InserirMusicas(t, _sql.GetCodigoArtista(artistas[i].Nome));
-                    }
-                }
-            } 
-        }
-
-        Console.WriteLine("Finished");*/
-        #endregion
-
         private void registerBtn_Click(object sender, EventArgs e)
         {
             _sql.RegistarUtilizador(usernameTB.Text, passwordTB.Text);
@@ -257,5 +158,113 @@ namespace PAP
 
 			_sql.InserirArtistasFavoritos(_artists[pos].id, LoginInfo.id);
 		}
+
+		private void albumsLB_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			int pos = albumsLB.SelectedIndex;
+
+			_sql.InserirAlbumsFavoritos(_albums[pos].id, LoginInfo.id);
+		}
 	}
 }
+
+
+
+#region Codigo para inserir na base de dados pelo spotify
+/*Dictionary<string, string> artistas = new Dictionary<string, string>();
+   Dictionary<string, string> artistasPeli = new Dictionary<string, string>();
+   for (int i = 97; i < 123; i++)
+   {
+	   var chara = (char)i + "*";
+	   Console.WriteLine(chara);
+	   var art = _spotify.ProcurarArtistas(chara);
+	   for (int j = 0; j < art.Count; j++)
+	   {
+		   if (art[j].Name.Contains("'"))
+		   {
+			   if (art[j].Images != null)
+				   try
+				   {
+					   artistasPeli.Add(art[j].Name, art[j].Images[0].Url);
+				   }
+				   catch (Exception exception)
+				   {
+					   Console.WriteLine(exception);
+				   }
+
+			   else
+				   try
+				   {
+					   artistasPeli.Add(art[j].Name, "");
+				   }
+				   catch (Exception exception)
+				   {
+					   Console.WriteLine(exception);
+				   }
+		   }
+		   else
+		   {
+			   if(art[j].Images != null)
+				   try
+				   {
+					   artistas.Add(art[j].Name, art[j].Images[0].Url);
+				   }
+				   catch (Exception exception)
+				   {
+					   Console.WriteLine(exception);
+				   }
+			   else
+				   try
+				   {
+					   artistas.Add(art[j].Name, "");
+				   }
+				   catch (Exception exception)
+				   {
+					   Console.WriteLine(exception);
+				   }
+		   }
+
+	   }
+
+   }
+
+   foreach (KeyValuePair<string, string> kvp in artistasPeli)
+   {
+	   Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
+   }
+
+   foreach (KeyValuePair<string, string> kvp in artistas)
+   {
+	   _sql.InserirArtistas(kvp.Key, kvp.Value);
+   }*/
+
+
+#endregion
+
+#region Codigo para inserir musicas na base de dados pelo spotify
+/*List<Artista> artistas = new List<Artista>();
+
+artistas = _sql.GetTodosArtistas();
+for (int i = 0; i<artistas.Count; i++)
+{
+	var tracks = _spotify.ProcurarMusicaSpotify(artistas[i].Nome, 10);
+	for (int j = 0; j<tracks.Count; j++)
+	{
+		if (tracks[j].Artists[0].Name == artistas[i].Nome)
+		{
+			if (!tracks[j].Name.Contains("'"))
+			{
+				//Console.WriteLine(artistas[i].Nome);
+				_sql.InserirMusicas(tracks[j].Name, _sql.GetCodigoArtista(artistas[i].Nome));
+			}
+			else
+			{
+				var t = tracks[j].Name.Replace("'", " ");
+_sql.InserirMusicas(t, _sql.GetCodigoArtista(artistas[i].Nome));
+			}
+		}
+	} 
+}
+
+Console.WriteLine("Finished");*/
+#endregion
