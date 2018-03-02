@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Eventing.Reader;
-using System.Web;
 using System.IO;
-using System.Windows.Forms;
+using System.Windows;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage.File;
@@ -60,8 +58,9 @@ namespace PAP
                     if (nomeMusica.Contains(musica) && nomeMusica.Contains(artista))
                     {
                         Console.WriteLine(nomeMusica);
-                        file.DownloadToFile("C:/music.mp3", FileMode.Create);
-                        return "C:/music.mp3";
+	                    string result = Path.GetTempPath();
+						file.DownloadToFile(result + "music.mp3", FileMode.Create);
+                        return result + "music.mp3";
                     }
                 }
             }

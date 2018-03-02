@@ -1,0 +1,26 @@
+﻿<Window x:Class="PAP.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PAP"
+        mc:Ignorable="d"
+        Title="PAP" Height="720" Width="1280">
+    <Grid>
+        <MediaElement Name="MediaPlayer" HorizontalAlignment="Left" Height="22" Margin="485,287,0,0" VerticalAlignment="Top" Width="32" Volume="0.2"/>
+        <Button Name="LoginBtn" Content="Login" HorizontalAlignment="Left" Margin="253,106,0,0" VerticalAlignment="Top" Width="83" Height="26" Click="loginBtn_Click"/>
+        <TextBox Name="UsernameTb" HorizontalAlignment="Left" Height="23" Margin="253,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="PasswordTb" HorizontalAlignment="Left" Height="23" Margin="253,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Username:" HorizontalAlignment="Left" Margin="157,151,0,0" VerticalAlignment="Top" Width="80"/>
+        <Label Content="Password:"  HorizontalAlignment="Left" Margin="157,177,0,0" VerticalAlignment="Top" Width="80"/>
+        <Button Content="Procurar" HorizontalAlignment="Left" Margin="264,252,0,0" VerticalAlignment="Top" Width="98" Click="searchBtn_Click" Height="31"/>
+        <TextBox Name="SearchTb" HorizontalAlignment="Left" Height="23" Margin="242,298,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <ListBox Name="MusicasLb" HorizontalAlignment="Left" Height="206" Margin="599,177,0,0" VerticalAlignment="Top" Width="130" SelectionChanged="MusicasLB_SelectedIndexChanged"/>
+        <ListBox Name="ArtistasLb" HorizontalAlignment="Left" Height="206" Margin="765,177,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ArtistasLB_SelectedIndexChanged"/>
+        <ListBox Name="AlbumsLb" HorizontalAlignment="Left" Height="206" Margin="925,177,0,0" VerticalAlignment="Top" Width="117" SelectionChanged="albumsLB_SelectedIndexChanged"/>
+        <Label Content="Musicas:" HorizontalAlignment="Left" Margin="599,133,0,0" VerticalAlignment="Top" Width="80"/>
+        <Label Content="Artistas:" HorizontalAlignment="Left" Margin="765,133,0,0" VerticalAlignment="Top" Width="80"/>
+        <Label Content="Albums:" HorizontalAlignment="Left" Margin="925,133,0,0" VerticalAlignment="Top" Width="80"/>
+        <Image Name="ArtistaImage" HorizontalAlignment="Left" Height="123" Margin="925,406,0,0" VerticalAlignment="Top" Width="155"/>
+    </Grid>
+</Window>

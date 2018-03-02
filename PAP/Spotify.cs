@@ -4,12 +4,9 @@ using SpotifyAPI.Web.Enums;
 using SpotifyAPI.Web.Models;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Image = System.Drawing.Image;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace PAP
 {
@@ -46,8 +43,8 @@ namespace PAP
 
         private async void InitialSetup()
         {
-            if (!InvokeRequired) return;
-            Invoke(new Action(InitialSetup));
+            if (!Dispatcher.CheckAccess()) return;
+            Dispatcher.Invoke(new Action(InitialSetup));
             return;
         }
 
