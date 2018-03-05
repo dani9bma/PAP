@@ -137,6 +137,7 @@ namespace PAP
 
 			MediaPlayer.Source = null;
 			MediaPlayer.Source = source;
+			MediaPlayer.Play();
 			Console.WriteLine(MediaPlayer.Source);
 
 			_sql.InserirMusicasFavoritas(_tracks[pos].id, LoginInfo.id);
@@ -170,6 +171,22 @@ namespace PAP
 			int pos = AlbumsLb.SelectedIndex;
 
 			_sql.InserirAlbumsFavoritos(_albums[pos].id, LoginInfo.id);
+		}
+
+		private void VolumeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+		{
+			MediaPlayer.Volume = VolumeSlider.Value;
+		}
+
+		private void StopButton_Click(object sender, RoutedEventArgs e)
+		{
+			if (MediaPlayer.CanPause)
+				MediaPlayer.Pause();
+		}
+
+		private void PlayButton_Click(object sender, RoutedEventArgs e)
+		{
+			MediaPlayer.Play();
 		}
 	}
 }

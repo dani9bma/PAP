@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="PAP" Height="720" Width="1280">
     <Grid>
-        <MediaElement Name="MediaPlayer" HorizontalAlignment="Left" Height="22" Margin="485,287,0,0" VerticalAlignment="Top" Width="32" Volume="0.2"/>
+        <MediaElement Name="MediaPlayer" HorizontalAlignment="Left" Height="22" Margin="485,287,0,0" VerticalAlignment="Top" Width="32" Volume="1" UnloadedBehavior="Manual" LoadedBehavior="Manual"/>
         <Button Name="LoginBtn" Content="Login" HorizontalAlignment="Left" Margin="253,106,0,0" VerticalAlignment="Top" Width="83" Height="26" Click="loginBtn_Click"/>
         <TextBox Name="UsernameTb" HorizontalAlignment="Left" Height="23" Margin="253,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox Name="PasswordTb" HorizontalAlignment="Left" Height="23" Margin="253,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
@@ -22,5 +22,8 @@
         <Label Content="Artistas:" HorizontalAlignment="Left" Margin="765,133,0,0" VerticalAlignment="Top" Width="80"/>
         <Label Content="Albums:" HorizontalAlignment="Left" Margin="925,133,0,0" VerticalAlignment="Top" Width="80"/>
         <Image Name="ArtistaImage" HorizontalAlignment="Left" Height="123" Margin="925,406,0,0" VerticalAlignment="Top" Width="155"/>
+        <Button Name="StopButton" Content="Stop" HorizontalAlignment="Left" Margin="211,436,0,0" VerticalAlignment="Top" Width="75" Click="StopButton_Click"/>
+        <Button Name="PlayButton" Content="Play" HorizontalAlignment="Left" Margin="122,436,0,0" VerticalAlignment="Top" Width="75" Click="PlayButton_Click"/>
+        <Slider Name="VolumeSlider" HorizontalAlignment="Left" Margin="314,436,0,0" VerticalAlignment="Top" Width="145" ValueChanged="VolumeSlider_ValueChanged" Maximum="1"/>
     </Grid>
 </Window>
