@@ -567,7 +567,6 @@ namespace PAP
                 {
                     if (rdr[2].ToString() == password)
                     {
-                        MessageBox.Show("Sucesso ao fazer login");
 	                    LoginInfo.username = username;
 	                    LoginInfo.id = int.Parse(rdr[0].ToString());
                     }

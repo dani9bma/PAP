@@ -13,7 +13,6 @@ namespace PAP
 	public partial class MainWindow : Window
 	{
 		private Spotify _spotify = new Spotify();
-		private Database _sql = new Database();
 		private List<FullArtist> _artistsSpotify = new List<FullArtist>();
 		private List<Artista> _artists = new List<Artista>();
 		private List<Musica> _tracks = new List<Musica>();
@@ -133,14 +132,14 @@ namespace PAP
 			Console.WriteLine(_tracks[pos].Nome);
 			Console.WriteLine(_tracks[pos].artista.Nome);
 
-			Uri source = new Uri(_sql.DownloadFiles(_tracks[pos].Nome, _tracks[pos].artista.Nome));
+			Uri source = new Uri(Global._sql.DownloadFiles(_tracks[pos].Nome, _tracks[pos].artista.Nome));
 
 			MediaPlayer.Source = null;
 			MediaPlayer.Source = source;
 			MediaPlayer.Play();
 			Console.WriteLine(MediaPlayer.Source);
 
-			_sql.InserirMusicasFavoritas(_tracks[pos].id, LoginInfo.id);
+			Global._sql.InserirMusicasFavoritas(_tracks[pos].id, LoginInfo.id);
 		}
 
 		/*private void registerBtn_Click(object sender, EventArgs e)
@@ -148,29 +147,20 @@ namespace PAP
 			_sql.RegistarUtilizador(usernameTB.Text, passwordTB.Text);
 		}*/
 
-		private void loginBtn_Click(object sender, EventArgs e)
-		{
-			if (LoginInfo.username != "")
-				MessageBox.Show("Voce ja esta logado");
-			else
-				_sql.LoginUtilizador(UsernameTb.Text, PasswordTb.Text);
-
-		}
-
 		private void ArtistasLB_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			var converter = new ImageSourceConverter();
 			int pos = ArtistasLb.SelectedIndex;
 			ArtistaImage.Source = (ImageSource)converter.ConvertFromString(_artists[pos].Img);
 
-			_sql.InserirArtistasFavoritos(_artists[pos].id, LoginInfo.id);
+			Global._sql.InserirArtistasFavoritos(_artists[pos].id, LoginInfo.id);
 		}
 
 		private void albumsLB_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			int pos = AlbumsLb.SelectedIndex;
 
-			_sql.InserirAlbumsFavoritos(_albums[pos].id, LoginInfo.id);
+			Global._sql.InserirAlbumsFavoritos(_albums[pos].id, LoginInfo.id);
 		}
 
 		private void VolumeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)

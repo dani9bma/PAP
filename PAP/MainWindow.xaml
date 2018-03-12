@@ -8,11 +8,6 @@
         Title="PAP" Height="720" Width="1280">
     <Grid>
         <MediaElement Name="MediaPlayer" HorizontalAlignment="Left" Height="22" Margin="485,287,0,0" VerticalAlignment="Top" Width="32" Volume="1" UnloadedBehavior="Manual" LoadedBehavior="Manual"/>
-        <Button Name="LoginBtn" Content="Login" HorizontalAlignment="Left" Margin="253,106,0,0" VerticalAlignment="Top" Width="83" Height="26" Click="loginBtn_Click"/>
-        <TextBox Name="UsernameTb" HorizontalAlignment="Left" Height="23" Margin="253,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name="PasswordTb" HorizontalAlignment="Left" Height="23" Margin="253,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Username:" HorizontalAlignment="Left" Margin="157,151,0,0" VerticalAlignment="Top" Width="80"/>
-        <Label Content="Password:"  HorizontalAlignment="Left" Margin="157,177,0,0" VerticalAlignment="Top" Width="80"/>
         <Button Content="Procurar" HorizontalAlignment="Left" Margin="264,252,0,0" VerticalAlignment="Top" Width="98" Click="searchBtn_Click" Height="31"/>
         <TextBox Name="SearchTb" HorizontalAlignment="Left" Height="23" Margin="242,298,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <ListBox Name="MusicasLb" HorizontalAlignment="Left" Height="206" Margin="599,177,0,0" VerticalAlignment="Top" Width="130" SelectionChanged="MusicasLB_SelectedIndexChanged"/>
