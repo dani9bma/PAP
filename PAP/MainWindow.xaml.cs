@@ -23,6 +23,13 @@ namespace PAP
 		public MainWindow()
 		{
 			InitializeComponent();
+			UsernameLabel.Content = LoginInfo.username;
+			if (LoginInfo.username == "")
+			{
+				LoggedAsLabel.Content = "";
+				LoginBtn.Content = "Login";
+			}
+
 		}
 
 
@@ -139,7 +146,7 @@ namespace PAP
 			MediaPlayer.Play();
 			Console.WriteLine(MediaPlayer.Source);
 
-			Global._sql.InserirMusicasFavoritas(_tracks[pos].id, LoginInfo.id);
+			
 		}
 
 		/*private void registerBtn_Click(object sender, EventArgs e)
@@ -153,14 +160,11 @@ namespace PAP
 			int pos = ArtistasLb.SelectedIndex;
 			ArtistaImage.Source = (ImageSource)converter.ConvertFromString(_artists[pos].Img);
 
-			Global._sql.InserirArtistasFavoritos(_artists[pos].id, LoginInfo.id);
 		}
 
 		private void albumsLB_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			int pos = AlbumsLb.SelectedIndex;
-
-			Global._sql.InserirAlbumsFavoritos(_albums[pos].id, LoginInfo.id);
+			
 		}
 
 		private void VolumeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -177,6 +181,92 @@ namespace PAP
 		private void PlayButton_Click(object sender, RoutedEventArgs e)
 		{
 			MediaPlayer.Play();
+		}
+
+		private void AddFavoriteTrack_Click(object sender, RoutedEventArgs e)
+		{
+			if (LoginInfo.username != "" && LoginInfo.id != -1)
+			{
+				AddToFavorite(1);
+			}
+			else
+			{
+				LoginWindow login = new LoginWindow();
+				login.Show();
+				this.Close();
+			}
+		}
+
+		private void AddFavoriteArtist_Click(object sender, RoutedEventArgs e)
+		{
+			if (LoginInfo.username != "" && LoginInfo.id != -1)
+			{
+				AddToFavorite(2);
+			}
+			else
+			{
+				LoginWindow login = new LoginWindow();
+				login.Show();
+				this.Close();
+			}
+		}
+
+		private void AddFavoriteAlbum_Click(object sender, RoutedEventArgs e)
+		{
+			if (LoginInfo.username != "" && LoginInfo.id != -1)
+			{
+				AddToFavorite(3);
+			}
+			else
+			{
+				LoginWindow login = new LoginWindow();
+				login.Show();
+				this.Close();
+			}
+		}
+
+		/*
+		 * type:
+		 *	1: Track
+		 *	2: Artist
+		 *	3: Album
+		 */
+		private void AddToFavorite(int type)
+		{
+			int pos;
+			switch(type)
+			{
+				case 1:
+					pos = MusicasLb.SelectedIndex;
+					Global._sql.InserirMusicasFavoritas(_tracks[pos].id, LoginInfo.id);
+					break;
+				case 2:
+					pos = ArtistasLb.SelectedIndex;
+					Global._sql.InserirArtistasFavoritos(_artists[pos].id, LoginInfo.id);
+					break;
+				case 3:
+					pos = AlbumsLb.SelectedIndex;
+					Global._sql.InserirAlbumsFavoritos(_albums[pos].id, LoginInfo.id);
+					break;
+			}
+		}
+
+		private void LoginBtn_Click(object sender, RoutedEventArgs e)
+		{
+			if(LoginInfo.username == "")
+			{
+				LoginWindow login = new LoginWindow();
+				login.Show();
+				this.Close();
+			}
+			else
+			{
+				LoginInfo.username = "";
+				LoginInfo.id = -1;
+				LoggedAsLabel.Content = "";
+				LoginBtn.Content = "Login";
+				UsernameLabel.Content = "";
+			}
 		}
 	}
 }
