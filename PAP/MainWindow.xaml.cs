@@ -17,7 +17,6 @@ namespace PAP
 		private List<Artista> _artists = new List<Artista>();
 		private List<Musica> _tracks = new List<Musica>();
 		private List<Album> _albums = new List<Album>();
-		private bool _spotifyArt = false;
 		private List<Musica> _musicas = new List<Musica>();
 
 		public MainWindow()
@@ -77,7 +76,6 @@ namespace PAP
 
             _spotifyArt = false;*/
 
-			// TODO: Tirar spotifyArt
 			_tracks = _spotify.ProcurarMusicas(SearchTb.Text, 10);
 			MusicasLb.Items.Clear();
 
@@ -94,8 +92,6 @@ namespace PAP
 				Console.WriteLine(_tracks[i].artista.Nome);
 			}
 
-			_spotifyArt = false;
-
 			_artists = _spotify.ProcurarArtistas(SearchTb.Text, 10);
 			ArtistasLb.Items.Clear();
 			for (int i = 0; i < _artists.Count; i++)
@@ -103,7 +99,6 @@ namespace PAP
 				ArtistasLb.Items.Add(_artists[i].Nome);
 				Console.WriteLine(_artists[i].Nome);
 			}
-			_spotifyArt = false;
 
 			_albums = _spotify.ProcurarAlbums(SearchTb.Text, 10);
 			AlbumsLb.Items.Clear();
@@ -112,8 +107,6 @@ namespace PAP
 				AlbumsLb.Items.Add(_albums[i].Nome);
 				Console.WriteLine(_albums[i].Nome);
 			}
-
-			_spotifyArt = false;
 		}
 
 		/*private void searchSpoBtn_Click(object sender, EventArgs e)
@@ -156,10 +149,14 @@ namespace PAP
 
 		private void ArtistasLB_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			var converter = new ImageSourceConverter();
 			int pos = ArtistasLb.SelectedIndex;
+			var converter = new ImageSourceConverter();
 			ArtistaImage.Source = (ImageSource)converter.ConvertFromString(_artists[pos].Img);
 
+			int cod = Global._sql.GetCodigoArtista(_artists[pos].Nome);
+			ArtistWindow atWindow = new ArtistWindow(cod);
+			atWindow.Show();
+			this.Close();
 		}
 
 		private void albumsLB_SelectedIndexChanged(object sender, EventArgs e)

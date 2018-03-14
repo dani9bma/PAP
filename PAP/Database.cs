@@ -48,12 +48,13 @@ namespace PAP
             rootDir = share.GetRootDirectoryReference();
         }
 
-        public string DownloadFiles(string musica, string artista)
+		public string DownloadFiles(string musica, string artista)
         {
             foreach (var fileItem in rootDir.ListFilesAndDirectories())
             {
-                if (fileItem is CloudFile file)
+                if (fileItem is CloudFile)
                 {
+					CloudFile file = (CloudFile)fileItem;
                     var nomeMusica = file.Name;
                     if (nomeMusica.Contains(musica) && nomeMusica.Contains(artista))
                     {
@@ -74,8 +75,9 @@ namespace PAP
 
             foreach (var fileItem in rootDir.ListFilesAndDirectories())
             {
-                if (fileItem is CloudFile file)
+                if (fileItem is CloudFile)
                 {
+					CloudFile file = (CloudFile)fileItem;
                     var nomeMusica = file.Name;
                     for (int i = 0; i < artists.Count; i++)
                     {
@@ -87,24 +89,6 @@ namespace PAP
                                 nome = nome.Replace("Lyrics", "");
                             if (nome.Contains("Video"))
                                 nome = nome.Replace("Video", "");
-                            //if (nome.Contains("-"))
-                            //    nome = nome.Replace("-", "");
-                            //if (nome.Contains("Audio") || nome.Contains("audio"))
-                            //    nome = nome.Replace("Audio", "");
-                            //if (nome.Contains("Official"))
-                            //    nome = nome.Replace("Official", "");
-                            //if (nome.Contains("Explicit"))
-                            //    nome = nome.Replace("-", "");
-                            //if (nome.Contains("["))
-                            //    nome = nome.Replace("[", "");
-                            //if (nome.Contains("]"))
-                            //    nome = nome.Replace("]", "");
-                            //if (nome.Contains("Music"))
-                            //    nome = nome.Replace("Music", "");
-                            //if (nome.Contains("'"))
-                            //    nome = nome.Replace("'", " ");
-                            //if (nome.Contains("&"))
-                            //    nome = nome.Replace("&", " ");
 
                             var cod = GetCodigoArtista(artists[i].Nome);
                             InserirMusicas(nome, cod);
@@ -444,7 +428,27 @@ namespace PAP
             return -1;
         }
 
-        public int GetTotalAlbums()
+		public Artista GetArtistaCodigo(int cod)
+		{
+			string sql = "SELECT nome, img FROM artistas WHERE id_artista = " + cod;
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			MySqlDataReader rdr = cmd.ExecuteReader();
+			if (rdr.Read())
+			{
+				Artista artista = new Artista();
+				artista.id = cod;
+				artista.Nome = rdr[0].ToString();
+				artista.Img = rdr[1].ToString();
+				rdr.Close();
+				return artista;
+			}
+
+			rdr.Close();
+
+			return new Artista();
+		}
+
+		public int GetTotalAlbums()
         {
             string sql = "SELECT COUNT(id_album) FROM albums";
             MySqlCommand cmd = new MySqlCommand(sql, _conn);
@@ -542,7 +546,36 @@ namespace PAP
             return musicas;
         }
 
-        public void RegistarUtilizador(string username, string password)
+		public List<Musica> GetTodasMusicasArtista(int id_artista)
+		{
+			List<Musica> musicas = new List<Musica>();
+			string sql = "SELECT id_musica, nome FROM musicas WHERE id_artista = " + id_artista;
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			MySqlDataReader rdr = cmd.ExecuteReader();
+			string art = "";
+			int i = 0;
+			while (rdr.Read())
+			{
+				if (!(art == rdr[0]))
+				{
+					art = rdr[0].ToString();
+					Musica musica = new Musica { id = int.Parse(rdr[0].ToString()), Nome = rdr[1].ToString() };
+					musicas.Add(musica);
+				}
+				else
+				{
+					Musica musica = new Musica { Nome = rdr[0].ToString() };
+					musicas.Add(musica);
+				}
+
+				i++;
+			}
+			rdr.Close();
+
+			return musicas;
+		}
+
+		public void RegistarUtilizador(string username, string password)
         {
             if (username.Contains("'"))
             {
