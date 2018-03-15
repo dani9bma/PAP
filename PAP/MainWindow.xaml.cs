@@ -132,9 +132,10 @@ namespace PAP
 			Console.WriteLine(_tracks[pos].Nome);
 			Console.WriteLine(_tracks[pos].artista.Nome);
 
+			MediaPlayer.Source = null;
+
 			Uri source = new Uri(Global._sql.DownloadFiles(_tracks[pos].Nome, _tracks[pos].artista.Nome));
 
-			MediaPlayer.Source = null;
 			MediaPlayer.Source = source;
 			MediaPlayer.Play();
 			Console.WriteLine(MediaPlayer.Source);

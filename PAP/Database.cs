@@ -548,6 +548,8 @@ namespace PAP
 
 		public List<Musica> GetTodasMusicasArtista(int id_artista)
 		{
+			Artista artista = GetArtistaCodigo(id_artista);
+
 			List<Musica> musicas = new List<Musica>();
 			string sql = "SELECT id_musica, nome FROM musicas WHERE id_artista = " + id_artista;
 			MySqlCommand cmd = new MySqlCommand(sql, _conn);
@@ -560,11 +562,13 @@ namespace PAP
 				{
 					art = rdr[0].ToString();
 					Musica musica = new Musica { id = int.Parse(rdr[0].ToString()), Nome = rdr[1].ToString() };
+					musica.artista = artista;
 					musicas.Add(musica);
 				}
 				else
 				{
 					Musica musica = new Musica { Nome = rdr[0].ToString() };
+					musica.artista = artista;
 					musicas.Add(musica);
 				}
 

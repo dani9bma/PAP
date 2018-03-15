@@ -19,6 +19,9 @@ namespace PAP
 	/// </summary>
 	public partial class ArtistWindow : Window
 	{
+
+		List<Musica> musicas = new List<Musica>();
+
 		public ArtistWindow(int id_artista)
 		{
 			InitializeComponent();
@@ -32,11 +35,43 @@ namespace PAP
 			ArtistPicture.Source = (ImageSource)converter.ConvertFromString(artista.Img);
 			ArtistName.Content = artista.Nome;
 
-			List<Musica> musicas = Global._sql.GetTodasMusicasArtista(id_artista);
+			musicas = Global._sql.GetTodasMusicasArtista(id_artista);
 			for(int i = 0; i < musicas.Count; i++)
 			{
 				ArtistTracksLB.Items.Add(musicas[i].Nome);
 			}
+		}
+
+		private void ArtistTracksLB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			int pos = ArtistTracksLB.SelectedIndex;
+
+			Console.WriteLine(musicas[pos].Nome);
+			Console.WriteLine(musicas[pos].artista.Nome);
+
+			Player.Source = null;
+
+			Uri source = new Uri(Global._sql.DownloadFiles(musicas[pos].Nome, musicas[pos].artista.Nome));
+			
+			Player.Source = source;
+			Player.Play();
+			Console.WriteLine(Player.Source);
+		}
+
+		private void VolumeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+		{
+			Player.Volume = VolumeSlider.Value;
+		}
+
+		private void StopButton_Click(object sender, RoutedEventArgs e)
+		{
+			if (Player.CanPause)
+				Player.Pause();
+		}
+
+		private void PlayButton_Click(object sender, RoutedEventArgs e)
+		{
+			Player.Play();
 		}
 	}
 }

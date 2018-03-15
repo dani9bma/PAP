@@ -7,9 +7,13 @@
         mc:Ignorable="d"
         Title="ArtistWindow" Height="720" Width="1280">
     <Grid>
-        <Image Name="ArtistPicture"  HorizontalAlignment="Left" Height="121" Margin="302,89,0,0" VerticalAlignment="Top" Width="182"/>
-        <Label Name="ArtistName" FontSize="20" Content="ArtistLabel" HorizontalAlignment="Left" Margin="504,89,0,0" VerticalAlignment="Top" Height="38" Width="491"/>
-        <ListBox Name="ArtistTracksLB" HorizontalAlignment="Left" Height="451" Margin="504,145,0,0" VerticalAlignment="Top" Width="278"/>
+        <Image Name="ArtistPicture"  HorizontalAlignment="Left" Height="121" Margin="308,47,0,0" VerticalAlignment="Top" Width="182"/>
+        <Label Name="ArtistName" FontSize="20" Content="ArtistLabel" HorizontalAlignment="Left" Margin="510,47,0,0" VerticalAlignment="Top" Height="38" Width="491"/>
+        <ListBox Name="ArtistTracksLB" HorizontalAlignment="Left" Height="451" Margin="510,103,0,0" VerticalAlignment="Top" Width="278" SelectionChanged="ArtistTracksLB_SelectionChanged"/>
+        <MediaElement Name="Player" HorizontalAlignment="Left" Height="23" Margin="274,128,0,0" VerticalAlignment="Top" Width="29" LoadedBehavior="Manual" UnloadedBehavior="Manual"/>
+        <Button x:Name="StopButton" Content="Stop" HorizontalAlignment="Left" Margin="205,596,0,0" VerticalAlignment="Top" Width="75" Click="StopButton_Click"/>
+        <Button x:Name="PlayButton" Content="Play" HorizontalAlignment="Left" Margin="116,596,0,0" VerticalAlignment="Top" Width="75" Click="PlayButton_Click"/>
+        <Slider x:Name="VolumeSlider" HorizontalAlignment="Left" Margin="308,596,0,0" VerticalAlignment="Top" Width="145" ValueChanged="VolumeSlider_ValueChanged" Maximum="1" Value="0.5"/>
 
     </Grid>
 </Window>
