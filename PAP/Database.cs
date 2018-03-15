@@ -579,6 +579,31 @@ namespace PAP
 			return musicas;
 		}
 
+		public List<Artista> GetArtistasFavoritos(int cod)
+		{
+			List<Artista> artistas = new List<Artista>();
+			string sql = "SELECT id_artista FROM artistas_favoritos WHERE id_user = " + cod;
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			MySqlDataReader rdr = cmd.ExecuteReader();
+			string art = "";
+			int i = 0;
+			while (rdr.Read())
+			{
+				string id = rdr[0].ToString();
+				if (art != id)
+				{
+					art = rdr[0].ToString();
+					Artista artista = new Artista { id = int.Parse(rdr[0].ToString()) };
+					artistas.Add(artista);
+				}
+
+				i++;
+			}
+			rdr.Close();
+
+			return artistas;   
+		}
+
 		public void RegistarUtilizador(string username, string password)
         {
             if (username.Contains("'"))

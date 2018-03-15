@@ -84,12 +84,19 @@
     <Compile Include="ArtistWindow.xaml.cs">
       <DependentUpon>ArtistWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FavoriteArtistsWindow.xaml.cs">
+      <DependentUpon>FavoriteArtistsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Global.cs" />
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Spotify.cs" />
     <Page Include="ArtistWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FavoriteArtistsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

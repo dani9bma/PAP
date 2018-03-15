@@ -5,15 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PAP"
         mc:Ignorable="d"
-        Title="ArtistWindow" Height="720" Width="1280">
+        Title="PAP" Height="720" Width="1280">
     <Grid>
         <Image Name="ArtistPicture"  HorizontalAlignment="Left" Height="121" Margin="308,47,0,0" VerticalAlignment="Top" Width="182"/>
         <Label Name="ArtistName" FontSize="20" Content="ArtistLabel" HorizontalAlignment="Left" Margin="510,47,0,0" VerticalAlignment="Top" Height="38" Width="491"/>
         <ListBox Name="ArtistTracksLB" HorizontalAlignment="Left" Height="451" Margin="510,103,0,0" VerticalAlignment="Top" Width="278" SelectionChanged="ArtistTracksLB_SelectionChanged"/>
-        <MediaElement Name="Player" HorizontalAlignment="Left" Height="23" Margin="274,128,0,0" VerticalAlignment="Top" Width="29" LoadedBehavior="Manual" UnloadedBehavior="Manual"/>
-        <Button x:Name="StopButton" Content="Stop" HorizontalAlignment="Left" Margin="205,596,0,0" VerticalAlignment="Top" Width="75" Click="StopButton_Click"/>
-        <Button x:Name="PlayButton" Content="Play" HorizontalAlignment="Left" Margin="116,596,0,0" VerticalAlignment="Top" Width="75" Click="PlayButton_Click"/>
-        <Slider x:Name="VolumeSlider" HorizontalAlignment="Left" Margin="308,596,0,0" VerticalAlignment="Top" Width="145" ValueChanged="VolumeSlider_ValueChanged" Maximum="1" Value="0.5"/>
+        <MediaElement Name="Player" Height="24" Margin="1233,0,0,0" VerticalAlignment="Top" LoadedBehavior="Manual" UnloadedBehavior="Manual" HorizontalAlignment="Left" Width="29"/>
+        <Button x:Name="StopButton" Content="Stop" HorizontalAlignment="Left" Margin="358,602,0,0" VerticalAlignment="Top" Width="75" Click="StopButton_Click"/>
+        <Button x:Name="PlayButton" Content="Play" HorizontalAlignment="Left" Margin="269,602,0,0" VerticalAlignment="Top" Width="75" Click="PlayButton_Click"/>
+        <Slider x:Name="VolumeSlider" HorizontalAlignment="Left" Margin="461,602,0,0" VerticalAlignment="Top" Width="145" ValueChanged="VolumeSlider_ValueChanged" Maximum="1" Value="0.5"/>
+        <GroupBox Header="" HorizontalAlignment="Left" VerticalAlignment="Top" Height="679" Width="204">
+            <GroupBox Header="Playlists" Margin="-5,95,-7,-5" VerticalAlignment="Top" Height="567"/>
+        </GroupBox>
+        <Button Content="Artistas Favoritos" HorizontalAlignment="Left" Margin="0,32,0,0" VerticalAlignment="Top" Width="204" Background="White" BorderBrush="White" Click="FavoriteArtists_Click"/>
+        <Button Content="Musicas Favoritas" HorizontalAlignment="Left" Margin="0,59,0,0" VerticalAlignment="Top" Width="204" Background="White" BorderBrush="White" Click="FavoriteTracks_Click"/>
+        <Button Content="Albums Favoritos" HorizontalAlignment="Left" Margin="0,84,0,0" VerticalAlignment="Top" Width="204" Background="White" BorderBrush="White" Click="FavoriteAlbums_Click"/>
 
     </Grid>
 </Window>

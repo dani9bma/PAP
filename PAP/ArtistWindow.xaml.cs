@@ -73,5 +73,31 @@ namespace PAP
 		{
 			Player.Play();
 		}
+
+		private void FavoriteArtists_Click(object sender, RoutedEventArgs e)
+		{
+
+			if(LoginInfo.username != "")
+			{
+				FavoriteArtistsWindow FavoriteArtistsWnd = new FavoriteArtistsWindow();
+				FavoriteArtistsWnd.Show();
+				this.Close();
+			}
+			else
+			{
+				MessageBox.Show("Precisa de fazer login para ver os seus artistas favoritos");
+			}
+			
+		}
+
+		private void FavoriteTracks_Click(object sender, RoutedEventArgs e)
+		{
+			//Show Favorite Tracks
+		}
+
+		private void FavoriteAlbums_Click(object sender, RoutedEventArgs e)
+		{
+			//Show Favorite Albums
+		}
 	}
 }
