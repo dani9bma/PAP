@@ -12,12 +12,7 @@ namespace PAP
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		private Spotify _spotify = new Spotify();
 		private List<FullArtist> _artistsSpotify = new List<FullArtist>();
-		private List<Artista> _artists = new List<Artista>();
-		private List<Musica> _tracks = new List<Musica>();
-		private List<Album> _albums = new List<Album>();
-		private List<Musica> _musicas = new List<Musica>();
 
 		public MainWindow()
 		{
@@ -28,6 +23,7 @@ namespace PAP
 				LoggedAsLabel.Content = "";
 				LoginBtn.Content = "Login";
 			}
+			ContentSwitch.Content = new MainUC();
 
 		}
 
@@ -64,50 +60,7 @@ namespace PAP
 			}
 		}*/
 
-		private void searchBtn_Click(object sender, EventArgs e)
-		{
-			/*_artists = _spotify.ProcurarArtistas(artistaTB.Text, 10);
-            artistasLB.Items.Clear();
-            for (int i = 0; i < _artists.Count; i++)
-            {
-                artistasLB.Items.Add(_artists[i].Nome);
-                artistaImgPB.ImageLocation = _artists[i].Img;
-            }
-
-            _spotifyArt = false;*/
-
-			_tracks = _spotify.ProcurarMusicas(SearchTb.Text, 10);
-			MusicasLb.Items.Clear();
-
-			List<Musica> m = _spotify.ProcurarMusicasPorArtista(SearchTb.Text, 5);
-			for (int i = 0; i < m.Count; i++)
-			{
-				_tracks.Add(m[i]);
-			}
-
-			for (int i = 0; i < _tracks.Count; i++)
-			{
-				MusicasLb.Items.Add(_tracks[i].Nome);
-				Console.WriteLine(_tracks[i].Nome);
-				Console.WriteLine(_tracks[i].artista.Nome);
-			}
-
-			_artists = _spotify.ProcurarArtistas(SearchTb.Text, 10);
-			ArtistasLb.Items.Clear();
-			for (int i = 0; i < _artists.Count; i++)
-			{
-				ArtistasLb.Items.Add(_artists[i].Nome);
-				Console.WriteLine(_artists[i].Nome);
-			}
-
-			_albums = _spotify.ProcurarAlbums(SearchTb.Text, 10);
-			AlbumsLb.Items.Clear();
-			for (int i = 0; i < _albums.Count; i++)
-			{
-				AlbumsLb.Items.Add(_albums[i].Nome);
-				Console.WriteLine(_albums[i].Nome);
-			}
-		}
+		
 
 		/*private void searchSpoBtn_Click(object sender, EventArgs e)
 		{
@@ -121,49 +74,14 @@ namespace PAP
 			_spotifyArt = true;
 		}*/
 
-		private void MusicasLB_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			int pos = MusicasLb.SelectedIndex;
-
-			/*if (_spotifyArt)
-                artistaImgPB.ImageLocation = _artistsSpotify[pos].Images[0].Url;
-            else
-                artistaImgPB.ImageLocation = _artists[pos].Img;*/
-			Console.WriteLine(_tracks[pos].Nome);
-			Console.WriteLine(_tracks[pos].artista.Nome);
-
-			MediaPlayer.Source = null;
-
-			Uri source = new Uri(Global._sql.DownloadFiles(_tracks[pos].Nome, _tracks[pos].artista.Nome));
-
-			MediaPlayer.Source = source;
-			MediaPlayer.Play();
-			Console.WriteLine(MediaPlayer.Source);
-
-			
-		}
+		
 
 		/*private void registerBtn_Click(object sender, EventArgs e)
 		{
 			_sql.RegistarUtilizador(usernameTB.Text, passwordTB.Text);
 		}*/
 
-		private void ArtistasLB_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			int pos = ArtistasLb.SelectedIndex;
-			var converter = new ImageSourceConverter();
-			ArtistaImage.Source = (ImageSource)converter.ConvertFromString(_artists[pos].Img);
-
-			int cod = Global._sql.GetCodigoArtista(_artists[pos].Nome);
-			ArtistWindow atWindow = new ArtistWindow(cod);
-			atWindow.Show();
-			this.Close();
-		}
-
-		private void albumsLB_SelectedIndexChanged(object sender, EventArgs e)
-		{
-			
-		}
+		
 
 		private void VolumeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
 		{
@@ -181,73 +99,13 @@ namespace PAP
 			MediaPlayer.Play();
 		}
 
-		private void AddFavoriteTrack_Click(object sender, RoutedEventArgs e)
-		{
-			if (LoginInfo.username != "" && LoginInfo.id != -1)
-			{
-				AddToFavorite(1);
-			}
-			else
-			{
-				LoginWindow login = new LoginWindow();
-				login.Show();
-				this.Close();
-			}
-		}
-
-		private void AddFavoriteArtist_Click(object sender, RoutedEventArgs e)
-		{
-			if (LoginInfo.username != "" && LoginInfo.id != -1)
-			{
-				AddToFavorite(2);
-			}
-			else
-			{
-				LoginWindow login = new LoginWindow();
-				login.Show();
-				this.Close();
-			}
-		}
-
-		private void AddFavoriteAlbum_Click(object sender, RoutedEventArgs e)
-		{
-			if (LoginInfo.username != "" && LoginInfo.id != -1)
-			{
-				AddToFavorite(3);
-			}
-			else
-			{
-				LoginWindow login = new LoginWindow();
-				login.Show();
-				this.Close();
-			}
-		}
-
 		/*
 		 * type:
 		 *	1: Track
 		 *	2: Artist
 		 *	3: Album
 		 */
-		private void AddToFavorite(int type)
-		{
-			int pos;
-			switch(type)
-			{
-				case 1:
-					pos = MusicasLb.SelectedIndex;
-					Global._sql.InserirMusicasFavoritas(_tracks[pos].id, LoginInfo.id);
-					break;
-				case 2:
-					pos = ArtistasLb.SelectedIndex;
-					Global._sql.InserirArtistasFavoritos(_artists[pos].id, LoginInfo.id);
-					break;
-				case 3:
-					pos = AlbumsLb.SelectedIndex;
-					Global._sql.InserirAlbumsFavoritos(_albums[pos].id, LoginInfo.id);
-					break;
-			}
-		}
+		
 
 		private void LoginBtn_Click(object sender, RoutedEventArgs e)
 		{
@@ -255,6 +113,7 @@ namespace PAP
 			{
 				LoginWindow login = new LoginWindow();
 				login.Show();
+				MediaPlayer.Stop();
 				this.Close();
 			}
 			else
@@ -272,9 +131,7 @@ namespace PAP
 
 			if (LoginInfo.username != "")
 			{
-				FavoriteArtistsWindow FavoriteArtistsWnd = new FavoriteArtistsWindow();
-				FavoriteArtistsWnd.Show();
-				this.Close();
+				ContentSwitch.Content = new FavoriteArtistsUC();
 			}
 			else
 			{
@@ -292,5 +149,6 @@ namespace PAP
 		{
 			//Show Favorite Albums
 		}
+
 	}
 }

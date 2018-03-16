@@ -8,6 +8,6 @@ namespace PAP
 {
 	static class Global
 	{
-		public static Database _sql = new Database();
+		public static Database sql = new Database();
 	}
 }

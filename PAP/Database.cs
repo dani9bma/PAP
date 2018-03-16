@@ -215,28 +215,23 @@ namespace PAP
         //Retorna Artista procurando pelo codigo
         public Artista ProcurarArtista(int cod)
         {
-            Artista artista = new Artista();
-            string sql = "SELECT nome, img FROM artistas WHERE id_artista = " + cod;
-            MySqlCommand cmd = new MySqlCommand(sql, _conn);
-            MySqlDataReader rdr = cmd.ExecuteReader();
-            string art = "";
-            
-            rdr.Read();
-            if (art != rdr[0].ToString())
-            {
-                art = rdr[0].ToString();
-                artista.Nome = rdr[0].ToString();
-                artista.Img = rdr[1].ToString();
-            }
-            else
-            {
-                artista.Nome = "";
-                artista.Img = "";
-            }
-            rdr.Close();
+			string sql = "SELECT nome, img FROM artistas WHERE id_artista = " + cod;
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			MySqlDataReader rdr = cmd.ExecuteReader();
+			if (rdr.Read())
+			{
+				Artista artista = new Artista();
+				artista.id = cod;
+				artista.Nome = rdr[0].ToString();
+				artista.Img = rdr[1].ToString();
+				rdr.Close();
+				return artista;
+			}
 
-            return artista;
-        }
+			rdr.Close();
+
+			return new Artista();
+		}
 
         public List<Musica> ProcurarMusicasPorArtista(int cod, int qtd)
         {
@@ -296,10 +291,11 @@ namespace PAP
         public List<Musica> ProcurarMusicas(string nome, int qtd)
         {
             //TODO: Na procura, procurar mostra musicas, artistas e albuns
-            //TODO: Rever codigo 
-            Musica[] musica = new Musica[qtd];
             List<Artista> artista = new List<Artista>();
             artista = GetTodosArtistas();
+
+			List<Musica> musicas = new List<Musica>();
+
             string sql = "SELECT nome, id_artista, id_musica FROM musicas WHERE nome LIKE '%" + nome + "%'";
             MySqlCommand cmd = new MySqlCommand(sql, _conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
@@ -315,39 +311,34 @@ namespace PAP
                         var m = rdr[1].ToString();
                         art = rdr[0].ToString();
                         artId = int.Parse(rdr[1].ToString());
-                        musica[i].Nome = art;
-                        musica[i].artista = artista[int.Parse(m) - 1];
-	                    musica[i].id = int.Parse(rdr[2].ToString());
+						Musica musica = new Musica();
+                        musica.Nome = art;
+                        musica.artista = artista[int.Parse(m) - 1];
+	                    musica.id = int.Parse(rdr[2].ToString());
+						musicas.Add(musica);
                     }
                     else
                     {
-                        musica[i].Nome = "";
-                        musica[i].artista = new Artista();
-	                    musica[i].id = -1;
+						Musica musica = new Musica();
+						musica.Nome = "";
+                        musica.artista = new Artista();
+	                    musica.id = -1;
                     }
                 }
                 else
                 {
-                    musica[i].Nome = "";
-                    musica[i].artista = new Artista();
-	                musica[i].id = -1;
+					Musica musica = new Musica();
+					musica.Nome = "";
+                    musica.artista = new Artista();
+	                musica.id = -1;
 				}
             }
 			
             rdr.Close();
 
-			List<Musica> mu = new List<Musica>();
-	        for (int i = 0; i < musica.Length; i++)
+	        if (musicas.Count > 0)
 	        {
-		        if (musica[i].Nome != "")
-		        {
-			        mu.Add(musica[i]);
-		        }
-	        }
-
-	        if (mu.Count > 0)
-	        {
-		        return mu;
+		        return musicas;
 			}
 
 	        MessageBox.Show("A musica que tentou pesquisar não existe na nossa base de dados, por favor entre aqui (LINK) e contribua com a música que deseja");
@@ -427,26 +418,6 @@ namespace PAP
 
             return -1;
         }
-
-		public Artista GetArtistaCodigo(int cod)
-		{
-			string sql = "SELECT nome, img FROM artistas WHERE id_artista = " + cod;
-			MySqlCommand cmd = new MySqlCommand(sql, _conn);
-			MySqlDataReader rdr = cmd.ExecuteReader();
-			if (rdr.Read())
-			{
-				Artista artista = new Artista();
-				artista.id = cod;
-				artista.Nome = rdr[0].ToString();
-				artista.Img = rdr[1].ToString();
-				rdr.Close();
-				return artista;
-			}
-
-			rdr.Close();
-
-			return new Artista();
-		}
 
 		public int GetTotalAlbums()
         {
@@ -548,7 +519,7 @@ namespace PAP
 
 		public List<Musica> GetTodasMusicasArtista(int id_artista)
 		{
-			Artista artista = GetArtistaCodigo(id_artista);
+			Artista artista = ProcurarArtista(id_artista);
 
 			List<Musica> musicas = new List<Musica>();
 			string sql = "SELECT id_musica, nome FROM musicas WHERE id_artista = " + id_artista;
@@ -586,7 +557,7 @@ namespace PAP
 			MySqlCommand cmd = new MySqlCommand(sql, _conn);
 			MySqlDataReader rdr = cmd.ExecuteReader();
 			string art = "";
-			int i = 0;
+
 			while (rdr.Read())
 			{
 				string id = rdr[0].ToString();
@@ -596,8 +567,7 @@ namespace PAP
 					Artista artista = new Artista { id = int.Parse(rdr[0].ToString()) };
 					artistas.Add(artista);
 				}
-
-				i++;
+				
 			}
 			rdr.Close();
 
