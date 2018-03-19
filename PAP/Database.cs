@@ -66,7 +66,7 @@ namespace PAP
                 }
             }
 
-            return "";
+			return "";
         }
 
         public void AzureToMySql()
@@ -233,7 +233,28 @@ namespace PAP
 			return new Artista();
 		}
 
-        public List<Musica> ProcurarMusicasPorArtista(int cod, int qtd)
+		//Retorna Musica procurando pelo codigo
+		public Musica ProcurarMusica(int cod)
+		{
+			string sql = "SELECT nome, id_artista FROM musicas WHERE id_musica = " + cod;
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			MySqlDataReader rdr = cmd.ExecuteReader();
+			if (rdr.Read())
+			{
+				Musica musica = new Musica();
+				musica.id = cod;
+				musica.Nome = rdr[0].ToString();
+				musica.artista.id = int.Parse(rdr[1].ToString());
+				rdr.Close();
+				return musica;
+			}
+
+			rdr.Close();
+
+			return new Musica();
+		}
+
+		public List<Musica> ProcurarMusicasPorArtista(int cod, int qtd)
         {
             Musica[] musica = new Musica[qtd];
             List<Artista> artista = new List<Artista>();
@@ -572,6 +593,31 @@ namespace PAP
 			rdr.Close();
 
 			return artistas;   
+		}
+
+		public List<Musica> GetMusicasFavoritas(int cod)
+		{
+			List<Musica> musicas = new List<Musica>();
+			string sql = "SELECT id_musica FROM musicas_favoritas WHERE id_user = " + cod;
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			MySqlDataReader rdr = cmd.ExecuteReader();
+			string art = "";
+
+			while (rdr.Read())
+			{
+				string id = rdr[0].ToString();
+				if (art != id)
+				{
+					art = rdr[0].ToString();
+					Musica musica = new Musica();
+					musica.id = int.Parse(rdr[0].ToString());
+					musicas.Add(musica);
+				}
+
+			}
+			rdr.Close();
+
+			return musicas;
 		}
 
 		public void RegistarUtilizador(string username, string password)

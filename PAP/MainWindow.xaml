@@ -20,7 +20,8 @@
         <Button Content="Artistas Favoritos" HorizontalAlignment="Left" Margin="0,32,0,0" VerticalAlignment="Top" Width="204" Background="White" BorderBrush="White" Click="FavoriteArtists_Click"/>
         <Button Content="Musicas Favoritas" HorizontalAlignment="Left" Margin="0,59,0,0" VerticalAlignment="Top" Width="204" Background="White" BorderBrush="White" Click="FavoriteTracks_Click"/>
         <Button Content="Albums Favoritos" HorizontalAlignment="Left" Margin="0,84,0,0" VerticalAlignment="Top" Width="204" Background="White" BorderBrush="White" Click="FavoriteAlbums_Click"/>
-        <ContentControl Name="ContentSwitch"  Content="" HorizontalAlignment="Left" Margin="286,84,0,0" VerticalAlignment="Top" Height="536" Width="800
-                        "/>
+        <ContentControl Name="ContentSwitch"  Content="" HorizontalAlignment="Left" Margin="404,84,0,0" VerticalAlignment="Top" Height="536" Width="800"/>
+        <TextBox Name="SearchTB" HorizontalAlignment="Left" Height="23" Margin="243,18,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" ToolTip="Procurar" LostFocus="SearchTB_LostFocus" TextChanged="SearchTB_TextChanged"/>
+        <ListBox Visibility="Hidden" Name="SearchLB" HorizontalAlignment="Left" Height="221" Margin="243,68,0,0" VerticalAlignment="Top" Width="317"/>
     </Grid>
 </Window>
