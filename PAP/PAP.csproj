@@ -81,6 +81,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AdminMain.xaml.cs">
+      <DependentUpon>AdminMain.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AlbumUC.xaml.cs">
       <DependentUpon>AlbumUC.xaml</DependentUpon>
     </Compile>
@@ -103,7 +106,14 @@
     <Compile Include="MusicUC.xaml.cs">
       <DependentUpon>MusicUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SignUpWindow.xaml.cs">
+      <DependentUpon>SignUpWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Spotify.cs" />
+    <Page Include="AdminMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AlbumUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -142,6 +152,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MusicUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SignUpWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

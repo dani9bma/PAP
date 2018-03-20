@@ -27,6 +27,10 @@ namespace PAP
 				LoggedAsLabel.Content = "";
 				LoginBtn.Content = "Login";
 			}
+			else
+			{
+				RegistarBtn.Visibility = Visibility.Hidden;
+			}
 			ContentSwitch.Content = new MainUC();
 
 		}
@@ -120,6 +124,12 @@ namespace PAP
 				LoggedAsLabel.Content = "";
 				LoginBtn.Content = "Login";
 				UsernameLabel.Content = "";
+				RegistarBtn.Visibility = Visibility.Visible;
+
+				if(LoginInfo.username == "admin")
+				{
+					AdminBtn.Visibility = Visibility.Visible;
+				}
 			}
 		}
 
@@ -199,6 +209,20 @@ namespace PAP
 				SearchLB.Items.Add(_albums[i].Nome);
 				Console.WriteLine(_albums[i].Nome);
 			}
+		}
+
+		private void RegistarBtn_Click(object sender, RoutedEventArgs e)
+		{
+			SignUpWindow window = new SignUpWindow();
+			window.Show();
+			this.Close();
+		}
+
+		private void AdminBtn_Click(object sender, RoutedEventArgs e)
+		{
+			AdminMain window = new AdminMain();
+			window.Show();
+			this.Close();
 		}
 	}
 }

@@ -37,10 +37,12 @@ namespace PAP
 			}
 			else
 			{
-				Global.sql.LoginUtilizador(UsernameTb.Text, PasswordTb.Password.ToString());
-				var mainWindow = new MainWindow();
-				mainWindow.Show();
-				this.Close();
+				if(Global.sql.LoginUtilizador(UsernameTb.Text, PasswordTb.Password.ToString()))
+				{
+					var mainWindow = new MainWindow();
+					mainWindow.Show();
+					this.Close();
+				}
 			}
 
 		}

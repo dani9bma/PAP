@@ -694,20 +694,33 @@ namespace PAP
 			return musicas;
 		}
 
-		public void RegistarUtilizador(string username, string password)
+		public bool RegistarUtilizador(string username, string password)
         {
             if (username.Contains("'"))
             {
                 MessageBox.Show("Nao pode ter \' no username");
-                return;
+                return false;
             }
+
+			if(username == "")
+			{
+				MessageBox.Show("Tem de preencher o username");
+				return false;
+			}
+			else if(password == "")
+			{
+				MessageBox.Show("Tem de preencher a password");
+				return false;
+			}
 
             string sql = "INSERT INTO users (username, password) VALUES ('" + username + "', '" + password + "')";
             MySqlCommand cmd = new MySqlCommand(sql, _conn);
             cmd.ExecuteNonQuery();
+
+			return true;
         }
 
-        public void LoginUtilizador(string username, string password)
+        public bool LoginUtilizador(string username, string password)
         {
             string sql = "SELECT id_user, username, password FROM users";
             MySqlCommand cmd = new MySqlCommand(sql, _conn);
@@ -721,19 +734,28 @@ namespace PAP
                     {
 	                    LoginInfo.username = username;
 	                    LoginInfo.id = int.Parse(rdr[0].ToString());
+						rdr.Close();
+						return true;
                     }
                     else
                     {
                         MessageBox.Show("Password incorreta");
+						rdr.Close();
+						return false;
                     }
                 }
                 else
                 {
                     MessageBox.Show("Username incorreto");
+					rdr.Close();
+					return false;
                 }
                 
             }
             rdr.Close();
+
+			MessageBox.Show("Ocorreu um erro ao fazer login por favor tente mais tarde");
+			return false;
         }
     }
 }
