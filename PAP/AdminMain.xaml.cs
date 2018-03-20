@@ -23,5 +23,47 @@ namespace PAP
 		{
 			InitializeComponent();
 		}
+
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			MainWindow window = new MainWindow();
+			window.Show();
+			this.Close();
+		}
+
+		private void FavoriteArtists_Click(object sender, RoutedEventArgs e)
+		{
+			ContentSwitch.Content = new FavoriteArtistsAdminUC();
+		}
+
+		private void FavoriteTracks_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void FavoriteAlbums_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void Users_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void Albums_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void Artists_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void Tracks_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
 	}
 }

@@ -16,6 +16,13 @@ namespace PAP
 		public static int id = -1;
 	}
 
+	public struct ArtistasFavoritos
+	{
+		public int id_user;
+		public string user;
+		public string artist;
+	}
+
 	public class Database
     {
         private MySql.Data.MySqlClient.MySqlConnection _conn;
@@ -619,6 +626,12 @@ namespace PAP
 			rdr.Close();
 
 			return musicas;
+		}
+
+		//Retorna todos os artistas favoritos de todos os utilizadores
+		public List<ArtistasFavoritos> GetArtistasFavoritosAdmin()
+		{
+			return new List<ArtistasFavoritos>();
 		}
 
 		public List<Artista> GetArtistasFavoritos(int cod)
