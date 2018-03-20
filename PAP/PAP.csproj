@@ -81,8 +81,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AlbumUC.xaml.cs">
+      <DependentUpon>AlbumUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ArtistUC.xaml.cs">
       <DependentUpon>ArtistUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FavoriteAlbumUC.xaml.cs">
+      <DependentUpon>FavoriteAlbumUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="FavoriteArtistsUC.xaml.cs">
       <DependentUpon>FavoriteArtistsUC.xaml</DependentUpon>
@@ -98,7 +104,15 @@
       <DependentUpon>MusicUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="Spotify.cs" />
+    <Page Include="AlbumUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ArtistUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FavoriteAlbumUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

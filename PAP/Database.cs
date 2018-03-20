@@ -233,6 +233,56 @@ namespace PAP
 			return new Artista();
 		}
 
+		//Retorna Album procurando pelo codigo
+		public Album ProcurarAlbum(int cod)
+		{
+			Album album = new Album();
+			string sql = "SELECT nome FROM albums WHERE id_album = " + cod;
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			MySqlDataReader rdr = cmd.ExecuteReader();
+			string art = "";
+
+			if(rdr.Read())
+			{
+				if (art != rdr[0].ToString())
+				{
+					art = rdr[0].ToString();
+					album.id = cod;
+					album.Nome = rdr[0].ToString();
+				}
+			}
+			rdr.Close();
+
+			return album;
+		}
+
+		//Retorna o album com os ids das musicas
+		public Album ProcurarAlbumMusicas(int cod)
+		{
+			Album album = new Album();
+			string sql = "SELECT nome, id_musica FROM albums WHERE id_album = " + cod;
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			MySqlDataReader rdr = cmd.ExecuteReader();
+			string art = "";
+
+			album.Musicas = new List<Musica>();
+
+			while (rdr.Read())
+			{
+				if (art != rdr[0].ToString())
+				{
+					art = rdr[0].ToString();
+					Musica musica = new Musica();
+					musica.id = int.Parse(rdr[1].ToString());
+					album.id = cod;
+					album.Nome = art;
+					album.Musicas.Add(musica);
+				}
+			}
+			rdr.Close();
+
+			return album;
+		}
 		//Retorna Musica procurando pelo codigo
 		public Musica ProcurarMusica(int cod)
 		{
@@ -593,6 +643,30 @@ namespace PAP
 			rdr.Close();
 
 			return artistas;   
+		}
+
+		public List<Album> GetAlbumsFavoritos(int cod)
+		{
+			List<Album> albums = new List<Album>();
+			string sql = "SELECT id_album FROM albums_favoritos WHERE id_user = " + cod;
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			MySqlDataReader rdr = cmd.ExecuteReader();
+			string art = "";
+
+			while (rdr.Read())
+			{
+				string id = rdr[0].ToString();
+				if (art != id)
+				{
+					art = rdr[0].ToString();
+					Album album = new Album { id = int.Parse(rdr[0].ToString()) };
+					albums.Add(album);
+				}
+
+			}
+			rdr.Close();
+
+			return albums;
 		}
 
 		public List<Musica> GetMusicasFavoritas(int cod)

@@ -154,6 +154,12 @@ namespace PAP
 			}
 		}
 
+		/*
+		 * type:
+		 *	1: Track
+		 *	2: Artist
+		 *	3: Album
+		 */
 		private void AddToFavorite(int type)
 		{
 			int pos;

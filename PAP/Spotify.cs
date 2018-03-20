@@ -29,6 +29,11 @@ namespace PAP
         public int id;
         public string Nome;
         public List<Musica> Musicas;
+
+		int GetQtdMusicas()
+		{
+			return Musicas.Count;
+		}
     }
 
     public partial class Spotify : UserControl

@@ -102,13 +102,6 @@ namespace PAP
 		{
 			MediaPlayer.Play();
 		}
-
-		/*
-		 * type:
-		 *	1: Track
-		 *	2: Artist
-		 *	3: Album
-		 */
 		
 
 		private void LoginBtn_Click(object sender, RoutedEventArgs e)
@@ -158,7 +151,14 @@ namespace PAP
 
 		private void FavoriteAlbums_Click(object sender, RoutedEventArgs e)
 		{
-			//Show Favorite Albums
+			if (LoginInfo.username != "")
+			{
+				ContentSwitch.Content = new FavoriteAlbumUC();
+			}
+			else
+			{
+				MessageBox.Show("Precisa de fazer login para ver as suas musicas favoritas");
+			}
 		}
 
 		private void SearchTB_LostFocus(object sender, RoutedEventArgs e)
