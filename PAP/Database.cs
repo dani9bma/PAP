@@ -263,19 +263,19 @@ namespace PAP
 			string sql = "SELECT nome, id_musica FROM albums WHERE id_album = " + cod;
 			MySqlCommand cmd = new MySqlCommand(sql, _conn);
 			MySqlDataReader rdr = cmd.ExecuteReader();
-			string art = "";
+			int art = 0;
 
 			album.Musicas = new List<Musica>();
 
 			while (rdr.Read())
 			{
-				if (art != rdr[0].ToString())
+				if (art != int.Parse(rdr[1].ToString()))
 				{
-					art = rdr[0].ToString();
+					art = int.Parse(rdr[1].ToString());
 					Musica musica = new Musica();
 					musica.id = int.Parse(rdr[1].ToString());
 					album.id = cod;
-					album.Nome = art;
+					album.Nome = rdr[0].ToString();
 					album.Musicas.Add(musica);
 				}
 			}
