@@ -8,6 +8,7 @@ using MediaToolkit.Model;
 using YoutubeSearch;
 using YoutubeExplode;
 using YoutubeExplode.Models.MediaStreams;
+using System.Threading.Tasks;
 
 namespace PAP
 {
@@ -54,7 +55,7 @@ namespace PAP
 
         }
 
-		public async void DownloadFiles(string musica)
+		public async Task DownloadFiles(string musica)
         {
 			//Youtube search
 			VideoSearch items = new VideoSearch();
@@ -66,7 +67,7 @@ namespace PAP
 
 			var streamInfo = streamInfoSet.Muxed.WithHighestVideoQuality();
 			var ext = streamInfo.Container.GetFileExtension();
-			await client.DownloadMediaStreamAsync(streamInfo, $"music.{ext}");
+			await client.DownloadMediaStreamAsync(streamInfo, Path.GetTempPath() + $"music.{ext}");
         }
 
         public void AzureToMySql()

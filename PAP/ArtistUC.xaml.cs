@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.IO;
 
 namespace PAP
 {
@@ -42,7 +42,7 @@ namespace PAP
 			}
 		}
 
-		private void ArtistTracksLB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		private async void ArtistTracksLB_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			int pos = ArtistTracksLB.SelectedIndex;
 
@@ -63,8 +63,8 @@ namespace PAP
 			Uri source = null;
 			try
 			{
-				Global.sql.DownloadFiles(musicas[pos].Nome);
-				source = new Uri(@"C:\Users\Daniel Assunção\Documents\PAP\PAP\bin\Debug\music.mp4");
+				await Global.sql.DownloadFiles(musicas[pos].Nome);
+				source = new Uri(Path.GetTempPath() + "music.mp4");
 			}
 			catch (Exception ex)
 			{
