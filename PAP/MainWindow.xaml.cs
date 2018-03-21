@@ -17,6 +17,7 @@ namespace PAP
 		private List<Artista> _artists = new List<Artista>();
 		private List<Musica> _tracks = new List<Musica>();
 		private List<Album> _albums = new List<Album>();
+		private List<Playlist> playlists = new List<Playlist>();
 
 		public MainWindow()
 		{
@@ -37,6 +38,12 @@ namespace PAP
 				}
 			}
 			ContentSwitch.Content = new MainUC();
+
+			playlists = Global.sql.GetTodasPlaylists(LoginInfo.id);
+			for(int i = 0; i < playlists.Count; i++)
+			{
+				playlistsLB.Items.Add(playlists[i].nome);
+			}
 
 		}
 
@@ -223,6 +230,12 @@ namespace PAP
 			AdminMain window = new AdminMain();
 			window.Show();
 			this.Close();
+		}
+
+		//Quando se clica na playlist
+		private void ListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+		{
+
 		}
 	}
 }

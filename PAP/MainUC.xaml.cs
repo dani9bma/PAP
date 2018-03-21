@@ -24,10 +24,31 @@ namespace PAP
 		private List<Artista> _artists = new List<Artista>();
 		private List<Musica> _tracks = new List<Musica>();
 		private List<Album> _albums = new List<Album>();
+		private List<Playlist> playlists = new List<Playlist>();
+		private int MusicaPos = -1;
 
 		public MainUC()
 		{
 			InitializeComponent();
+
+			if(LoginInfo.username == "")
+			{
+				PlaylistsCB.Visibility = Visibility.Hidden;
+				AddPlaylist.Visibility = Visibility.Hidden;
+			}
+			else
+			{
+				playlists = Global.sql.GetTodasPlaylists(LoginInfo.id);
+				for (int i = 0; i < playlists.Count; i++)
+				{
+					PlaylistsCB.Items.Add(playlists[i].nome);
+				}
+				PlaylistsCB.Items.Add("Criar Nova");
+
+				PlaylistsCB.Visibility = Visibility.Visible;
+				AddPlaylist.Visibility = Visibility.Visible;
+			}
+			
 		}
 
 		private void searchBtn_Click(object sender, EventArgs e)
@@ -68,10 +89,10 @@ namespace PAP
 
 		private async void MusicasLB_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			int pos = MusicasLb.SelectedIndex;
+			MusicaPos = MusicasLb.SelectedIndex;
 
-			Console.WriteLine(_tracks[pos].Nome);
-			Console.WriteLine(_tracks[pos].artista.Nome);
+			Console.WriteLine(_tracks[MusicaPos].Nome);
+			Console.WriteLine(_tracks[MusicaPos].artista.Nome);
 
 			MediaElement player = new MediaElement();
 
@@ -85,7 +106,7 @@ namespace PAP
 
 			player.Source = null;
 
-			await Global.sql.DownloadFiles(_tracks[pos].Nome);
+			await Global.sql.DownloadFiles(_tracks[MusicaPos].Nome);
 			player.Source = new Uri(Path.GetTempPath() + "music.mp4");
 			player.Play();
 			Console.WriteLine(player.Source);
@@ -176,6 +197,22 @@ namespace PAP
 					pos = AlbumsLb.SelectedIndex;
 					Global.sql.InserirAlbumsFavoritos(_albums[pos].id, LoginInfo.id);
 					break;
+			}
+		}
+
+		private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			if (PlaylistsCB.SelectedItem.ToString() == "Criar Nova")
+			{
+				//Criar uma nova playlist
+			}
+		}
+
+		private void AddPlaylist_Click(object sender, RoutedEventArgs e)
+		{
+			if(PlaylistsCB.SelectedItem.ToString() != "Criar Nova")
+			{
+				Global.sql.InserirPlaylist(PlaylistsCB.SelectedItem.ToString(), _tracks[MusicaPos].id);
 			}
 		}
 	}

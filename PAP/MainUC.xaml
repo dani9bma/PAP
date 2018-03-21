@@ -19,6 +19,8 @@
         <Button x:Name="AddFavoriteTrack" Content="Adicionar aos favoritos" HorizontalAlignment="Left" Margin="336,320,0,0" VerticalAlignment="Top" Width="124" Height="28" Click="AddFavoriteTrack_Click"/>
         <Button x:Name="AddFavoriteArtist" Content="Adicionar aos favoritos" HorizontalAlignment="Left" Margin="495,320,0,0" VerticalAlignment="Top" Width="125" Height="28" Click="AddFavoriteArtist_Click"/>
         <Button x:Name="AddFavoriteAlbum" Content="Adicionar aos favoritos" HorizontalAlignment="Left" Margin="648,320,0,0" VerticalAlignment="Top" Width="124" Height="28" Click="AddFavoriteAlbum_Click"/>
+        <Button Name="AddPlaylist" Content="Adicionar a playlist" HorizontalAlignment="Left" Margin="336,366,0,0" VerticalAlignment="Top" Width="124" Height="29" Click="AddPlaylist_Click"/>
+        <ComboBox Name="PlaylistsCB" HorizontalAlignment="Left" Margin="195,366,0,0" VerticalAlignment="Top" Width="126" Height="29" SelectionChanged="ComboBox_SelectionChanged"/>
 
     </Grid>
 </UserControl>

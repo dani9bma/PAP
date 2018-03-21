@@ -28,6 +28,14 @@ namespace PAP
 
 	}
 
+	public struct Playlist
+	{
+		public int id;
+		public int id_user;
+		public List<Musica> musicas;
+		public string nome;
+	}
+
 	public class Database
     {
         private MySql.Data.MySqlClient.MySqlConnection _conn;
@@ -127,6 +135,43 @@ namespace PAP
 			string sql = "INSERT INTO artistas_favoritos (id_artista, id_user) VALUES (" + id_artista + ", " + id_user + ")";
 			MySqlCommand cmd = new MySqlCommand(sql, _conn);
 			cmd.ExecuteNonQuery();
+		}
+
+		public void InserirPlaylist(string nome, int id_musica)
+		{
+			int id = GetPlaylistByNome(nome);
+
+			if (id != -1)
+			{
+				string sql = "INSERT INTO playlists (id_playlist, nome, id_user, id_musica) VALUES (" + id + ", '" + nome + "' , " + LoginInfo.id + ", " + id_musica + ")";
+				MySqlCommand cmd = new MySqlCommand(sql, _conn);
+				cmd.ExecuteNonQuery();
+			}
+			else
+			{
+				string sql = "INSERT INTO playlists (nome, id_user, id_musica) VALUES ('" + nome + "' , " + LoginInfo.id + ", " + id_musica + ")";
+				MySqlCommand cmd = new MySqlCommand(sql, _conn);
+				cmd.ExecuteNonQuery();
+			}
+			
+		}
+
+		public int GetPlaylistByNome(string nome)
+		{
+			string sql = "SELECT id_playlist FROM playlists WHERE id_user = " + LoginInfo.id + " AND nome LIKE '" + nome + "' ";
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			MySqlDataReader rdr = cmd.ExecuteReader();
+
+			int id = -1;
+
+			if (rdr.Read())
+			{
+				id = int.Parse(rdr[0].ToString());
+			}
+
+			rdr.Close();
+
+			return id;
 		}
 
         //Retorna Artista procurando pelo nome
@@ -724,6 +769,34 @@ namespace PAP
 			rdr.Close();
 
 			return musicas;
+		}
+
+		public List<Playlist> GetTodasPlaylists(int cod)
+		{
+			List<Playlist> playlists = new List<Playlist>();
+			string sql = "SELECT id_playlist, nome FROM playlists WHERE id_user = " + cod;
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			MySqlDataReader rdr = cmd.ExecuteReader();
+			int art = -1;
+
+			while (rdr.Read())
+			{
+				int id = int.Parse(rdr[0].ToString());
+				if (art != id)
+				{
+					art = int.Parse(rdr[0].ToString());
+					Playlist playlist = new Playlist();
+					playlist.id = id;
+					playlist.nome = rdr[1].ToString();
+					playlist.id_user = cod;
+
+					playlists.Add(playlist);
+				}
+
+			}
+			rdr.Close();
+
+			return playlists;
 		}
 
 		public bool RegistarUtilizador(string username, string password)
