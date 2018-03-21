@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Windows;
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Auth;
-using Microsoft.WindowsAzure.Storage.File;
 using MySql.Data.MySqlClient;
 
 namespace PAP
@@ -16,11 +13,13 @@ namespace PAP
 		public static int id = -1;
 	}
 
-	public struct ArtistasFavoritos
+	public class ArtistasFavoritos
 	{
 		public int id_user;
+		public int id_artista;
 		public string user;
-		public string artist;
+		public string artista;
+
 	}
 
 	public class Database
@@ -29,7 +28,6 @@ namespace PAP
         private string _myConnectionString;
         private const string _storageAccountName = "papmusic";
         private const string _storageAccountKey = "/JSUsLXx4IZOp4XSjYjp48uyEf4PV0TQQNrlPM0mpkKb4SpDmEpKkvGewS2QZ0k4DeNPoRg4vwXoWRPqkYYV1g==";
-        private CloudFileDirectory rootDir;
 
         public Database()
         {
@@ -49,29 +47,12 @@ namespace PAP
                 MessageBox.Show(ex.Message);
             }
 
-            //Azure
-            var StorageAccount = new CloudStorageAccount(new StorageCredentials(_storageAccountName, _storageAccountKey), false);
-            var share = StorageAccount.CreateCloudFileClient().GetShareReference("tracks");
-            rootDir = share.GetRootDirectoryReference();
         }
 
 		public string DownloadFiles(string musica, string artista)
         {
-            foreach (var fileItem in rootDir.ListFilesAndDirectories())
-            {
-                if (fileItem is CloudFile)
-                {
-					CloudFile file = (CloudFile)fileItem;
-                    var nomeMusica = file.Name;
-                    if (nomeMusica.Contains(musica) && nomeMusica.Contains(artista))
-                    {
-                        Console.WriteLine(nomeMusica);
-	                    string result = Path.GetTempPath();
-						file.DownloadToFile(result + "music.mp3", FileMode.Create);
-                        return result + "music.mp3";
-                    }
-                }
-            }
+            
+            
 
 			return "";
         }
@@ -79,30 +60,6 @@ namespace PAP
         public void AzureToMySql()
         {
             var artists = GetTodosArtistas();
-
-            foreach (var fileItem in rootDir.ListFilesAndDirectories())
-            {
-                if (fileItem is CloudFile)
-                {
-					CloudFile file = (CloudFile)fileItem;
-                    var nomeMusica = file.Name;
-                    for (int i = 0; i < artists.Count; i++)
-                    {
-                        if (nomeMusica.Contains(artists[i].Nome))
-                        {
-                            var nome = nomeMusica.Replace(artists[i].Nome, "");
-                            nome = nome.Replace(".mp3", "");
-                            if (nome.Contains("Lyrics"))
-                                nome = nome.Replace("Lyrics", "");
-                            if (nome.Contains("Video"))
-                                nome = nome.Replace("Video", "");
-
-                            var cod = GetCodigoArtista(artists[i].Nome);
-                            InserirMusicas(nome, cod);
-                        }
-                    }
-                }
-            }
 
             Console.WriteLine("Done Azure To Mysql");
         }
@@ -631,7 +588,56 @@ namespace PAP
 		//Retorna todos os artistas favoritos de todos os utilizadores
 		public List<ArtistasFavoritos> GetArtistasFavoritosAdmin()
 		{
-			return new List<ArtistasFavoritos>();
+			List<ArtistasFavoritos> artistas = new List<ArtistasFavoritos>();
+			string sql = "SELECT id_artista, id_user FROM artistas_favoritos";
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			MySqlDataReader rdr = cmd.ExecuteReader();
+			string art = "";
+
+			while (rdr.Read())
+			{
+				ArtistasFavoritos artista = new ArtistasFavoritos();
+				artista.id_artista = int.Parse(rdr[0].ToString());
+				artista.id_user = int.Parse(rdr[1].ToString());
+				artistas.Add(artista);
+			}
+			rdr.Close();
+
+			//Obter o nome do utilizador
+
+			for(int i = 0; i < artistas.Count; i++)
+			{
+				sql = "SELECT nome FROM artistas WHERE id_artista = " + artistas[i].id_artista;
+				cmd = new MySqlCommand(sql, _conn);
+				rdr = cmd.ExecuteReader();
+
+				while (rdr.Read())
+				{
+					artistas[i].artista = rdr[0].ToString();
+				}
+				rdr.Close();
+			}
+			
+			//Obter o nome do artista
+
+			for(int i = 0;i < artistas.Count; i++)
+			{
+				sql = "SELECT username FROM users WHERE id_user = " + artistas[i].id_user;
+				cmd = new MySqlCommand(sql, _conn);
+				rdr = cmd.ExecuteReader();
+				art = "";
+
+				while (rdr.Read())
+				{
+
+					artistas[i].user = rdr[0].ToString();
+				}
+
+				rdr.Close();
+			}
+
+			return artistas;
+
 		}
 
 		public List<Artista> GetArtistasFavoritos(int cod)
@@ -738,7 +744,8 @@ namespace PAP
             string sql = "SELECT id_user, username, password FROM users";
             MySqlCommand cmd = new MySqlCommand(sql, _conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
-            
+			bool encontrou = false;
+
             while (rdr.Read())
             {
                 if (rdr[1].ToString() == username)
@@ -750,24 +757,12 @@ namespace PAP
 						rdr.Close();
 						return true;
                     }
-                    else
-                    {
-                        MessageBox.Show("Password incorreta");
-						rdr.Close();
-						return false;
-                    }
                 }
-                else
-                {
-                    MessageBox.Show("Username incorreto");
-					rdr.Close();
-					return false;
-                }
-                
             }
             rdr.Close();
 
-			MessageBox.Show("Ocorreu um erro ao fazer login por favor tente mais tarde");
+			MessageBox.Show("Credenciais incorretas");
+
 			return false;
         }
     }

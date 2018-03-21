@@ -10,8 +10,8 @@
         <Label Content="ID Utilizador" HorizontalAlignment="Left" Margin="73,111,0,0" VerticalAlignment="Top"/>
         <Label Content="Nome do Utilizador" HorizontalAlignment="Left" Margin="175,111,0,0" VerticalAlignment="Top"/>
         <Label Content="Nome do Artista" HorizontalAlignment="Left" Margin="315,111,0,0" VerticalAlignment="Top"/>
-        <ListBox Name="idLB" HorizontalAlignment="Left" Height="361" Margin="73,155,0,0" VerticalAlignment="Top" Width="76"/>
-        <ListBox Name="NomeUtilLB" HorizontalAlignment="Left" Height="361" Margin="175,155,0,0" VerticalAlignment="Top" Width="114"/>
-        <ListBox Name="NomeArtLB" HorizontalAlignment="Left" Height="361" Margin="315,155,0,0" VerticalAlignment="Top" Width="118"/>
+        <ListBox Name="idLB" HorizontalAlignment="Left" Height="361" Margin="73,155,0,0" VerticalAlignment="Top" Width="76" ScrollViewer.ScrollChanged="lbx2_ScrollChanged" />
+        <ListBox Name="NomeUtilLB" HorizontalAlignment="Left" Height="361" Margin="175,155,0,0" VerticalAlignment="Top" Width="114" ScrollViewer.ScrollChanged="lbx1_ScrollChanged"/>
+        <ListBox Name="NomeArtLB" HorizontalAlignment="Left" Height="361" Margin="315,155,0,0" VerticalAlignment="Top" Width="118" ScrollViewer.ScrollChanged="lbx3_ScrollChanged"/>
     </Grid>
 </UserControl>

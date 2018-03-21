@@ -20,10 +20,10 @@
         <Button Content="Artistas Favoritos" HorizontalAlignment="Left" Margin="0,32,0,0" VerticalAlignment="Top" Width="204" Background="White" BorderBrush="White" Click="FavoriteArtists_Click"/>
         <Button Content="Musicas Favoritas" HorizontalAlignment="Left" Margin="0,59,0,0" VerticalAlignment="Top" Width="204" Background="White" BorderBrush="White" Click="FavoriteTracks_Click"/>
         <Button Content="Albums Favoritos" HorizontalAlignment="Left" Margin="0,84,0,0" VerticalAlignment="Top" Width="204" Background="White" BorderBrush="White" Click="FavoriteAlbums_Click"/>
-        <ContentControl Name="ContentSwitch"  Content="" HorizontalAlignment="Left" Margin="404,84,0,0" VerticalAlignment="Top" Height="536" Width="800"/>
+        <ContentControl Name="ContentSwitch" HorizontalAlignment="Left" Margin="404,84,0,0" VerticalAlignment="Top" Height="536" Width="800"/>
         <TextBox Name="SearchTB" HorizontalAlignment="Left" Height="23" Margin="243,18,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" ToolTip="Procurar" LostFocus="SearchTB_LostFocus" TextChanged="SearchTB_TextChanged"/>
         <ListBox Visibility="Hidden" Name="SearchLB" HorizontalAlignment="Left" Height="221" Margin="243,68,0,0" VerticalAlignment="Top" Width="317"/>
         <Button Name="RegistarBtn" Content="Registar" HorizontalAlignment="Left" Margin="793,48,0,0" VerticalAlignment="Top" Width="76" Click="RegistarBtn_Click"/>
-        <Button Name="AdminBtn" Content="Admin" HorizontalAlignment="Left" Margin="1168,10,0,0" VerticalAlignment="Top" Width="76" Click="AdminBtn_Click" Visibility="Hidden" />
+        <Button Name="AdminBtn" Content="Admin" HorizontalAlignment="Left" Margin="1166,17,0,0" VerticalAlignment="Top" Width="76" Visibility="Hidden" Click="AdminBtn_Click" />
     </Grid>
 </Window>

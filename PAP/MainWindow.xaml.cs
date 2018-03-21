@@ -30,6 +30,11 @@ namespace PAP
 			else
 			{
 				RegistarBtn.Visibility = Visibility.Hidden;
+
+				if (LoginInfo.username == "admin")
+				{
+					AdminBtn.Visibility = Visibility.Visible;
+				}
 			}
 			ContentSwitch.Content = new MainUC();
 
@@ -125,11 +130,6 @@ namespace PAP
 				LoginBtn.Content = "Login";
 				UsernameLabel.Content = "";
 				RegistarBtn.Visibility = Visibility.Visible;
-
-				if(LoginInfo.username == "admin")
-				{
-					AdminBtn.Visibility = Visibility.Visible;
-				}
 			}
 		}
 
