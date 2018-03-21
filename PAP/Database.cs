@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 using MySql.Data.MySqlClient;
+using MediaToolkit;
+using MediaToolkit.Model;
+using YoutubeSearch;
+using YoutubeExplode;
+using YoutubeExplode.Models.MediaStreams;
 
 namespace PAP
 {
@@ -49,12 +54,19 @@ namespace PAP
 
         }
 
-		public string DownloadFiles(string musica, string artista)
+		public async void DownloadFiles(string musica)
         {
-            
-            
+			//Youtube search
+			VideoSearch items = new VideoSearch();
+			var videos = items.SearchQuery(musica, 1);
+			musica = videos[0].Url.Replace("http://www.youtube.com/watch?v=", "");
 
-			return "";
+			var client = new YoutubeClient();
+			var streamInfoSet = await client.GetVideoMediaStreamInfosAsync(musica);
+
+			var streamInfo = streamInfoSet.Muxed.WithHighestVideoQuality();
+			var ext = streamInfo.Container.GetFileExtension();
+			await client.DownloadMediaStreamAsync(streamInfo, $"music.{ext}");
         }
 
         public void AzureToMySql()

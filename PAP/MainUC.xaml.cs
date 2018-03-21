@@ -85,9 +85,8 @@ namespace PAP
 
 			player.Source = null;
 
-			Uri source = new Uri(Global.sql.DownloadFiles(_tracks[pos].Nome, _tracks[pos].artista.Nome));
-
-			player.Source = source;
+			Global.sql.DownloadFiles(_tracks[pos].Nome);
+			player.Source = new Uri(@"C:\Users\Daniel Assunção\Documents\PAP\PAP\bin\Debug\music.mp4");
 			player.Play();
 			Console.WriteLine(player.Source);
 

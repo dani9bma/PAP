@@ -63,7 +63,8 @@ namespace PAP
 			Uri source = null;
 			try
 			{
-				source = new Uri(Global.sql.DownloadFiles(Musicas[pos].Nome, Musicas[pos].artista.Nome));
+				Global.sql.DownloadFiles(Musicas[pos].Nome);
+				source = new Uri(@"C:\Users\Daniel Assunção\Documents\PAP\PAP\bin\Debug\music.mp4");
 			}
 			catch (Exception ex)
 			{
