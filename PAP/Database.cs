@@ -69,7 +69,6 @@ namespace PAP
 			VideoSearch items = new VideoSearch();
 			var videos = items.SearchQuery(musica, 1);
 			musica = videos[0].Url.Replace("http://www.youtube.com/watch?v=", "");
-			musica = "bU9k1XvLPfc";
 
 			var client = new YoutubeClient();
 			var streamInfoSet = await client.GetVideoMediaStreamInfosAsync(musica);
@@ -79,7 +78,8 @@ namespace PAP
 
 			if(ext == "webm")
 			{
-				MessageBox.Show("Nao foi possive ouvir a musica que pediu");
+				MessageBox.Show("Nao foi possivel ouvir a musica que pediu");
+				File.Delete(Path.GetTempPath() + $"music.{ext}");
 			}
 			else
 			{
@@ -88,16 +88,6 @@ namespace PAP
 
 				await client.DownloadMediaStreamAsync(streamInfo, Path.GetTempPath() + $"music.{ext}");
 			}
-
-			
-
-			/*var inputFile = new MediaFile { Filename = Path.GetTempPath() + $"music.{ext}" };
-			var outputFile = new MediaFile { Filename = Path.GetTempPath() + "music.mp3" };
-
-			using (var engine = new Engine())
-			{
-				engine.Convert(inputFile, outputFile);
-			}*/
 		}
 
         public void AzureToMySql()
