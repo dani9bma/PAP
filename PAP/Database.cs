@@ -79,7 +79,7 @@ namespace PAP
 			if(ext == "webm")
 			{
 				MessageBox.Show("Nao foi possivel ouvir a musica que pediu");
-				File.Delete(Path.GetTempPath() + $"music.{ext}");
+				File.Delete(Path.GetTempPath() + $"music.mp4");
 			}
 			else
 			{

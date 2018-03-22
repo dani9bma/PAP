@@ -91,27 +91,28 @@ namespace PAP
 		{
 			MusicaPos = MusicasLb.SelectedIndex;
 
-			Console.WriteLine(_tracks[MusicaPos].Nome);
-			Console.WriteLine(_tracks[MusicaPos].artista.Nome);
-
-			MediaElement player = new MediaElement();
-
-			foreach (Window window in Application.Current.Windows)
+			if(MusicaPos != -1)
 			{
-				if (window.GetType() == typeof(MainWindow))
+				Console.WriteLine(_tracks[MusicaPos].Nome);
+				Console.WriteLine(_tracks[MusicaPos].artista.Nome);
+
+				MediaElement player = new MediaElement();
+
+				foreach (Window window in Application.Current.Windows)
 				{
-					player = (window as MainWindow).MediaPlayer;
+					if (window.GetType() == typeof(MainWindow))
+					{
+						player = (window as MainWindow).MediaPlayer;
+					}
 				}
+
+				player.Source = null;
+
+				await Global.sql.DownloadFiles(_tracks[MusicaPos].Nome);
+				player.Source = new Uri(Path.GetTempPath() + "music.mp4");
+				player.Play();
+				Console.WriteLine(player.Source);
 			}
-
-			player.Source = null;
-
-			await Global.sql.DownloadFiles(_tracks[MusicaPos].Nome);
-			player.Source = new Uri(Path.GetTempPath() + "music.mp4");
-			player.Play();
-			Console.WriteLine(player.Source);
-
-
 		}
 
 		private void ArtistasLB_SelectedIndexChanged(object sender, EventArgs e)
