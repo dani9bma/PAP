@@ -27,7 +27,22 @@ namespace PAP
 
 		private void loginBtn_Click(object sender, EventArgs e)
 		{
-			if(UsernameTb.Text == "")
+			if(UsernameTb.Text == "admin")
+			{
+				if(PasswordTb.Password.ToString() == "adm")
+				{
+					LoginInfo.username = "admin";
+					LoginInfo.id = -2;
+					var mainWindow = new MainWindow();
+					mainWindow.Show();
+					this.Close();
+				}
+				else
+				{
+					MessageBox.Show("Password Incorreta");
+				}
+			}
+			else if (UsernameTb.Text == "")
 			{
 				MessageBox.Show("Tem de preencher o username");
 			}

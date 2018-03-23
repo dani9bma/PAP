@@ -38,32 +38,32 @@ namespace PAP
 
 		private void FavoriteTracks_Click(object sender, RoutedEventArgs e)
 		{
-
+			ContentSwitch.Content = new FavoriteMusicAdminUC();
 		}
 
 		private void FavoriteAlbums_Click(object sender, RoutedEventArgs e)
 		{
-
+			ContentSwitch.Content = new FavoriteAlbumsAdminUC();
 		}
 
 		private void Users_Click(object sender, RoutedEventArgs e)
 		{
-
+			ContentSwitch.Content = new UsersAdminUC();
 		}
 
 		private void Albums_Click(object sender, RoutedEventArgs e)
 		{
-
+			ContentSwitch.Content = new AlbumAdminUC();
 		}
 
 		private void Artists_Click(object sender, RoutedEventArgs e)
 		{
-
+			ContentSwitch.Content = new ArtistsAdminUC();
 		}
 
 		private void Tracks_Click(object sender, RoutedEventArgs e)
 		{
-
+			ContentSwitch.Content = new MusicasAdminUC();
 		}
 	}
 }

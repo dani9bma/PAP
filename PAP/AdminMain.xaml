@@ -14,9 +14,9 @@
         <ContentControl x:Name="ContentSwitch"  Content="" HorizontalAlignment="Left" Margin="356,73,0,0" VerticalAlignment="Top" Height="536" Width="800"/>
         <Button Content="Principal" HorizontalAlignment="Left" Margin="1160,17,0,0" VerticalAlignment="Top" Width="84" Click="Button_Click"/>
         <Button Content="Utilizadores" HorizontalAlignment="Left" Margin="0,114,0,0" VerticalAlignment="Top" Width="204" Background="White" BorderBrush="White" Click="Users_Click"/>
-        <Button Content="Albums" HorizontalAlignment="Left" Margin="0,134,0,0" VerticalAlignment="Top" Width="204" Background="White" BorderBrush="White" Click="Albums_Click"/>
-        <Button Content="Musicas" HorizontalAlignment="Left" Margin="0,184,0,0" VerticalAlignment="Top" Width="204" Background="White" BorderBrush="White" Click="Tracks_Click"/>
-        <Button Content="Artistas" HorizontalAlignment="Left" Margin="0,159,0,0" VerticalAlignment="Top" Width="204" Background="White" BorderBrush="White" Click="Artists_Click"/>
+        <Button Content="Albums" HorizontalAlignment="Left" Margin="0,139,0,0" VerticalAlignment="Top" Width="204" Background="White" BorderBrush="White" Click="Albums_Click"/>
+        <Button Content="Musicas" HorizontalAlignment="Left" Margin="0,189,0,0" VerticalAlignment="Top" Width="204" Background="White" BorderBrush="White" Click="Tracks_Click"/>
+        <Button Content="Artistas" HorizontalAlignment="Left" Margin="0,164,0,0" VerticalAlignment="Top" Width="204" Background="White" BorderBrush="White" Click="Artists_Click"/>
 
     </Grid>
 </Window>

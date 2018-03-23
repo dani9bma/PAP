@@ -96,11 +96,20 @@
     <Compile Include="AdminMain.xaml.cs">
       <DependentUpon>AdminMain.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AlbumAdminUC.xaml.cs">
+      <DependentUpon>AlbumAdminUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AlbumUC.xaml.cs">
       <DependentUpon>AlbumUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ArtistsAdminUC.xaml.cs">
+      <DependentUpon>ArtistsAdminUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ArtistUC.xaml.cs">
       <DependentUpon>ArtistUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FavoriteAlbumsAdminUC.xaml.cs">
+      <DependentUpon>FavoriteAlbumsAdminUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="FavoriteAlbumUC.xaml.cs">
       <DependentUpon>FavoriteAlbumUC.xaml</DependentUpon>
@@ -111,12 +120,18 @@
     <Compile Include="FavoriteArtistsUC.xaml.cs">
       <DependentUpon>FavoriteArtistsUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FavoriteMusicAdminUC.xaml.cs">
+      <DependentUpon>FavoriteMusicAdminUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Global.cs" />
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainUC.xaml.cs">
       <DependentUpon>MainUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MusicasAdminUC.xaml.cs">
+      <DependentUpon>MusicasAdminUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="MusicUC.xaml.cs">
       <DependentUpon>MusicUC.xaml</DependentUpon>
@@ -125,7 +140,14 @@
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Spotify.cs" />
+    <Compile Include="UsersAdminUC.xaml.cs">
+      <DependentUpon>UsersAdminUC.xaml</DependentUpon>
+    </Compile>
     <Page Include="AdminMain.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AlbumAdminUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -133,7 +155,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ArtistsAdminUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ArtistUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FavoriteAlbumsAdminUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -146,6 +176,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FavoriteArtistsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FavoriteMusicAdminUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -170,11 +204,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="MusicasAdminUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MusicUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SignUpWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UsersAdminUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

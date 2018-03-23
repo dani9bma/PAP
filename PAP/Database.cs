@@ -19,13 +19,34 @@ namespace PAP
 		public static int id = -1;
 	}
 
+	public class User
+	{
+		public string username;
+		public int id;
+	}
+
 	public class ArtistasFavoritos
 	{
 		public int id_user;
 		public int id_artista;
 		public string user;
 		public string artista;
+	}
 
+	public class MusicasFavoritas
+	{
+		public int id_user;
+		public int id_musica;
+		public string user;
+		public string musica;
+	}
+
+	public class AlbumsFavoritos
+	{
+		public int id_user;
+		public int id_album;
+		public string user;
+		public string album;
 	}
 
 	public struct Playlist
@@ -563,7 +584,7 @@ namespace PAP
         public List<Artista> GetTodosArtistas()
         {
             List<Artista> artistas = new List<Artista>();
-            string sql = "SELECT nome, img FROM artistas";
+            string sql = "SELECT nome, img, id_artista FROM artistas";
             MySqlCommand cmd = new MySqlCommand(sql, _conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
             string art = "";
@@ -576,6 +597,7 @@ namespace PAP
                     Artista artista = new Artista();
                     artista.Nome = rdr[0].ToString();
                     artista.Img = rdr[1].ToString();
+					artista.id = int.Parse(rdr[2].ToString());
                     artistas.Add(artista);
                 }
                 else
@@ -583,7 +605,8 @@ namespace PAP
                     Artista artista = new Artista();
                     artista.Nome = rdr[0].ToString();
                     artista.Img = rdr[1].ToString();
-                    artistas.Add(artista);
+					artista.id = int.Parse(rdr[2].ToString());
+					artistas.Add(artista);
                 }
 
                 i++;
@@ -593,7 +616,40 @@ namespace PAP
             return artistas;
         }
 
-        public List<Musica> GetTodasMusicas()
+		public List<Album> GetTodosAlbums()
+		{
+			List<Album> albums = new List<Album>();
+			string sql = "SELECT nome, id_album FROM albums GROUP BY nome";
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			MySqlDataReader rdr = cmd.ExecuteReader();
+			string art = "";
+			int i = 0;
+			while (rdr.Read())
+			{
+				if (!(art == rdr[0]))
+				{
+					art = rdr[0].ToString();
+					Album artista = new Album();
+					artista.Nome = rdr[0].ToString();
+					artista.id = int.Parse(rdr[1].ToString());
+					albums.Add(artista);
+				}
+				else
+				{
+					Album artista = new Album();
+					artista.Nome = rdr[0].ToString();
+					artista.id = int.Parse(rdr[1].ToString());
+					albums.Add(artista);
+				}
+
+				i++;
+			}
+			rdr.Close();
+
+			return albums;
+		}
+
+		public List<Musica> GetTodasMusicas()
         {
             List<Musica> musicas = new List<Musica>();
             string sql = "SELECT id_musica, nome FROM musicas";
@@ -655,6 +711,28 @@ namespace PAP
 			return musicas;
 		}
 
+		//Retorna todos os utilizadoes
+		public List<User> GetTodosUsers()
+		{
+			List<User> users = new List<User>();
+			string sql = "SELECT id_user, username FROM users";
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			MySqlDataReader rdr = cmd.ExecuteReader();
+			string art = "";
+
+			while (rdr.Read())
+			{
+				User artista = new User();
+				artista.id = int.Parse(rdr[0].ToString());
+				artista.username = rdr[1].ToString();
+				users.Add(artista);
+			}
+			rdr.Close();
+
+			return users;
+
+		}
+
 		//Retorna todos os artistas favoritos de todos os utilizadores
 		public List<ArtistasFavoritos> GetArtistasFavoritosAdmin()
 		{
@@ -707,6 +785,114 @@ namespace PAP
 			}
 
 			return artistas;
+
+		}
+
+		//Retorna todos os albums favoritos de todos os utilizadores
+		public List<AlbumsFavoritos> GetAlbumsFavoritosAdmin()
+		{
+			List<AlbumsFavoritos> albums = new List<AlbumsFavoritos>();
+			string sql = "SELECT id_album, id_user FROM albums_favoritos";
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			MySqlDataReader rdr = cmd.ExecuteReader();
+			string art = "";
+
+			while (rdr.Read())
+			{
+				AlbumsFavoritos artista = new AlbumsFavoritos();
+				artista.id_album = int.Parse(rdr[0].ToString());
+				artista.id_user = int.Parse(rdr[1].ToString());
+				albums.Add(artista);
+			}
+			rdr.Close();
+
+			//Obter o nome do utilizador
+			for (int i = 0; i < albums.Count; i++)
+			{
+				sql = "SELECT nome FROM albums WHERE id_album = " + albums[i].id_album;
+				cmd = new MySqlCommand(sql, _conn);
+				rdr = cmd.ExecuteReader();
+
+				while (rdr.Read())
+				{
+					albums[i].album = rdr[0].ToString();
+				}
+				rdr.Close();
+			}
+
+			//Obter o nome do artista
+
+			for (int i = 0; i < albums.Count; i++)
+			{
+				sql = "SELECT username FROM users WHERE id_user = " + albums[i].id_user;
+				cmd = new MySqlCommand(sql, _conn);
+				rdr = cmd.ExecuteReader();
+				art = "";
+
+				while (rdr.Read())
+				{
+
+					albums[i].user = rdr[0].ToString();
+				}
+
+				rdr.Close();
+			}
+
+			return albums;
+
+		}
+
+		//Retorna todos as musicas favoritas de todos os utilizadores
+		public List<MusicasFavoritas> GetMusicasFavoritasAdmin()
+		{
+			List<MusicasFavoritas> musicas = new List<MusicasFavoritas>();
+			string sql = "SELECT id_musica, id_user FROM musicas_favoritas";
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			MySqlDataReader rdr = cmd.ExecuteReader();
+			string art = "";
+
+			while (rdr.Read())
+			{
+				MusicasFavoritas artista = new MusicasFavoritas();
+				artista.id_musica = int.Parse(rdr[0].ToString());
+				artista.id_user = int.Parse(rdr[1].ToString());
+				musicas.Add(artista);
+			}
+			rdr.Close();
+
+			//Obter o nome do utilizador
+			for (int i = 0; i < musicas.Count; i++)
+			{
+				sql = "SELECT nome FROM musicas WHERE id_musica = " + musicas[i].id_musica;
+				cmd = new MySqlCommand(sql, _conn);
+				rdr = cmd.ExecuteReader();
+
+				while (rdr.Read())
+				{
+					musicas[i].musica = rdr[0].ToString();
+				}
+				rdr.Close();
+			}
+
+			//Obter o nome do artista
+
+			for (int i = 0; i < musicas.Count; i++)
+			{
+				sql = "SELECT username FROM users WHERE id_user = " + musicas[i].id_user;
+				cmd = new MySqlCommand(sql, _conn);
+				rdr = cmd.ExecuteReader();
+				art = "";
+
+				while (rdr.Read())
+				{
+
+					musicas[i].user = rdr[0].ToString();
+				}
+
+				rdr.Close();
+			}
+
+			return musicas;
 
 		}
 
@@ -842,7 +1028,6 @@ namespace PAP
             string sql = "SELECT id_user, username, password FROM users";
             MySqlCommand cmd = new MySqlCommand(sql, _conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
-			bool encontrou = false;
 
             while (rdr.Read())
             {
