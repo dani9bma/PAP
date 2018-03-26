@@ -136,6 +136,9 @@
     <Compile Include="MusicUC.xaml.cs">
       <DependentUpon>MusicUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PlaylistsUC.xaml.cs">
+      <DependentUpon>PlaylistsUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SignUpWindow.xaml.cs">
       <DependentUpon>SignUpWindow.xaml</DependentUpon>
     </Compile>
@@ -209,6 +212,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MusicUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PlaylistsUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

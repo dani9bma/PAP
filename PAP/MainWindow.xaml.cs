@@ -235,7 +235,7 @@ namespace PAP
 		//Quando se clica na playlist
 		private void ListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
 		{
-
+			ContentSwitch.Content = new PlaylistsUC(playlistsLB.SelectedItem.ToString());
 		}
 	}
 }

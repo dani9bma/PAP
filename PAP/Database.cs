@@ -207,8 +207,34 @@ namespace PAP
 			return id;
 		}
 
-        //Retorna Artista procurando pelo nome
-        public List<Artista> ProcurarArtistas(string nome, int qtd)
+
+		public List<Musica> GetPlaylistsMusicas(int id)
+		{
+			string sql = "SELECT id_musica FROM playlists WHERE id_playlist = " + id;
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			MySqlDataReader rdr = cmd.ExecuteReader();
+
+			List<Musica> musicas = new List<Musica>();
+			List<int> ids = new List<int>();
+
+			while (rdr.Read())
+			{
+			 	ids.Add(int.Parse(rdr[0].ToString()));
+			}
+
+			rdr.Close();
+
+			for(int i = 0; i < ids.Count; i++)
+			{
+				Musica musica = Global.sql.ProcurarMusica(ids[i]);
+				musicas.Add(musica);
+			}
+
+			return musicas;
+		}
+
+		//Retorna Artista procurando pelo nome
+		public List<Artista> ProcurarArtistas(string nome, int qtd)
         {
 			//TODO: Mudar o nome das vars
 			Artista[] musica = new Artista[qtd];
@@ -364,7 +390,7 @@ namespace PAP
             Musica[] musica = new Musica[qtd];
             List<Artista> artista = new List<Artista>();
             artista = GetTodosArtistas();
-            string sql = "SELECT nome, id_artista FROM musicas WHERE id_artista = " + cod;
+            string sql = "SELECT nome, id_artista, id_musica FROM musicas WHERE id_artista = " + cod;
             MySqlCommand cmd = new MySqlCommand(sql, _conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
             string art = "";
@@ -381,6 +407,7 @@ namespace PAP
                         artId = int.Parse(rdr[1].ToString());
                         musica[i].Nome = art;
                         musica[i].artista = artista[int.Parse(m) - 1];
+						musica[i].id = int.Parse(rdr[2].ToString());
                     }
                     else
                     {
@@ -416,7 +443,6 @@ namespace PAP
 
         public List<Musica> ProcurarMusicas(string nome, int qtd)
         {
-            //TODO: Na procura, procurar mostra musicas, artistas e albuns
             List<Artista> artista = new List<Artista>();
             artista = GetTodosArtistas();
 
@@ -427,29 +453,18 @@ namespace PAP
             MySqlDataReader rdr = cmd.ExecuteReader();
             string art = "";
             int artId = -1;
-
-            for (int i = 0; i < qtd; i++)
+            while (rdr.Read())
             {
-                if (rdr.Read())
+                if (art != rdr[0].ToString() || artId != int.Parse(rdr[1].ToString()))
                 {
-                    if (art != rdr[0].ToString() || artId != int.Parse(rdr[1].ToString()))
-                    {
-                        var m = rdr[1].ToString();
-                        art = rdr[0].ToString();
-                        artId = int.Parse(rdr[1].ToString());
-						Musica musica = new Musica();
-                        musica.Nome = art;
-                        musica.artista = artista[int.Parse(m) - 1];
-	                    musica.id = int.Parse(rdr[2].ToString());
-						musicas.Add(musica);
-                    }
-                    else
-                    {
-						Musica musica = new Musica();
-						musica.Nome = "";
-                        musica.artista = new Artista();
-	                    musica.id = -1;
-                    }
+                    var m = rdr[1].ToString();
+                    art = rdr[0].ToString();
+                    artId = int.Parse(rdr[1].ToString());
+					Musica musica = new Musica();
+                    musica.Nome = art;
+                    musica.artista = artista[int.Parse(m) - 1];
+	                musica.id = int.Parse(rdr[2].ToString());
+					musicas.Add(musica);
                 }
                 else
                 {
@@ -457,8 +472,9 @@ namespace PAP
 					musica.Nome = "";
                     musica.artista = new Artista();
 	                musica.id = -1;
-				}
+                }
             }
+            
 			
             rdr.Close();
 
@@ -468,7 +484,7 @@ namespace PAP
 			}
 
 	        MessageBox.Show("A musica que tentou pesquisar não existe na nossa base de dados, por favor entre aqui (LINK) e contribua com a música que deseja");
-            //TODO: Quando nao encontra musica abrir outra janela com um formulario com o nome da musica, link da musica, artista(<select>) e um botao de "Enviar", clicado no botao este deverá fazer o download da musica e adicionala na base de dados
+            //TODO: Mudar isto para nao perguntar pelo link
 	        return new List<Musica>();
         }
 
