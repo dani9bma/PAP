@@ -65,5 +65,10 @@ namespace PAP
 		{
 			ContentSwitch.Content = new MusicasAdminUC();
 		}
+
+		private void Playlists_Click(object sender, RoutedEventArgs e)
+		{
+			ContentSwitch.Content = new PlaylistsAdminUC();
+		}
 	}
 }

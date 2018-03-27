@@ -1,6 +1,5 @@
-Adicionar Playlists
 Adicionar playlists ao backend
-
+Backend: alterar, inserir, eliminar
 
 
 Adicionar conexao com spotify para converter playlists de um sitio para o outro ??

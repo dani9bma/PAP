@@ -49,6 +49,13 @@ namespace PAP
 		public string album;
 	}
 
+	public class PlaylistFavoritas
+	{
+		public int id_user;
+		public string user;
+		public string playlist;
+	}
+
 	public struct Playlist
 	{
 		public int id;
@@ -211,6 +218,42 @@ namespace PAP
 			rdr.Close();
 
 			return -1;
+		}
+
+		public List<PlaylistFavoritas> GetPlaylistsNomes()
+		{
+			List<PlaylistFavoritas> playlists = new List<PlaylistFavoritas>();
+			string sql = "SELECT nome, id_user FROM playlists WHERE id_musica = -1";
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			MySqlDataReader rdr = cmd.ExecuteReader();
+
+			int id = -1;
+
+			while (rdr.Read())
+			{
+				PlaylistFavoritas playlist = new PlaylistFavoritas();
+				playlist.playlist = rdr[0].ToString();
+				playlist.id_user = int.Parse(rdr[1].ToString());
+				playlists.Add(playlist);
+			}
+
+			rdr.Close();
+
+			//Obter o nome do utilizador
+			for (int i = 0; i < playlists.Count; i++)
+			{
+				sql = "SELECT username FROM users WHERE id_user = " + playlists[i].id_user;
+				cmd = new MySqlCommand(sql, _conn);
+				rdr = cmd.ExecuteReader();
+
+				while (rdr.Read())
+				{
+					playlists[i].user = rdr[0].ToString();
+				}
+				rdr.Close();
+			}
+
+			return playlists;
 		}
 
 		public int GetPlaylistByNome(string nome)

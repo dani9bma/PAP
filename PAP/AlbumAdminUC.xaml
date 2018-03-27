@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PAP"
              mc:Ignorable="d" 
-             d:DesignHeight="356" d:DesignWidth="800">
+             d:DesignHeight="536" d:DesignWidth="800">
     <Grid>
         <Label Content="ID Album" HorizontalAlignment="Left" Margin="73,111,0,0" VerticalAlignment="Top"/>
         <Label Content="Nome do Album" HorizontalAlignment="Left" Margin="190,111,0,0" VerticalAlignment="Top"/>

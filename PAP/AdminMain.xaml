@@ -17,6 +17,7 @@
         <Button Content="Albums" HorizontalAlignment="Left" Margin="0,139,0,0" VerticalAlignment="Top" Width="204" Background="White" BorderBrush="White" Click="Albums_Click"/>
         <Button Content="Musicas" HorizontalAlignment="Left" Margin="0,189,0,0" VerticalAlignment="Top" Width="204" Background="White" BorderBrush="White" Click="Tracks_Click"/>
         <Button Content="Artistas" HorizontalAlignment="Left" Margin="0,164,0,0" VerticalAlignment="Top" Width="204" Background="White" BorderBrush="White" Click="Artists_Click"/>
+        <Button Content="Playlists" HorizontalAlignment="Left" Margin="0,214,0,0" VerticalAlignment="Top" Width="204" Background="White" BorderBrush="White" Click="Playlists_Click"/>
 
     </Grid>
 </Window>
