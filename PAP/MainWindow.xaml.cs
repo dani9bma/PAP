@@ -237,5 +237,10 @@ namespace PAP
 		{
 			ContentSwitch.Content = new PlaylistsUC(playlistsLB.SelectedItem.ToString());
 		}
+
+		private void HomeBtn_Click(object sender, RoutedEventArgs e)
+		{
+			ContentSwitch.Content = new MainUC();
+		}
 	}
 }

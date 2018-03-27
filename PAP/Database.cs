@@ -182,11 +182,35 @@ namespace PAP
 			}
 			else
 			{
-				string sql = "INSERT INTO playlists (nome, id_user, id_musica) VALUES ('" + nome + "' , " + LoginInfo.id + ", " + id_musica + ")";
+				string sql = "INSERT INTO playlists (id_playlist, nome, id_user, id_musica) VALUES (" + GetPlaylistsCount() + 1 + ", '" + nome + "' , " + LoginInfo.id + ", " + id_musica + ")";
 				MySqlCommand cmd = new MySqlCommand(sql, _conn);
 				cmd.ExecuteNonQuery();
 			}
 			
+		}
+
+		public void DeletePlaylist(int id_playlist)
+		{
+			string sql = "DELETE FROM playlists WHERE id_playlist = " + id_playlist + " AND id_user = " + LoginInfo.id;
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			cmd.ExecuteNonQuery();
+		}
+
+		public int GetPlaylistsCount()
+		{
+			string sql = "SELECT COUNT(id_playlist) FROM playlists";
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			MySqlDataReader rdr = cmd.ExecuteReader();
+			if (rdr.Read())
+			{
+				int cod = int.Parse(rdr[0].ToString());
+				rdr.Close();
+				return cod;
+			}
+
+			rdr.Close();
+
+			return -1;
 		}
 
 		public int GetPlaylistByNome(string nome)

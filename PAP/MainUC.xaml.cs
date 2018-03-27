@@ -35,6 +35,7 @@ namespace PAP
 			{
 				PlaylistsCB.Visibility = Visibility.Hidden;
 				AddPlaylist.Visibility = Visibility.Hidden;
+				DeletePlaylist.Visibility = Visibility.Hidden;
 			}
 			else
 			{
@@ -47,6 +48,7 @@ namespace PAP
 
 				PlaylistsCB.Visibility = Visibility.Visible;
 				AddPlaylist.Visibility = Visibility.Visible;
+				DeletePlaylist.Visibility = Visibility.Visible;
 			}
 			
 		}
@@ -205,7 +207,14 @@ namespace PAP
 		{
 			if (PlaylistsCB.SelectedItem.ToString() == "Criar Nova")
 			{
-				//Criar uma nova playlist
+				string input = Microsoft.VisualBasic.Interaction.InputBox("Digite o nome da Playlist", "Popup", "Default", -1, -1);
+				Global.sql.InserirPlaylist(input, -1);
+
+				MainWindow w = new MainWindow();
+				w.Show();
+
+				var myWindow = Window.GetWindow(this);
+				myWindow.Close();
 			}
 		}
 
@@ -215,6 +224,20 @@ namespace PAP
 			{
 				Global.sql.InserirPlaylist(PlaylistsCB.SelectedItem.ToString(), _tracks[MusicaPos].id);
 			}
+		}
+
+		private void DeletePlaylist_Click(object sender, RoutedEventArgs e)
+		{
+			var index = PlaylistsCB.SelectedIndex;
+			var item = PlaylistsCB.SelectedItem;
+			int id = Global.sql.GetPlaylistByNome(item.ToString());
+			Global.sql.DeletePlaylist(id);
+
+			MainWindow w = new MainWindow();
+			w.Show();
+
+			var myWindow = Window.GetWindow(this);
+			myWindow.Close();
 		}
 	}
 }
