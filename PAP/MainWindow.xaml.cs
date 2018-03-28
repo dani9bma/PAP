@@ -47,6 +47,60 @@ namespace PAP
 
 		}
 
+		/*
+		private async void Init()
+		{
+			await DownloadTracks();
+		}
+
+		private async Task DownloadTracks()
+		{
+			List<Musica> musicas = Global.sql.GetTodasMusicas();
+
+			for(int i = 0; i < musicas.Count; i++)
+			{
+				try
+				{
+					string m = musicas[i].Nome;
+					Artista artista = Global.sql.ProcurarArtista(musicas[i].artista.id);
+
+					//Youtube search
+					VideoSearch items = new VideoSearch();
+					var videos = items.SearchQuery(m + " " + artista.Nome, 1);
+					string musica = videos[0].Url.Replace("http://www.youtube.com/watch?v=", "");
+
+					var client = new YoutubeClient();
+					var streamInfoSet = await client.GetVideoMediaStreamInfosAsync(musica);
+
+					var streamInfo = streamInfoSet.Muxed.WithHighestVideoQuality();
+					var ext = streamInfo.Container.GetFileExtension();
+
+					m = m.Replace("?", "");
+					m = m.Replace("/", "");
+					m = m.Replace("|", "");
+
+
+					if (ext == "webm")
+					{
+
+					}
+					else
+					{
+						await client.DownloadMediaStreamAsync(streamInfo, @"F:\PAPMusic\" + m + " - " + artista.Nome + "." + ext);
+					}
+
+					Console.WriteLine("Numero: " + i);
+				}
+				catch (Exception ex)
+				{
+					Console.WriteLine(ex.Message);
+				}
+
+				
+			}
+		}
+*/
+
 
 		/*private void authButton_Click(object sender, EventArgs e)
 		{
@@ -80,7 +134,7 @@ namespace PAP
 			}
 		}*/
 
-		
+
 
 		/*private void searchSpoBtn_Click(object sender, EventArgs e)
 		{
@@ -94,14 +148,14 @@ namespace PAP
 			_spotifyArt = true;
 		}*/
 
-		
+
 
 		/*private void registerBtn_Click(object sender, EventArgs e)
 		{
 			_sql.RegistarUtilizador(usernameTB.Text, passwordTB.Text);
 		}*/
 
-		
+
 
 		private void VolumeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
 		{
