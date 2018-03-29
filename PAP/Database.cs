@@ -1080,6 +1080,13 @@ namespace PAP
 			return playlists;
 		}
 
+		public void DeleteArtists(int cod)
+		{
+			string sql = "DELETE FROM artistas WHERE id_artista = " + cod;
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			cmd.ExecuteNonQuery();
+		}
+
 		public bool RegistarUtilizador(string username, string password)
         {
             if (username.Contains("'"))

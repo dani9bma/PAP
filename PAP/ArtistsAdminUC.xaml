@@ -11,6 +11,7 @@
         <Label Content="Nome do Artista" HorizontalAlignment="Left" Margin="190,111,0,0" VerticalAlignment="Top"/>
         <ListBox x:Name="idLB" HorizontalAlignment="Left" Height="361" Margin="73,155,0,0" VerticalAlignment="Top" Width="76" ScrollViewer.ScrollChanged="lbx2_ScrollChanged" />
         <ListBox x:Name="NomeArtLB" HorizontalAlignment="Left" Height="361" Margin="190,155,0,0" VerticalAlignment="Top" Width="118" ScrollViewer.ScrollChanged="lbx3_ScrollChanged"/>
+        <Button Content="Eliminar Artista" HorizontalAlignment="Left" Margin="343,484,0,0" VerticalAlignment="Top" Width="81" Height="32" Click="Button_Click"/>
 
     </Grid>
 </UserControl>
