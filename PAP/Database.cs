@@ -1087,6 +1087,20 @@ namespace PAP
 			cmd.ExecuteNonQuery();
 		}
 
+		public void DeleteAlbum(int cod)
+		{
+			string sql = "DELETE FROM albums WHERE id_album = " + cod;
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			cmd.ExecuteNonQuery();
+		}
+
+		public void DeleteMusica(int cod)
+		{
+			string sql = "DELETE FROM musicas WHERE id_musica = " + cod;
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			cmd.ExecuteNonQuery();
+		}
+
 		public bool RegistarUtilizador(string username, string password)
         {
             if (username.Contains("'"))

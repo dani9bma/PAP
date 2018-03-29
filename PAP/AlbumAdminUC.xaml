@@ -11,6 +11,7 @@
         <Label Content="Nome do Album" HorizontalAlignment="Left" Margin="190,111,0,0" VerticalAlignment="Top"/>
         <ListBox x:Name="idLB" HorizontalAlignment="Left" Height="361" Margin="73,155,0,-160" VerticalAlignment="Top" Width="76" ScrollViewer.ScrollChanged="lbx2_ScrollChanged" />
         <ListBox x:Name="NomeAlbumLB" HorizontalAlignment="Left" Height="361" Margin="190,155,0,-160" VerticalAlignment="Top" Width="118" ScrollViewer.ScrollChanged="lbx3_ScrollChanged"/>
+        <Button Content="Eliminar Album" HorizontalAlignment="Left" Margin="343,480,0,0" VerticalAlignment="Top" Width="87" Height="36" Click="Button_Click"/>
 
     </Grid>
 </UserControl>

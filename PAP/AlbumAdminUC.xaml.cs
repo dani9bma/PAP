@@ -62,5 +62,25 @@ namespace PAP
 			ScrollViewer _listboxScrollViewer3 = GetDescendantByType(NomeAlbumLB, typeof(ScrollViewer)) as ScrollViewer;
 			_listboxScrollViewer1.ScrollToVerticalOffset(_listboxScrollViewer3.VerticalOffset);
 		}
+
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			if (NomeAlbumLB.SelectedIndex >= 0)
+			{
+				int cod = int.Parse(idLB.Items[NomeAlbumLB.SelectedIndex].ToString());
+				int index = NomeAlbumLB.SelectedIndex;
+				Global.sql.DeleteAlbum(cod);
+				NomeAlbumLB.Items.RemoveAt(index);
+				idLB.Items.RemoveAt(index);
+			}
+			else if (idLB.SelectedIndex >= 0)
+			{
+				int cod = int.Parse(idLB.SelectedItem.ToString());
+				int index = idLB.SelectedIndex;
+				Global.sql.DeleteAlbum(cod);
+				NomeAlbumLB.Items.RemoveAt(index);
+				idLB.Items.RemoveAt(index);
+			}
+		}
 	}
 }
