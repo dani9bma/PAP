@@ -103,6 +103,9 @@
     <Compile Include="AlbumUC.xaml.cs">
       <DependentUpon>AlbumUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AlterarArtista.xaml.cs">
+      <DependentUpon>AlterarArtista.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ArtistsAdminUC.xaml.cs">
       <DependentUpon>ArtistsAdminUC.xaml</DependentUpon>
     </Compile>
@@ -159,6 +162,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AlbumUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AlterarArtista.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

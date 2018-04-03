@@ -381,6 +381,13 @@ namespace PAP
 			return new Artista();
 		}
 
+		public void AlterarArtista(int cod, string nome)
+		{
+			string sql = "UPDATE artistas SET nome = '" + nome + "' WHERE id_artista = " + cod;
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			cmd.ExecuteNonQuery();
+		}
+
 		//Retorna Album procurando pelo codigo
 		public Album ProcurarAlbum(int cod)
 		{
