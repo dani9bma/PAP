@@ -106,6 +106,9 @@
     <Compile Include="AlterarArtista.xaml.cs">
       <DependentUpon>AlterarArtista.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AlterarMusica.xaml.cs">
+      <DependentUpon>AlterarMusica.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ArtistsAdminUC.xaml.cs">
       <DependentUpon>ArtistsAdminUC.xaml</DependentUpon>
     </Compile>
@@ -166,6 +169,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AlterarArtista.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AlterarMusica.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -388,6 +388,13 @@ namespace PAP
 			cmd.ExecuteNonQuery();
 		}
 
+		public void AlterarMusica(int cod, string nome, int id_artista)
+		{
+			string sql = "UPDATE musicas SET nome = '" + nome + "' , id_artista = " + id_artista + " WHERE id_musica = " + cod;
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			cmd.ExecuteNonQuery();
+		}
+
 		//Retorna Album procurando pelo codigo
 		public Album ProcurarAlbum(int cod)
 		{
