@@ -395,6 +395,13 @@ namespace PAP
 			cmd.ExecuteNonQuery();
 		}
 
+		public void AlterarAlbum(int cod, string nome)
+		{
+			string sql = "UPDATE albums SET nome = '" + nome + "' WHERE id_album = " + cod;
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			cmd.ExecuteNonQuery();
+		}
+
 		//Retorna Album procurando pelo codigo
 		public Album ProcurarAlbum(int cod)
 		{
@@ -749,7 +756,7 @@ namespace PAP
 		public List<Musica> GetTodasMusicas()
         {
             List<Musica> musicas = new List<Musica>();
-            string sql = "SELECT id_musica, nome FROM musicas";
+            string sql = "SELECT id_musica, nome FROM musicas ORDER BY nome";
             MySqlCommand cmd = new MySqlCommand(sql, _conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
             string art = "";
@@ -1041,6 +1048,20 @@ namespace PAP
 			return albums;
 		}
 
+		public void SubstituirMusicaAlbum(int Antcod, int newcod, int codAlbum)
+		{
+			string sql = "UPDATE albums SET id_musica = " + newcod + " WHERE id_album = " + codAlbum + " AND id_musica = " + Antcod;
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			cmd.ExecuteNonQuery();
+		}
+
+		public void AdicionarMusicaAlbum(int cod, int codAlbum)
+		{
+			string sql = "INSERT INTO albums (id_album, id_musica) VALUES (" + codAlbum + ", " + cod + ")";
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			cmd.ExecuteNonQuery();
+		}
+
 		public List<Musica> GetMusicasFavoritas(int cod)
 		{
 			List<Musica> musicas = new List<Musica>();
@@ -1111,6 +1132,13 @@ namespace PAP
 		public void DeleteMusica(int cod)
 		{
 			string sql = "DELETE FROM musicas WHERE id_musica = " + cod;
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			cmd.ExecuteNonQuery();
+		}
+
+		public void DeleteMusicaAlbum(int cod_album, int cod_musica)
+		{
+			string sql = "DELETE FROM albums WHERE id_musica = " + cod_musica + " AND id_album = " + cod_album;
 			MySqlCommand cmd = new MySqlCommand(sql, _conn);
 			cmd.ExecuteNonQuery();
 		}

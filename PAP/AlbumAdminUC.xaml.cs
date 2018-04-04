@@ -82,5 +82,33 @@ namespace PAP
 				idLB.Items.RemoveAt(index);
 			}
 		}
+
+		private void Alterar_Click(object sender, RoutedEventArgs e)
+		{
+			if (NomeAlbumLB.SelectedIndex >= 0)
+			{
+				int cod = int.Parse(idLB.Items[NomeAlbumLB.SelectedIndex].ToString());
+				int index = NomeAlbumLB.SelectedIndex;
+				foreach (Window window in Application.Current.Windows)
+				{
+					if (window.GetType() == typeof(AdminMain))
+					{
+						(window as AdminMain).ContentSwitch.Content = new AlterarAlbum(cod);
+					}
+				}
+			}
+			else if (idLB.SelectedIndex >= 0)
+			{
+				int cod = int.Parse(idLB.SelectedItem.ToString());
+				int index = idLB.SelectedIndex;
+				foreach (Window window in Application.Current.Windows)
+				{
+					if (window.GetType() == typeof(AdminMain))
+					{
+						(window as AdminMain).ContentSwitch.Content = new AlterarAlbum(cod);
+					}
+				}
+			}
+		}
 	}
 }
