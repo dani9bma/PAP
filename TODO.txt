@@ -1,5 +1,5 @@
-Adicionar playlists ao backend
 Backend: alterar, inserir, eliminar
+Corrigir problema ao criar nova playlist(inserir parametro na funcao InserirPlaylist para ver se é uma nova playlist)
 
 
 Adicionar conexao com spotify para converter playlists de um sitio para o outro ??
