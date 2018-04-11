@@ -20,7 +20,7 @@ namespace PAP
 	/// </summary>
 	public partial class UsersAdminUC : UserControl
 	{
-		List<User> artistas = new List<User>();
+		List<User> users = new List<User>();
 
 		public UsersAdminUC()
 		{
@@ -30,12 +30,13 @@ namespace PAP
 
 		private void InitWindow()
 		{
-			artistas = Global.sql.GetTodosUsers();
+			users = Global.sql.GetTodosUsers();
 
-			for (int i = 0; i < artistas.Count; i++)
+			for (int i = 0; i < users.Count; i++)
 			{
-				idLB.Items.Add(artistas[i].id);
-				NomeUtilLB.Items.Add(artistas[i].username);
+				idLB.Items.Add(users[i].id);
+				NomeUtilLB.Items.Add(users[i].username);
+				PassUtilLB.Items.Add(users[i].password);
 			}
 		}
 
@@ -62,14 +63,75 @@ namespace PAP
 		{
 			ScrollViewer _listboxScrollViewer1 = GetDescendantByType(idLB, typeof(ScrollViewer)) as ScrollViewer;
 			ScrollViewer _listboxScrollViewer2 = GetDescendantByType(NomeUtilLB, typeof(ScrollViewer)) as ScrollViewer;
+			ScrollViewer _listboxScrollViewer3 = GetDescendantByType(PassUtilLB, typeof(ScrollViewer)) as ScrollViewer;
 			_listboxScrollViewer1.ScrollToVerticalOffset(_listboxScrollViewer2.VerticalOffset);
+			_listboxScrollViewer3.ScrollToVerticalOffset(_listboxScrollViewer2.VerticalOffset);
 		}
 
 		private void lbx2_ScrollChanged(object sender, ScrollChangedEventArgs e)
 		{
 			ScrollViewer _listboxScrollViewer1 = GetDescendantByType(idLB, typeof(ScrollViewer)) as ScrollViewer;
 			ScrollViewer _listboxScrollViewer2 = GetDescendantByType(NomeUtilLB, typeof(ScrollViewer)) as ScrollViewer;
+			ScrollViewer _listboxScrollViewer3 = GetDescendantByType(PassUtilLB, typeof(ScrollViewer)) as ScrollViewer;
 			_listboxScrollViewer2.ScrollToVerticalOffset(_listboxScrollViewer1.VerticalOffset);
+			_listboxScrollViewer3.ScrollToVerticalOffset(_listboxScrollViewer1.VerticalOffset);
+		}
+
+		private void lbx3_ScrollChanged(object sender, ScrollChangedEventArgs e)
+		{
+			ScrollViewer _listboxScrollViewer1 = GetDescendantByType(idLB, typeof(ScrollViewer)) as ScrollViewer;
+			ScrollViewer _listboxScrollViewer2 = GetDescendantByType(NomeUtilLB, typeof(ScrollViewer)) as ScrollViewer;
+			ScrollViewer _listboxScrollViewer3 = GetDescendantByType(PassUtilLB, typeof(ScrollViewer)) as ScrollViewer;
+			_listboxScrollViewer1.ScrollToVerticalOffset(_listboxScrollViewer3.VerticalOffset);
+			_listboxScrollViewer2.ScrollToVerticalOffset(_listboxScrollViewer3.VerticalOffset);
+		}
+
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			if (NomeUtilLB.SelectedIndex >= 0)
+			{
+				int cod = int.Parse(idLB.Items[NomeUtilLB.SelectedIndex].ToString());
+				int index = NomeUtilLB.SelectedIndex;
+				Global.sql.DeleteUtilizador(cod);
+				NomeUtilLB.Items.RemoveAt(index);
+				idLB.Items.RemoveAt(index);
+			}
+			else if (idLB.SelectedIndex >= 0)
+			{
+				int cod = int.Parse(idLB.SelectedItem.ToString());
+				int index = idLB.SelectedIndex;
+				Global.sql.DeleteUtilizador(cod);
+				NomeUtilLB.Items.RemoveAt(index);
+				idLB.Items.RemoveAt(index);
+			}
+		}
+
+		private void Eliminar_Click(object sender, RoutedEventArgs e)
+		{
+			if (NomeUtilLB.SelectedIndex >= 0)
+			{
+				int cod = int.Parse(idLB.Items[NomeUtilLB.SelectedIndex].ToString());
+				int index = NomeUtilLB.SelectedIndex;
+				foreach (Window window in Application.Current.Windows)
+				{
+					if (window.GetType() == typeof(AdminMain))
+					{
+						(window as AdminMain).ContentSwitch.Content = new AlterarUtilizador(cod);
+					}
+				}
+			}
+			else if (idLB.SelectedIndex >= 0)
+			{
+				int cod = int.Parse(idLB.SelectedItem.ToString());
+				int index = idLB.SelectedIndex;
+				foreach (Window window in Application.Current.Windows)
+				{
+					if (window.GetType() == typeof(AdminMain))
+					{
+						(window as AdminMain).ContentSwitch.Content = new AlterarUtilizador(cod);
+					}
+				}
+			}
 		}
 	}
 }

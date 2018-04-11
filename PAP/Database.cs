@@ -23,6 +23,7 @@ namespace PAP
 	{
 		public string username;
 		public int id;
+		public string password;
 	}
 
 	public class ArtistasFavoritos
@@ -398,6 +399,13 @@ namespace PAP
 		public void AlterarAlbum(int cod, string nome)
 		{
 			string sql = "UPDATE albums SET nome = '" + nome + "' WHERE id_album = " + cod;
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			cmd.ExecuteNonQuery();
+		}
+
+		public void AlterarUtilizador(int cod, string username, string password)
+		{
+			string sql = "UPDATE users SET username = '" + username + "', password = '" + password + "' WHERE id_user = " + cod;
 			MySqlCommand cmd = new MySqlCommand(sql, _conn);
 			cmd.ExecuteNonQuery();
 		}
@@ -819,17 +827,18 @@ namespace PAP
 		public List<User> GetTodosUsers()
 		{
 			List<User> users = new List<User>();
-			string sql = "SELECT id_user, username FROM users";
+			string sql = "SELECT id_user, username, password FROM users";
 			MySqlCommand cmd = new MySqlCommand(sql, _conn);
 			MySqlDataReader rdr = cmd.ExecuteReader();
 			string art = "";
 
 			while (rdr.Read())
 			{
-				User artista = new User();
-				artista.id = int.Parse(rdr[0].ToString());
-				artista.username = rdr[1].ToString();
-				users.Add(artista);
+				User user = new User();
+				user.id = int.Parse(rdr[0].ToString());
+				user.username = rdr[1].ToString();
+				user.password = rdr[2].ToString();
+				users.Add(user);
 			}
 			rdr.Close();
 
@@ -1135,12 +1144,37 @@ namespace PAP
 			MySqlCommand cmd = new MySqlCommand(sql, _conn);
 			cmd.ExecuteNonQuery();
 		}
+		
+		public void DeleteUtilizador(int cod)
+		{
+			string sql = "DELETE FROM users WHERE id_user = " + cod;
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			cmd.ExecuteNonQuery();
+		}
 
 		public void DeleteMusicaAlbum(int cod_album, int cod_musica)
 		{
 			string sql = "DELETE FROM albums WHERE id_musica = " + cod_musica + " AND id_album = " + cod_album;
 			MySqlCommand cmd = new MySqlCommand(sql, _conn);
 			cmd.ExecuteNonQuery();
+		}
+
+		public User GetUtilizador(int cod)
+		{
+			User user = new User();
+			string sql = "SELECT username, password FROM users WHERE id_user = " + cod;
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			MySqlDataReader rdr = cmd.ExecuteReader();
+
+			if(rdr.Read())
+			{
+				user.id = cod;
+				user.username = rdr[0].ToString();
+				user.password = rdr[1].ToString();
+			}
+			rdr.Close();
+
+			return user;
 		}
 
 		public bool RegistarUtilizador(string username, string password)

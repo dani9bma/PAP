@@ -11,6 +11,10 @@
         <Label Content="Nome do Utilizador" HorizontalAlignment="Left" Margin="175,111,0,0" VerticalAlignment="Top"/>
         <ListBox x:Name="idLB" HorizontalAlignment="Left" Height="361" Margin="73,155,0,0" VerticalAlignment="Top" Width="76" ScrollViewer.ScrollChanged="lbx2_ScrollChanged" />
         <ListBox x:Name="NomeUtilLB" HorizontalAlignment="Left" Height="361" Margin="175,155,0,0" VerticalAlignment="Top" Width="114" ScrollViewer.ScrollChanged="lbx1_ScrollChanged"/>
+        <Button Content="Eliminar Utilizador" HorizontalAlignment="Left" Margin="539,410,0,0" VerticalAlignment="Top" Width="114" Height="24" Click="Button_Click"/>
+        <Button Content="Alterar Utilizador" HorizontalAlignment="Left" Margin="539,454,0,0" VerticalAlignment="Top" Width="114" Height="24" Click="Eliminar_Click"/>
+        <Label Content="Password" HorizontalAlignment="Left" Margin="319,111,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="PassUtilLB" HorizontalAlignment="Left" Height="361" Margin="319,155,0,0" VerticalAlignment="Top" Width="114" ScrollViewer.ScrollChanged="lbx3_ScrollChanged"/>
 
     </Grid>
 </UserControl>
