@@ -258,7 +258,7 @@ namespace PAP
 
 		public int GetPlaylistByNome(string nome)
 		{
-			string sql = "SELECT id_playlist FROM playlists WHERE id_user = " + LoginInfo.id + " AND nome LIKE '" + nome + "' ";
+			string sql = "SELECT id_playlist FROM playlists WHERE id_user = " + LoginInfo.id + " AND nome = '" + nome + "' ";
 			MySqlCommand cmd = new MySqlCommand(sql, _conn);
 			MySqlDataReader rdr = cmd.ExecuteReader();
 
