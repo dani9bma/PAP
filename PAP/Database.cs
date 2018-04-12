@@ -642,7 +642,7 @@ namespace PAP
 			//TODO: Verificar se existe na base dados (fazer mesma coisa que no ProcurarMusicas)
             if (nome.Contains("'"))
                 nome = nome.Replace("'", " ");
-            string sql = "SELECT id_artista FROM artistas WHERE nome LIKE '%" + nome + "%'";
+            string sql = "SELECT id_artista FROM artistas WHERE nome = '" + nome + "'";
             MySqlCommand cmd = new MySqlCommand(sql, _conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
             if (rdr.Read())

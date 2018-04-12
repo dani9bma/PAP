@@ -239,5 +239,6 @@ namespace PAP
 			var myWindow = Window.GetWindow(this);
 			myWindow.Close();
 		}
+
 	}
 }
