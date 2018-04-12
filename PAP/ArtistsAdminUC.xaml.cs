@@ -122,7 +122,10 @@ namespace PAP
 
 		private void Button_Click_1(object sender, RoutedEventArgs e)
 		{
-			Global.sql.InserirArtistas(NameTxt.Text, ImgTxt.Text);
+			if (NameTxt.Text.Length > 0 && ImgTxt.Text.Length > 0)
+				Global.sql.InserirArtistas(NameTxt.Text, ImgTxt.Text);
+			else
+				MessageBox.Show("Tem de preencher todos os campos");
 		}
 	}
 }

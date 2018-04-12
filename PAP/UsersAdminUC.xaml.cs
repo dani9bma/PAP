@@ -133,5 +133,13 @@ namespace PAP
 				}
 			}
 		}
+
+		private void Button_Click_1(object sender, RoutedEventArgs e)
+		{
+			if (UsernameTxt.Text.Length > 0 && PasswordTxt.Password.ToString().Length > 0)
+				Global.sql.RegistarUtilizador(UsernameTxt.Text, PasswordTxt.Password.ToString());
+			else
+				MessageBox.Show("Tem de preencher todos os campos");
+		}
 	}
 }
