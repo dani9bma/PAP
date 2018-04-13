@@ -21,6 +21,7 @@ namespace PAP
 	public partial class MusicasAdminUC : UserControl
 	{
 		List<Musica> musicas = new List<Musica>();
+		List<Artista> artistas = new List<Artista>();
 
 		public MusicasAdminUC()
 		{
@@ -36,6 +37,13 @@ namespace PAP
 			{
 				idLB.Items.Add(musicas[i].id);
 				NomeMusicaLB.Items.Add(musicas[i].Nome);
+			}
+
+			artistas = Global.sql.GetTodosArtistas();
+
+			for(int i = 0; i < artistas.Count; i++)
+			{
+				ArtistsCB.Items.Add(artistas[i].Nome);
 			}
 		}
 
@@ -118,6 +126,16 @@ namespace PAP
 					}
 				}
 			}
+		}
+
+		private void Button_Click_1(object sender, RoutedEventArgs e)
+		{
+			if (ArtistsCB.SelectedIndex > 0 && NameTxt.Text.Length > 0)
+			{
+				int pos = ArtistsCB.SelectedIndex;
+				Global.sql.InserirMusicas(NameTxt.Text, artistas[pos].id);
+			}
+
 		}
 	}
 }

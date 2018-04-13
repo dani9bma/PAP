@@ -13,6 +13,11 @@
         <ListBox x:Name="NomeAlbumLB" HorizontalAlignment="Left" Height="361" Margin="190,155,0,-160" VerticalAlignment="Top" Width="118" ScrollViewer.ScrollChanged="lbx3_ScrollChanged"/>
         <Button Content="Eliminar Album" HorizontalAlignment="Left" Margin="343,480,0,0" VerticalAlignment="Top" Width="87" Height="36" Click="Button_Click"/>
         <Button Content="Alterar Album" HorizontalAlignment="Left" Margin="343,430,0,0" VerticalAlignment="Top" Width="81" Height="32" Click="Alterar_Click"/>
+        <Label Content="Nome:" HorizontalAlignment="Left" Margin="512,155,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="NameTxt" HorizontalAlignment="Left" Height="23" Margin="562,159,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Artista:" HorizontalAlignment="Left" Margin="510,186,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="ArtistsCB" HorizontalAlignment="Left" Margin="562,190,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Inserir Album" HorizontalAlignment="Left" Margin="562,241,0,0" VerticalAlignment="Top" Width="82" Height="27" Click="Button_Click_1"/>
 
     </Grid>
 </UserControl>

@@ -147,7 +147,16 @@ namespace PAP
             cmd.ExecuteNonQuery();
         }
 
-        public void InserirMusicas(string nomeMusica, int codArtista)
+		public void InserirAlbum(int cod, string nome, int codMusica, int codArtista)
+		{
+			if (nome.Contains("'"))
+				nome = nome.Replace("'", " ");
+			string sql = "INSERT INTO albums (id_album, nome, id_musica, id_artista) VALUES (" + cod + ", '" + nome + "', " + codMusica + ", " + codArtista + ")";
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			cmd.ExecuteNonQuery();
+		}
+
+		public void InserirMusicas(string nomeMusica, int codArtista)
         {
             if (nomeMusica.Contains("'"))
                 nomeMusica = nomeMusica.Replace("'", " ");

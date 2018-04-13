@@ -11,7 +11,8 @@ namespace PAP
 	/// </summary>
 	public partial class AlbumAdminUC : UserControl
 	{
-		List<Album> artistas = new List<Album>();
+		List<Album> albums = new List<Album>();
+		List<Artista> artistas = new List<Artista>();
 
 		public AlbumAdminUC()
 		{
@@ -21,12 +22,19 @@ namespace PAP
 
 		private void InitWindow()
 		{
-			artistas = Global.sql.GetTodosAlbums();
+			albums = Global.sql.GetTodosAlbums();
+
+			for (int i = 0; i < albums.Count; i++)
+			{
+				idLB.Items.Add(albums[i].id);
+				NomeAlbumLB.Items.Add(albums[i].Nome);
+			}
+
+			artistas = Global.sql.GetTodosArtistas();
 
 			for (int i = 0; i < artistas.Count; i++)
 			{
-				idLB.Items.Add(artistas[i].id);
-				NomeAlbumLB.Items.Add(artistas[i].Nome);
+				ArtistsCB.Items.Add(artistas[i].Nome);
 			}
 		}
 
@@ -109,6 +117,19 @@ namespace PAP
 					}
 				}
 			}
+		}
+
+		private void Button_Click_1(object sender, RoutedEventArgs e)
+		{
+			if (ArtistsCB.SelectedIndex > 0 && NameTxt.Text.Length > 0)
+			{
+				int pos = ArtistsCB.SelectedIndex;
+				int cod = Global.sql.GetTotalAlbums();
+				Global.sql.InserirAlbum(cod, NameTxt.Text, -1, artistas[pos].id);
+				idLB.Items.Add(cod);
+				NomeAlbumLB.Items.Add(NameTxt.Text);
+			}
+
 		}
 	}
 }
