@@ -1,6 +1,6 @@
-Backend: alterar, inserir, eliminar
-Corrigir problema ao criar nova playlist(inserir parametro na funcao InserirPlaylist para ver se é uma nova playlist)
+Tocar as musicas seguidas
+Meter a tocar musicas pelo disco externo
+No backend clicar num utilizador e aparecer a pagina do utilizador com as playlists dele e informacoes
+Criar o sistema de subscrições
 
-
-Adicionar conexao com spotify para converter playlists de um sitio para o outro ??
-Adicionar Possibilidade do utilizador adicionar as suas musicas ??
+Android???
