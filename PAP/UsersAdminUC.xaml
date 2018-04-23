@@ -8,18 +8,18 @@
              d:DesignHeight="536" d:DesignWidth="800">
     <Grid>
         <Label Content="ID Utilizador" HorizontalAlignment="Left" Margin="73,111,0,0" VerticalAlignment="Top"/>
-        <Label Content="Nome do Utilizador" HorizontalAlignment="Left" Margin="175,111,0,0" VerticalAlignment="Top"/>
-        <ListBox x:Name="idLB" HorizontalAlignment="Left" Height="361" Margin="73,155,0,0" VerticalAlignment="Top" Width="76" ScrollViewer.ScrollChanged="lbx2_ScrollChanged" />
-        <ListBox x:Name="NomeUtilLB" HorizontalAlignment="Left" Height="361" Margin="175,155,0,0" VerticalAlignment="Top" Width="114" ScrollViewer.ScrollChanged="lbx1_ScrollChanged"/>
-        <Button Content="Eliminar Utilizador" HorizontalAlignment="Left" Margin="539,410,0,0" VerticalAlignment="Top" Width="114" Height="24" Click="Button_Click"/>
-        <Button Content="Alterar Utilizador" HorizontalAlignment="Left" Margin="539,454,0,0" VerticalAlignment="Top" Width="114" Height="24" Click="Eliminar_Click"/>
-        <Label Content="Password" HorizontalAlignment="Left" Margin="319,111,0,0" VerticalAlignment="Top"/>
-        <ListBox x:Name="PassUtilLB" HorizontalAlignment="Left" Height="361" Margin="319,155,0,0" VerticalAlignment="Top" Width="114" ScrollViewer.ScrollChanged="lbx3_ScrollChanged"/>
-        <Label Content="Username:" HorizontalAlignment="Left" Margin="523,155,0,0" VerticalAlignment="Top"/>
-        <Label Content="Password:" HorizontalAlignment="Left" Margin="523,186,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="UsernameTxt" HorizontalAlignment="Left" Height="23" Margin="594,158,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <PasswordBox Name="PasswordTxt" HorizontalAlignment="Left" Margin="594,194,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Inserir Utilizador" HorizontalAlignment="Left" Margin="621,226,0,0" VerticalAlignment="Top" Width="93" Height="24" Click="Button_Click_1"/>
+        <Label Content="Nome do Utilizador" HorizontalAlignment="Left" Margin="154,111,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="idLB" HorizontalAlignment="Left" Height="361" Margin="73,155,0,0" VerticalAlignment="Top" Width="76" ScrollViewer.ScrollChanged="lbx2_ScrollChanged" SelectionChanged="idLB_SelectionChanged" />
+        <ListBox x:Name="NomeUtilLB" HorizontalAlignment="Left" Height="361" Margin="149,155,0,0" VerticalAlignment="Top" Width="114" ScrollViewer.ScrollChanged="lbx1_ScrollChanged" SelectionChanged="NomeUtilLB_SelectionChanged"/>
+        <Button Content="Eliminar Utilizador" HorizontalAlignment="Left" Margin="523,425,0,0" VerticalAlignment="Top" Width="114" Height="24" Click="Button_Click"/>
+        <Button Content="Alterar Utilizador" HorizontalAlignment="Left" Margin="523,469,0,0" VerticalAlignment="Top" Width="114" Height="24" Click="Eliminar_Click"/>
+        <Label Content="Password" HorizontalAlignment="Left" Margin="288,111,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="PassUtilLB" HorizontalAlignment="Left" Height="361" Margin="263,155,0,0" VerticalAlignment="Top" Width="114" ScrollViewer.ScrollChanged="lbx3_ScrollChanged" SelectionChanged="PassUtilLB_SelectionChanged"/>
+        <Label Content="Username:" HorizontalAlignment="Left" Margin="466,170,0,0" VerticalAlignment="Top"/>
+        <Label Content="Password:" HorizontalAlignment="Left" Margin="466,201,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="UsernameTxt" HorizontalAlignment="Left" Height="23" Margin="537,173,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <PasswordBox Name="PasswordTxt" HorizontalAlignment="Left" Margin="537,209,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Inserir Utilizador" HorizontalAlignment="Left" Margin="564,241,0,0" VerticalAlignment="Top" Width="93" Height="24" Click="Button_Click_1"/>
 
     </Grid>
 </UserControl>

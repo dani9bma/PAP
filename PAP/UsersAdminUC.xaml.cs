@@ -21,6 +21,7 @@ namespace PAP
 	public partial class UsersAdminUC : UserControl
 	{
 		List<User> users = new List<User>();
+		List<Playlist> playlists = new List<Playlist>();
 
 		public UsersAdminUC()
 		{
@@ -140,6 +141,21 @@ namespace PAP
 				Global.sql.RegistarUtilizador(UsernameTxt.Text, PasswordTxt.Password.ToString());
 			else
 				MessageBox.Show("Tem de preencher todos os campos");
+		}
+
+		private void idLB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+
+		}
+
+		private void NomeUtilLB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+
+		}
+
+		private void PassUtilLB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+
 		}
 	}
 }

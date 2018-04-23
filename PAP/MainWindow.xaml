@@ -28,5 +28,7 @@
         <Button Name="RegistarBtn" Content="Registar" HorizontalAlignment="Left" Margin="793,48,0,0" VerticalAlignment="Top" Width="76" Click="RegistarBtn_Click"/>
         <Button Name="AdminBtn" Content="Admin" HorizontalAlignment="Left" Margin="1166,17,0,0" VerticalAlignment="Top" Width="76" Visibility="Hidden" Click="AdminBtn_Click" />
         <Button Name="HomeBtn" Content="Home" HorizontalAlignment="Left" Margin="243,20,0,0" VerticalAlignment="Top" Width="75" Height="46" Click="HomeBtn_Click"/>
+        <Button Content="Proxima" HorizontalAlignment="Left" Margin="722,656,0,0" VerticalAlignment="Top" Width="59" Click="Button_Click"/>
+        <Button Content="Anterior" HorizontalAlignment="Left" Margin="656,656,0,0" VerticalAlignment="Top" Width="61" Click="Button_Click_1"/>
     </Grid>
 </Window>
