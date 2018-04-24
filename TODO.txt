@@ -1,6 +1,7 @@
-Tocar as musicas seguidas
+﻿Tocar as musicas seguidas
 Meter a tocar musicas pelo disco externo
-No backend clicar num utilizador e aparecer a pagina do utilizador com as playlists dele e informacoes
 Criar o sistema de subscrições
+Design - https://www.nuget.org/packages/MaterialDesignThemes/
+Melhorar a pesquisa
 
 Android???
