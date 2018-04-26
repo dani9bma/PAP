@@ -1,7 +1,7 @@
 ﻿Tocar as musicas seguidas
 Meter a tocar musicas pelo disco externo
 Criar o sistema de subscrições
-Design - https://www.nuget.org/packages/MaterialDesignThemes/
+Design - http://mahapps.com/guides/quick-start.html
 Melhorar a pesquisa
 
 Android???
