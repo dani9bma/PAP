@@ -5,30 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PAP"
         mc:Ignorable="d"
-        Title="PAP" Height="720" Width="1280">
+        Title="PAP" Height="657" Width="1214"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
+
     <Grid>
         <MediaElement Name="MediaPlayer" HorizontalAlignment="Left" Height="22" Margin="1240,667,0,0" VerticalAlignment="Top" Width="32" Volume="1" UnloadedBehavior="Manual" LoadedBehavior="Manual"/>
-        <Button Name="StopButton" Content="Stop" HorizontalAlignment="Left" Margin="364,656,0,0" VerticalAlignment="Top" Width="75" Click="StopButton_Click"/>
-        <Button Name="PlayButton" Content="Play" HorizontalAlignment="Left" Margin="273,656,0,0" VerticalAlignment="Top" Width="75" Click="PlayButton_Click"/>
-        <Slider Name="VolumeSlider" HorizontalAlignment="Left" Margin="467,656,0,0" VerticalAlignment="Top" Width="145" ValueChanged="VolumeSlider_ValueChanged" Maximum="1" Value="0.5"/>
-        <Label Name="UsernameLabel" Content="" HorizontalAlignment="Left" Margin="1042,45,0,0" VerticalAlignment="Top" Width="220"/>
-        <Label Name="LoggedAsLabel" Content="Logged as" HorizontalAlignment="Left" Margin="972,45,0,0" VerticalAlignment="Top" Width="65"/>
-        <Button Name="LoginBtn" Content="Logout" HorizontalAlignment="Left" Margin="874,48,0,0" VerticalAlignment="Top" Width="75" Click="LoginBtn_Click"/>
-        <GroupBox Header="" HorizontalAlignment="Left" VerticalAlignment="Top" Height="679" Width="204">
+        <Button Name="StopButton" Content="Stop" HorizontalAlignment="Left" Margin="289,335,0,0" VerticalAlignment="Top" Width="75" Click="StopButton_Click"/>
+        <Button Name="PlayButton" Content="Play" HorizontalAlignment="Left" Margin="209,335,0,0" VerticalAlignment="Top" Width="75" Click="PlayButton_Click"/>
+        <Slider Name="VolumeSlider" HorizontalAlignment="Left" Margin="209,372,0,0" VerticalAlignment="Top" Width="145" ValueChanged="VolumeSlider_ValueChanged" Maximum="1" Value="0.5"/>
+        <Label Name="UsernameLabel" Content="" HorizontalAlignment="Left" Margin="1055,45,0,0" VerticalAlignment="Top" Width="207"/>
+        <Label Name="LoggedAsLabel" Content="Logged as" HorizontalAlignment="Left" Margin="972,45,0,0" VerticalAlignment="Top" Width="78"/>
+        <Button Name="LoginBtn" Content="Logout" HorizontalAlignment="Left" Margin="874,48,0,0" VerticalAlignment="Top" Width="93" Click="LoginBtn_Click"/>
+        <GroupBox Header="" HorizontalAlignment="Left" VerticalAlignment="Top" Height="620" Width="204">
             <GroupBox Header="Playlists" Margin="-5,95,-7,-5" VerticalAlignment="Top" Height="567">
                 <ListBox Name="playlistsLB" HorizontalAlignment="Left" Height="531" Margin="10,10,0,0" VerticalAlignment="Top" Width="170" SelectionChanged="ListBox_SelectionChanged"/>
             </GroupBox>
         </GroupBox>
-        <Button Content="Artistas Favoritos" HorizontalAlignment="Left" Margin="0,32,0,0" VerticalAlignment="Top" Width="204" Background="White" BorderBrush="White" Click="FavoriteArtists_Click"/>
-        <Button Content="Musicas Favoritas" HorizontalAlignment="Left" Margin="0,59,0,0" VerticalAlignment="Top" Width="204" Background="White" BorderBrush="White" Click="FavoriteTracks_Click"/>
-        <Button Content="Albums Favoritos" HorizontalAlignment="Left" Margin="0,84,0,0" VerticalAlignment="Top" Width="204" Background="White" BorderBrush="White" Click="FavoriteAlbums_Click"/>
+        <Button Content="Artistas Favoritos" HorizontalAlignment="Left" Margin="0,34,0,0" VerticalAlignment="Top" Width="204"  Click="FavoriteArtists_Click"/>
+        <Button Content="Musicas Favoritas" HorizontalAlignment="Left" Margin="0,64,0,0" VerticalAlignment="Top" Width="204" Click="FavoriteTracks_Click"/>
+        <Button Content="Albums Favoritos" HorizontalAlignment="Left" Margin="0,96,0,0" VerticalAlignment="Top" Width="204" Click="FavoriteAlbums_Click"/>
         <ContentControl Name="ContentSwitch" HorizontalAlignment="Left" Margin="404,84,0,0" VerticalAlignment="Top" Height="536" Width="800"/>
-        <TextBox Name="SearchTB" HorizontalAlignment="Left" Height="23" Margin="364,17,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" ToolTip="Procurar" LostFocus="SearchTB_LostFocus" TextChanged="SearchTB_TextChanged"/>
+        <TextBox Name="SearchTB" HorizontalAlignment="Left" Height="23" Margin="364,32,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" ToolTip="Procurar" LostFocus="SearchTB_LostFocus" TextChanged="SearchTB_TextChanged"/>
         <ListBox Visibility="Hidden" Name="SearchLB" HorizontalAlignment="Left" Height="221" Margin="243,68,0,0" VerticalAlignment="Top" Width="317"/>
-        <Button Name="RegistarBtn" Content="Registar" HorizontalAlignment="Left" Margin="793,48,0,0" VerticalAlignment="Top" Width="76" Click="RegistarBtn_Click"/>
-        <Button Name="AdminBtn" Content="Admin" HorizontalAlignment="Left" Margin="1166,17,0,0" VerticalAlignment="Top" Width="76" Visibility="Hidden" Click="AdminBtn_Click" />
+        <Button Name="RegistarBtn" Content="Registar" HorizontalAlignment="Left" Margin="777,48,0,0" VerticalAlignment="Top" Width="92" Click="RegistarBtn_Click"/>
+        <Button Name="AdminBtn" Content="Admin" HorizontalAlignment="Left" Margin="874,10,0,0" VerticalAlignment="Top" Width="93" Visibility="Hidden" Click="AdminBtn_Click" />
         <Button Name="HomeBtn" Content="Home" HorizontalAlignment="Left" Margin="243,20,0,0" VerticalAlignment="Top" Width="75" Height="46" Click="HomeBtn_Click"/>
-        <Button Content="Proxima" HorizontalAlignment="Left" Margin="722,656,0,0" VerticalAlignment="Top" Width="59" Click="Button_Click"/>
-        <Button Content="Anterior" HorizontalAlignment="Left" Margin="656,656,0,0" VerticalAlignment="Top" Width="61" Click="Button_Click_1"/>
+        <Button Content="Proxima" HorizontalAlignment="Left" Margin="289,395,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Button Content="Anterior" HorizontalAlignment="Left" Margin="209,395,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
     </Grid>
 </Window>

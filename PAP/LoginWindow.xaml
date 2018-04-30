@@ -5,10 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PAP"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="233.473" Width="523.222">
+        Title="LoginWindow" Height="233.473" Width="523.222"
+                TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
     <Grid>
         <Button x:Name="LoginBtn" Content="Login" HorizontalAlignment="Left" Margin="245,123,0,0" VerticalAlignment="Top" Width="83" Height="26" Click="loginBtn_Click"/>
-        <TextBox x:Name="UsernameTb" HorizontalAlignment="Left" Height="18" Margin="245,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="UsernameTb" HorizontalAlignment="Left" Height="26" Margin="245,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="Username:" HorizontalAlignment="Left" Margin="149,47,0,0" VerticalAlignment="Top" Width="80"/>
         <Label Content="Password:"  HorizontalAlignment="Left" Margin="149,73,0,0" VerticalAlignment="Top" Width="80" Height="26"/>
         <PasswordBox x:Name="PasswordTb" HorizontalAlignment="Left" Margin="245,81,0,0" VerticalAlignment="Top" Width="120"/>

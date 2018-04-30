@@ -121,7 +121,6 @@ namespace PAP
 		{
 			int pos = ArtistasLb.SelectedIndex;
 			var converter = new ImageSourceConverter();
-			ArtistaImage.Source = (ImageSource)converter.ConvertFromString(_artists[pos].Img);
 
 			int cod = Global.sql.GetCodigoArtista(_artists[pos].Nome);
 			foreach (Window window in Application.Current.Windows)

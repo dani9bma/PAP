@@ -3,5 +3,4 @@ Meter a tocar musicas pelo disco externo
 Criar o sistema de subscrições
 Design - http://mahapps.com/guides/quick-start.html
 Melhorar a pesquisa
-
-Android???
+Mudar o "adicionar aos favoritos" para a pagina do artista/album/musica
