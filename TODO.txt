@@ -2,4 +2,3 @@
 Meter a tocar musicas pelo disco externo
 Criar o sistema de subscrições
 Melhorar a pesquisa
-Mudar o "adicionar aos favoritos" para a pagina do artista/album/musica
