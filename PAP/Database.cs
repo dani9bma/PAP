@@ -365,8 +365,6 @@ namespace PAP
 				return mu;
 			}
 
-			MessageBox.Show("O artista que tentou pesquisar não existe na nossa base de dados, por favor entre aqui (LINK) e contribua com a música que deseja");
-			//TODO: Quando nao encontra musica abrir outra janela com um formulario com o nome da musica, link da musica, artista(<select>) e um botao de "Enviar", clicado no botao este deverá fazer o download da musica e adicionala na base de dados
 			return new List<Artista>();
 		}
 
@@ -588,8 +586,6 @@ namespace PAP
 		        return musicas;
 			}
 
-	        MessageBox.Show("A musica que tentou pesquisar não existe na nossa base de dados, por favor entre aqui (LINK) e contribua com a música que deseja");
-            //TODO: Mudar isto para nao perguntar pelo link
 	        return new List<Musica>();
         }
 
@@ -641,8 +637,6 @@ namespace PAP
                 return albums;
             }
 
-            MessageBox.Show("O album que tentou pesquisar não existe na nossa base de dados, por favor entre aqui (LINK) e contribua com a música que deseja");
-			//TODO: Quando nao encontra musica abrir outra janela com um formulario com o nome da musica, link da musica, artista(<select>) e um botao de "Enviar", clicado no botao este deverá fazer o download da musica e adicionala na base de dados
 			return new List<Album>();
 		}
 

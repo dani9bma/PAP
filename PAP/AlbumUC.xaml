@@ -9,6 +9,7 @@
     <Grid>
         <Label x:Name="AlbumName" FontSize="20" Content="ArtistLabel" HorizontalAlignment="Left" Margin="270,29,0,0" VerticalAlignment="Top" Height="38" Width="491"/>
         <ListBox x:Name="AlbumTracksLB" HorizontalAlignment="Left" Height="451" Margin="270,85,0,0" VerticalAlignment="Top" Width="278" SelectionChanged="AlbumTracksLB_SelectionChanged"/>
+        <Button Content="Adicionar aos Favoritos" HorizontalAlignment="Left" Margin="32,107,0,0" VerticalAlignment="Top" Width="201" Click="Button_Click"/>
 
     </Grid>
 </UserControl>

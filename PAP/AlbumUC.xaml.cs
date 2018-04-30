@@ -21,11 +21,13 @@ namespace PAP
 	public partial class AlbumUC : UserControl
 	{
 		List<Musica> musicas = new List<Musica>();
+		int codMusica;
 
 		public AlbumUC(int cod)
 		{
 			InitializeComponent();
 			InitPage(cod);
+			codMusica = cod;
 		}
 
 		private void InitPage(int id_album)
@@ -82,6 +84,30 @@ namespace PAP
 				Player.Source = null;
 			Player.Play();
 			Console.WriteLine(Player.Source);
+		}
+
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			if (LoginInfo.username != "" && LoginInfo.id != -1)
+			{
+				AddToFavorite();
+			}
+			else
+			{
+				LoginWindow login = new LoginWindow();
+				login.Show();
+			}
+		}
+
+		/*
+		 * type:
+		 *	1: Track
+		 *	2: Artist
+		 *	3: Album
+		 */
+		private void AddToFavorite()
+		{
+			Global.sql.InserirAlbumsFavoritos(codMusica, LoginInfo.id);
 		}
 	}
 }

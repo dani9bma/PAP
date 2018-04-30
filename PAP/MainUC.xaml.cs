@@ -134,71 +134,15 @@ namespace PAP
 
 		private void albumsLB_SelectedIndexChanged(object sender, EventArgs e)
 		{
+			int pos = AlbumsLb.SelectedIndex;
 
-		}
-
-		private void AddFavoriteTrack_Click(object sender, RoutedEventArgs e)
-		{
-			if (LoginInfo.username != "" && LoginInfo.id != -1)
+			int cod = Global.sql.GetCodigoAlbum(_albums[pos].Nome);
+			foreach (Window window in Application.Current.Windows)
 			{
-				AddToFavorite(1);
-			}
-			else
-			{
-				LoginWindow login = new LoginWindow();
-				login.Show();
-			}
-		}
-
-		private void AddFavoriteArtist_Click(object sender, RoutedEventArgs e)
-		{
-			if (LoginInfo.username != "" && LoginInfo.id != -1)
-			{
-				AddToFavorite(2);
-			}
-			else
-			{
-				LoginWindow login = new LoginWindow();
-				login.Show();
-			}
-		}
-
-		private void AddFavoriteAlbum_Click(object sender, RoutedEventArgs e)
-		{
-			if (LoginInfo.username != "" && LoginInfo.id != -1)
-			{
-				AddToFavorite(3);
-			}
-			else
-			{
-				LoginWindow login = new LoginWindow();
-				login.Show();
-			}
-		}
-
-		/*
-		 * type:
-		 *	1: Track
-		 *	2: Artist
-		 *	3: Album
-		 */
-		private void AddToFavorite(int type)
-		{
-			int pos;
-			switch (type)
-			{
-				case 1:
-					pos = MusicasLb.SelectedIndex;
-					Global.sql.InserirMusicasFavoritas(_tracks[pos].id, LoginInfo.id);
-					break;
-				case 2:
-					pos = ArtistasLb.SelectedIndex;
-					Global.sql.InserirArtistasFavoritos(_artists[pos].id, LoginInfo.id);
-					break;
-				case 3:
-					pos = AlbumsLb.SelectedIndex;
-					Global.sql.InserirAlbumsFavoritos(_albums[pos].id, LoginInfo.id);
-					break;
+				if (window.GetType() == typeof(MainWindow))
+				{
+					(window as MainWindow).ContentSwitch.Content = new AlbumUC(cod);
+				}
 			}
 		}
 

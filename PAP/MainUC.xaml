@@ -9,18 +9,15 @@
     <Grid>
         <Button Content="Procurar" HorizontalAlignment="Left" Margin="15,154,0,0" VerticalAlignment="Top" Width="94" Click="searchBtn_Click" Height="32"/>
         <TextBox x:Name="SearchTb" HorizontalAlignment="Left" Height="24" Margin="10,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="114"/>
-        <ListBox x:Name="MusicasLb" HorizontalAlignment="Left" Height="206" Margin="336,80,0,0" VerticalAlignment="Top" Width="124" SelectionChanged="MusicasLB_SelectedIndexChanged"/>
-        <ListBox x:Name="ArtistasLb" HorizontalAlignment="Left" Height="206" Margin="495,80,0,0" VerticalAlignment="Top" Width="115" SelectionChanged="ArtistasLB_SelectedIndexChanged"/>
-        <ListBox x:Name="AlbumsLb" HorizontalAlignment="Left" Height="206" Margin="648,80,0,0" VerticalAlignment="Top" Width="112" SelectionChanged="albumsLB_SelectedIndexChanged"/>
+        <ListBox x:Name="MusicasLb" HorizontalAlignment="Left" Height="305" Margin="336,80,0,0" VerticalAlignment="Top" Width="124" SelectionChanged="MusicasLB_SelectedIndexChanged"/>
+        <ListBox x:Name="ArtistasLb" HorizontalAlignment="Left" Height="305" Margin="495,80,0,0" VerticalAlignment="Top" Width="115" SelectionChanged="ArtistasLB_SelectedIndexChanged"/>
+        <ListBox x:Name="AlbumsLb" HorizontalAlignment="Left" Height="305" Margin="648,80,0,0" VerticalAlignment="Top" Width="112" SelectionChanged="albumsLB_SelectedIndexChanged"/>
         <Label Content="Musicas:" HorizontalAlignment="Left" Margin="336,36,0,0" VerticalAlignment="Top" Width="77"/>
         <Label Content="Artistas:" HorizontalAlignment="Left" Margin="495,36,0,0" VerticalAlignment="Top" Width="76"/>
         <Label Content="Albums:" HorizontalAlignment="Left" Margin="648,36,0,0" VerticalAlignment="Top" Width="77"/>
-        <Button x:Name="AddFavoriteTrack" Content="Adicionar aos favoritos" HorizontalAlignment="Left" Margin="276,320,0,0" VerticalAlignment="Top" Width="184" Height="28" Click="AddFavoriteTrack_Click"/>
-        <Button x:Name="AddFavoriteArtist" Content="Adicionar aos favoritos" HorizontalAlignment="Left" Margin="465,320,0,0" VerticalAlignment="Top" Width="178" Height="28" Click="AddFavoriteArtist_Click"/>
-        <Button x:Name="AddFavoriteAlbum" Content="Adicionar aos favoritos" HorizontalAlignment="Left" Margin="648,320,0,0" VerticalAlignment="Top" Width="142" Height="28" Click="AddFavoriteAlbum_Click"/>
-        <Button Name="AddPlaylist" Content="Adicionar a playlist" HorizontalAlignment="Left" Margin="336,366,0,0" VerticalAlignment="Top" Width="158" Height="29" Click="AddPlaylist_Click"/>
-        <ComboBox Name="PlaylistsCB" HorizontalAlignment="Left" Margin="195,366,0,0" VerticalAlignment="Top" Width="126" Height="29" SelectionChanged="ComboBox_SelectionChanged"/>
-        <Button Name="DeletePlaylist"  Content="Eliminar Playlist" HorizontalAlignment="Left" Margin="336,400,0,0" VerticalAlignment="Top" Width="158" Height="30" Click="DeletePlaylist_Click"/>
+        <Button Name="AddPlaylist" Content="Adicionar a playlist" HorizontalAlignment="Left" Margin="360,419,0,0" VerticalAlignment="Top" Width="158" Height="29" Click="AddPlaylist_Click"/>
+        <ComboBox Name="PlaylistsCB" HorizontalAlignment="Left" Margin="219,419,0,0" VerticalAlignment="Top" Width="126" Height="29" SelectionChanged="ComboBox_SelectionChanged"/>
+        <Button Name="DeletePlaylist"  Content="Eliminar Playlist" HorizontalAlignment="Left" Margin="360,453,0,0" VerticalAlignment="Top" Width="158" Height="30" Click="DeletePlaylist_Click"/>
 
     </Grid>
 </UserControl>
