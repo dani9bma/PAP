@@ -110,9 +110,9 @@ namespace PAP
 
 				player.Source = null;
 
-				await Global.sql.DownloadFiles(_tracks[MusicaPos].Nome);
-				player.Source = new Uri(Path.GetTempPath() + "music.mp4");
-				player.Play();
+				//await Global.sql.DownloadFiles(_tracks[MusicaPos].Nome);
+				//player.Source = new Uri(Path.GetTempPath() + "music.mp4");
+				//player.Play();
 				Console.WriteLine(player.Source);
 			}
 		}

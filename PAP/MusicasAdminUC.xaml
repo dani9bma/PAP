@@ -7,17 +7,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="536" d:DesignWidth="800">
     <Grid>
-        <Label Content="ID Musica" HorizontalAlignment="Left" Margin="73,111,0,0" VerticalAlignment="Top"/>
-        <Label Content="Nome da Musica" HorizontalAlignment="Left" Margin="190,111,0,0" VerticalAlignment="Top"/>
-        <ListBox x:Name="idLB" HorizontalAlignment="Left" Height="361" Margin="73,155,0,0" VerticalAlignment="Top" Width="76" ScrollViewer.ScrollChanged="lbx2_ScrollChanged" />
-        <ListBox x:Name="NomeMusicaLB" HorizontalAlignment="Left" Height="361" Margin="190,155,0,0" VerticalAlignment="Top" Width="118" ScrollViewer.ScrollChanged="lbx3_ScrollChanged"/>
-        <Button Content="Eliminar Musica" HorizontalAlignment="Left" Margin="331,486,0,0" VerticalAlignment="Top" Width="93" Height="30" Click="Button_Click"/>
-        <Button Content="Alterar Musica" HorizontalAlignment="Left" Margin="331,451,0,0" VerticalAlignment="Top" Width="93" Height="30" Click="Alterar_Click"/>
-        <Label Content="Nome:" HorizontalAlignment="Left" Margin="512,155,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="NameTxt" HorizontalAlignment="Left" Height="23" Margin="562,159,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Artista:" HorizontalAlignment="Left" Margin="510,186,0,0" VerticalAlignment="Top"/>
-        <ComboBox Name="ArtistsCB" HorizontalAlignment="Left" Margin="562,190,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Inserir Musica" HorizontalAlignment="Left" Margin="562,241,0,0" VerticalAlignment="Top" Width="82" Height="27" Click="Button_Click_1"/>
+        <Label Content="ID Musica" HorizontalAlignment="Left" Margin="91,43,0,0" VerticalAlignment="Top"/>
+        <Label Content="Nome da Musica" HorizontalAlignment="Left" Margin="208,43,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="idLB" HorizontalAlignment="Left" Height="362" Margin="73,87,0,0" VerticalAlignment="Top" Width="94" ScrollViewer.ScrollChanged="lbx2_ScrollChanged" />
+        <ListBox x:Name="NomeMusicaLB" HorizontalAlignment="Left" Height="362" Margin="172,87,0,0" VerticalAlignment="Top" Width="336" ScrollViewer.ScrollChanged="lbx3_ScrollChanged"/>
+        <Button Content="Eliminar Musica" HorizontalAlignment="Left" Margin="528,341,0,0" VerticalAlignment="Top" Width="172" Height="30" Click="Button_Click"/>
+        <Button Content="Alterar Musica" HorizontalAlignment="Left" Margin="530,285,0,0" VerticalAlignment="Top" Width="170" Height="30" Click="Alterar_Click"/>
+        <Label Content="Nome:" HorizontalAlignment="Left" Margin="530,87,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="NameTxt" HorizontalAlignment="Left" Height="24" Margin="580,91,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Artista:" HorizontalAlignment="Left" Margin="528,119,0,0" VerticalAlignment="Top"/>
+        <ComboBox Name="ArtistsCB" HorizontalAlignment="Left" Margin="580,123,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Inserir Musica" HorizontalAlignment="Left" Margin="530,173,0,0" VerticalAlignment="Top" Width="170" Height="28" Click="Button_Click_1"/>
 
     </Grid>
 </UserControl>

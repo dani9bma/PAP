@@ -18,6 +18,7 @@ namespace PAP
 		private List<Musica> _tracks = new List<Musica>();
 		private List<Album> _albums = new List<Album>();
 		private List<Playlist> playlists = new List<Playlist>();
+		private bool dark = true;
 
 		public MainWindow()
 		{
@@ -297,14 +298,18 @@ namespace PAP
 			ContentSwitch.Content = new MainUC();
 		}
 
-		private void Button_Click(object sender, RoutedEventArgs e)
+		private void MudarTema(object sender, RoutedEventArgs e)
 		{
-
-		}
-
-		private void Button_Click_1(object sender, RoutedEventArgs e)
-		{
-
+			if(dark)
+			{
+				Application.Current.Resources.MergedDictionaries[0] = new ResourceDictionary() { Source = new Uri("pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml", UriKind.Absolute) };
+				dark = false;
+			}
+			else
+			{
+				Application.Current.Resources.MergedDictionaries[0] = new ResourceDictionary() { Source = new Uri("pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml", UriKind.Absolute) };
+				dark = true;
+			}
 		}
 	}
 }
