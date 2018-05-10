@@ -233,17 +233,9 @@ namespace PAP
 			}
 		}
 
-		private void SearchTB_LostFocus(object sender, RoutedEventArgs e)
+		private void SearchBtn_Click(object sender, RoutedEventArgs e)
 		{
-			SearchLB.Visibility = Visibility.Hidden;
-		}
-
-		private void SearchTB_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-		{
-			//TODO: Make a List<> Search
-			SearchLB.Visibility = Visibility.Visible;
 			_tracks = _spotify.ProcurarMusicas(SearchTB.Text, 10);
-			SearchLB.Items.Clear();
 
 			List<Musica> m = _spotify.ProcurarMusicasPorArtista(SearchTB.Text, 5);
 			for (int i = 0; i < m.Count; i++)
@@ -254,23 +246,21 @@ namespace PAP
 			for (int i = 0; i < _tracks.Count; i++)
 			{
 				SearchLB.Items.Add(_tracks[i].Nome);
-				Console.WriteLine(_tracks[i].Nome);
-				Console.WriteLine(_tracks[i].artista.Nome);
 			}
 
 			_artists = _spotify.ProcurarArtistas(SearchTB.Text, 10);
 			for (int i = 0; i < _artists.Count; i++)
 			{
 				SearchLB.Items.Add(_artists[i].Nome);
-				Console.WriteLine(_artists[i].Nome);
 			}
 
 			_albums = _spotify.ProcurarAlbums(SearchTB.Text, 10);
 			for (int i = 0; i < _albums.Count; i++)
 			{
 				SearchLB.Items.Add(_albums[i].Nome);
-				Console.WriteLine(_albums[i].Nome);
 			}
+
+			ContentSwitch.Content = new SearchUC(_tracks, _artists, _albums);
 		}
 
 		private void RegistarBtn_Click(object sender, RoutedEventArgs e)

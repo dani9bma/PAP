@@ -470,15 +470,19 @@ namespace PAP
 		//Retorna Musica procurando pelo codigo
 		public Musica ProcurarMusica(int cod)
 		{
+			List<Artista> artista = new List<Artista>();
+			artista = GetTodosArtistas();
+
 			string sql = "SELECT nome, id_artista FROM musicas WHERE id_musica = " + cod;
 			MySqlCommand cmd = new MySqlCommand(sql, _conn);
 			MySqlDataReader rdr = cmd.ExecuteReader();
 			if (rdr.Read())
 			{
+				var m = rdr[1].ToString();
 				Musica musica = new Musica();
 				musica.id = cod;
 				musica.Nome = rdr[0].ToString();
-				musica.artista.id = int.Parse(rdr[1].ToString());
+				musica.artista = artista[int.Parse(m) - 1];
 				rdr.Close();
 				return musica;
 			}
@@ -592,11 +596,12 @@ namespace PAP
         public List<Album> ProcurarAlbums(string nome, int qtd)
         {
             Album[] album = new Album[qtd];
-            string sql = "SELECT nome, id_album FROM albums WHERE nome LIKE '%" + nome + "%'";
+            string sql = "SELECT nome, id_album, id_musica FROM albums WHERE nome LIKE '%" + nome + "%'";
             MySqlCommand cmd = new MySqlCommand(sql, _conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
             string art = "";
             int artId = -1;
+			Musica musica = new Musica();
 
             for (int i = 0; i < qtd; i++)
             {
@@ -607,7 +612,11 @@ namespace PAP
                         art = rdr[0].ToString();
                         album[i].Nome = art;
 	                    album[i].id = int.Parse(rdr[1].ToString());
-                    }
+						musica.id = int.Parse(rdr[2].ToString());
+						musica.Nome = "";
+						album[i].Musicas = new List<Musica>();
+						album[i].Musicas.Add(musica);
+					}
                     else
                     {
                         album[i].Nome = "";
@@ -628,7 +637,9 @@ namespace PAP
             {
                 if (album[i].Nome != "")
                 {
-                    albums.Add(album[i]);
+					musica = ProcurarMusica(album[i].Musicas[0].id);
+					album[i].Musicas[0] = musica;
+					albums.Add(album[i]);
                 }
             }
 
