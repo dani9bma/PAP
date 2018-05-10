@@ -1,4 +1,4 @@
 ﻿Tocar as musicas seguidas
 Meter a tocar musicas pelo disco externo
 Criar o sistema de subscrições
-Melhorar a pesquisa
+Abrir a pagina do artista/album e tocar musica na pesquisa
