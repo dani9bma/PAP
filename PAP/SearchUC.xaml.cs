@@ -20,7 +20,11 @@ namespace PAP
 	/// </summary>
 	public partial class SearchUC : UserControl
 	{
-		public SearchUC(List<Musica> _tracks, List<Artista> _artists, List<Album> _albums)
+		private List<Artista> _artists = new List<Artista>();
+		private List<Musica> _tracks = new List<Musica>();
+		private List<Album> _albums = new List<Album>();
+
+		public SearchUC(List<Musica> tracks, List<Artista> artists, List<Album> albums)
 		{
 			InitializeComponent();
 			ArtArtLB.Items.Clear();
@@ -30,6 +34,10 @@ namespace PAP
 			MusArtLB.Items.Clear();
 			AlbAlbLB.Items.Clear();
 			AlbArtLB.Items.Clear();
+
+			_artists = artists;
+			_tracks = tracks;
+			_albums = albums;
 
 			if (_artists.Count >= 12)
 			{
@@ -116,6 +124,77 @@ namespace PAP
 			ScrollViewer _listboxScrollViewer3 = GetDescendantByType(MusMusLB, typeof(ScrollViewer)) as ScrollViewer;
 			ScrollViewer _listboxScrollViewer4 = GetDescendantByType(MusArtLB, typeof(ScrollViewer)) as ScrollViewer;
 			_listboxScrollViewer4.ScrollToVerticalOffset(_listboxScrollViewer3.VerticalOffset);
+		}
+
+		private void ArtArtLB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			foreach (Window window in Application.Current.Windows)
+			{
+				if (window.GetType() == typeof(MainWindow))
+				{
+					(window as MainWindow).ContentSwitch.Content = new ArtistUC(_artists[ArtArtLB.SelectedIndex].id);
+				}
+			}
+		}
+
+		private void ArtArtLB2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			foreach (Window window in Application.Current.Windows)
+			{
+				if (window.GetType() == typeof(MainWindow))
+				{
+					(window as MainWindow).ContentSwitch.Content = new ArtistUC(_artists[4 + (ArtArtLB2.SelectedIndex)].id);
+				}
+			}
+		}
+
+		private void ArtArtLB3_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			foreach (Window window in Application.Current.Windows)
+			{
+				if (window.GetType() == typeof(MainWindow))
+				{
+					(window as MainWindow).ContentSwitch.Content = new ArtistUC(_artists[8 + (ArtArtLB3.SelectedIndex)].id);
+				}
+			}
+		}
+
+		private void MusMusLB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			//TODO: Play music
+		}
+
+		private void MusArtLB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			foreach (Window window in Application.Current.Windows)
+			{
+				if (window.GetType() == typeof(MainWindow))
+				{
+					(window as MainWindow).ContentSwitch.Content = new ArtistUC(_tracks[MusArtLB.SelectedIndex].artista.id);
+				}
+			}
+		}
+
+		private void AlbAlbLB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			foreach (Window window in Application.Current.Windows)
+			{
+				if (window.GetType() == typeof(MainWindow))
+				{
+					(window as MainWindow).ContentSwitch.Content = new AlbumUC(_albums[AlbAlbLB.SelectedIndex].id);
+				}
+			}
+		}
+
+		private void AlbArtLB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			foreach (Window window in Application.Current.Windows)
+			{
+				if (window.GetType() == typeof(MainWindow))
+				{
+					(window as MainWindow).ContentSwitch.Content = new ArtistUC(_albums[AlbArtLB.SelectedIndex].Musicas[0].artista.id);
+				}
+			}
 		}
 	}
 }
