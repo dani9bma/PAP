@@ -710,7 +710,7 @@ namespace PAP
         public List<Artista> GetTodosArtistas()
         {
             List<Artista> artistas = new List<Artista>();
-            string sql = "SELECT nome, img, id_artista FROM artistas";
+            string sql = "SELECT nome, img, id_artista FROM artistas ORDER BY nome";
             MySqlCommand cmd = new MySqlCommand(sql, _conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
             string art = "";

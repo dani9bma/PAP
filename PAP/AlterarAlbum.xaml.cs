@@ -73,8 +73,12 @@ namespace PAP
 					string nome = musicas[NewTrack.SelectedIndex].Nome;
 
 					Global.sql.AdicionarMusicaAlbum(cod, _cod);
+					Musica musica = new Musica();
+					musica.id = cod;
+					album.Musicas.Add(musica);
 
-					OldTrack.Items.Add(nome);
+					OldTrack.Items[OldTrack.SelectedIndex] = nome;
+					OldTrack.Items.Add("Adicionar Nova Musica");
 				}
 				else
 				{

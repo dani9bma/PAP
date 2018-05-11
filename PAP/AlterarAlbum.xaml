@@ -14,7 +14,7 @@
         <Button Content="Alterar Album" HorizontalAlignment="Left" Margin="73,499,0,0" VerticalAlignment="Top" Width="120" Height="27" Click="Button_Click"/>
         <ListBox Name="OldTrack"  HorizontalAlignment="Left" Height="285" Margin="297,199,0,0" VerticalAlignment="Top" Width="190"/>
         <ListBox Name="NewTrack" HorizontalAlignment="Left" Height="285" Margin="509,199,0,0" VerticalAlignment="Top" Width="190"/>
-        <Button Content="Alterar Musica" HorizontalAlignment="Left" Margin="579,499,0,0" VerticalAlignment="Top" Width="120" Height="27" Click="AlterarMusica_Click"/>
-        <Button Content="Eliminar Musica" HorizontalAlignment="Left" Margin="380,503,0,0" VerticalAlignment="Top" Width="107" Height="23" Click="Button_Click_1"/>
+        <Button Content="Alterar Musica" HorizontalAlignment="Left" Margin="509,499,0,0" VerticalAlignment="Top" Width="132" Height="23" Click="AlterarMusica_Click"/>
+        <Button Content="Eliminar Musica" HorizontalAlignment="Left" Margin="349,499,0,0" VerticalAlignment="Top" Width="138" Height="23" Click="Button_Click_1"/>
     </Grid>
 </UserControl>
