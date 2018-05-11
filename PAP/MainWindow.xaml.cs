@@ -191,6 +191,10 @@ namespace PAP
 				LoginBtn.Content = "Login";
 				UsernameLabel.Content = "";
 				RegistarBtn.Visibility = Visibility.Visible;
+
+				MainWindow m = new MainWindow();
+				m.Show();
+				this.Close();
 			}
 		}
 
