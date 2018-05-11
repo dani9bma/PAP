@@ -710,7 +710,7 @@ namespace PAP
         public List<Artista> GetTodosArtistas()
         {
             List<Artista> artistas = new List<Artista>();
-            string sql = "SELECT nome, img, id_artista FROM artistas ORDER BY nome";
+            string sql = "SELECT nome, img, id_artista FROM artistas";
             MySqlCommand cmd = new MySqlCommand(sql, _conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
             string art = "";
@@ -741,6 +741,41 @@ namespace PAP
 
             return artistas;
         }
+
+		public List<Artista> GetTodosArtistasOrdered()
+		{
+			List<Artista> artistas = new List<Artista>();
+			string sql = "SELECT nome, img, id_artista FROM artistas ORDER BY nome";
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			MySqlDataReader rdr = cmd.ExecuteReader();
+			string art = "";
+			int i = 0;
+			while (rdr.Read())
+			{
+				if (!(art == rdr[0]))
+				{
+					art = rdr[0].ToString();
+					Artista artista = new Artista();
+					artista.Nome = rdr[0].ToString();
+					artista.Img = rdr[1].ToString();
+					artista.id = int.Parse(rdr[2].ToString());
+					artistas.Add(artista);
+				}
+				else
+				{
+					Artista artista = new Artista();
+					artista.Nome = rdr[0].ToString();
+					artista.Img = rdr[1].ToString();
+					artista.id = int.Parse(rdr[2].ToString());
+					artistas.Add(artista);
+				}
+
+				i++;
+			}
+			rdr.Close();
+
+			return artistas;
+		}
 
 		public List<Album> GetTodosAlbums()
 		{

@@ -35,7 +35,7 @@ namespace PAP
 			Musica musica = Global.sql.ProcurarMusica(_cod);
 			idTxt.Text = musica.id.ToString();
 			NameTxt.Text = musica.Nome;
-			_artists = Global.sql.GetTodosArtistas();
+			_artists = Global.sql.GetTodosArtistasOrdered();
 
 			for(int i = 0; i < _artists.Count; i++)
 			{
