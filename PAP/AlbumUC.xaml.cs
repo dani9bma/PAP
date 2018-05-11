@@ -47,6 +47,12 @@ namespace PAP
 			{
 				AlbumTracksLB.Items.Add(musicas[i].Nome);
 			}
+
+			List<Playlist> playlists = Global.sql.GetPlaylistsUser(LoginInfo.id);
+			for(int i = 0; i < playlists.Count; i++)
+			{
+				PlaylistsCB.Items.Add(playlists[i].nome);
+			}
 		}
 
 		private async void AlbumTracksLB_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -108,6 +114,14 @@ namespace PAP
 		private void AddToFavorite()
 		{
 			Global.sql.InserirAlbumsFavoritos(codMusica, LoginInfo.id);
+		}
+
+		private void AdicionarPlaylist_Click(object sender, RoutedEventArgs e)
+		{
+			for(int i = 0; i < musicas.Count; i++)
+			{
+				Global.sql.InserirPlaylist(PlaylistsCB.SelectedItem.ToString(), musicas[i].id);
+			}
 		}
 	}
 }

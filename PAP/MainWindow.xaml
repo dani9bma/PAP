@@ -20,9 +20,9 @@
         <Label Name="UsernameLabel" Content="" HorizontalAlignment="Left" Margin="1055,45,0,0" VerticalAlignment="Top" Width="207"/>
         <Label Name="LoggedAsLabel" Content="Logged as" HorizontalAlignment="Left" Margin="972,45,0,0" VerticalAlignment="Top" Width="78"/>
         <Button Name="LoginBtn" Content="Logout" HorizontalAlignment="Left" Margin="874,48,0,0" VerticalAlignment="Top" Width="93" Click="LoginBtn_Click"/>
-        <GroupBox Header="" HorizontalAlignment="Left" VerticalAlignment="Top" Height="664" Width="204">
-            <GroupBox Header="Playlists" Margin="0,95,0,0" VerticalAlignment="Top" Height="516">
-                <ListBox Name="playlistsLB" HorizontalAlignment="Left" Height="457" Margin="10,10,0,-43" VerticalAlignment="Top" Width="170" SelectionChanged="ListBox_SelectionChanged"/>
+        <GroupBox Header="" HorizontalAlignment="Left" VerticalAlignment="Top" Height="627" Width="204">
+            <GroupBox Header="Playlists" Margin="0,95,0,0" VerticalAlignment="Top" Height="481">
+                <ListBox Name="playlistsLB" HorizontalAlignment="Left" Height="432" Margin="10,10,0,-14" VerticalAlignment="Top" Width="154" SelectionChanged="ListBox_SelectionChanged"/>
             </GroupBox>
         </GroupBox>
         <Button Content="Artistas Favoritos" HorizontalAlignment="Left" Margin="0,34,0,0" VerticalAlignment="Top" Width="204"  Click="FavoriteArtists_Click"/>
@@ -38,5 +38,6 @@
         <Button Content="Anterior" HorizontalAlignment="Left" Margin="209,395,0,0" VerticalAlignment="Top" Width="75" />
         <Button Content="Tema" HorizontalAlignment="Left" Margin="777,11,0,0" VerticalAlignment="Top" Width="92" Click="MudarTema"/>
         <Button Name="SearchBtn" Content="Procurar" HorizontalAlignment="Left" Margin="522,34,0,0" VerticalAlignment="Top" Width="94" Click="SearchBtn_Click"/>
+        <Button Content="Criar Playlist" HorizontalAlignment="Left" Margin="10,632,0,0" VerticalAlignment="Top" Width="194" Click="Button_Click"/>
     </Grid>
 </Window>

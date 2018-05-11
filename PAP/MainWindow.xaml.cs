@@ -38,7 +38,6 @@ namespace PAP
 					AdminBtn.Visibility = Visibility.Visible;
 				}
 			}
-			ContentSwitch.Content = new MainUC();
 
 			playlists = Global.sql.GetTodasPlaylists(LoginInfo.id);
 			for(int i = 0; i < playlists.Count; i++)
@@ -300,6 +299,14 @@ namespace PAP
 				Application.Current.Resources.MergedDictionaries[0] = new ResourceDictionary() { Source = new Uri("pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml", UriKind.Absolute) };
 				dark = true;
 			}
+		}
+
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			string input = Microsoft.VisualBasic.Interaction.InputBox("Digite o nome da Playlist", "Popup", "Default", -1, -1);
+			Global.sql.InserirPlaylist(input, -1);
+
+			playlistsLB.Items.Add(input);
 		}
 	}
 }

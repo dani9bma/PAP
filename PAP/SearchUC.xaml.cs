@@ -23,6 +23,7 @@ namespace PAP
 		private List<Artista> _artists = new List<Artista>();
 		private List<Musica> _tracks = new List<Musica>();
 		private List<Album> _albums = new List<Album>();
+		private List<Playlist> _playlists = new List<Playlist>();
 
 		public SearchUC(List<Musica> tracks, List<Artista> artists, List<Album> albums)
 		{
@@ -34,6 +35,12 @@ namespace PAP
 			MusArtLB.Items.Clear();
 			AlbAlbLB.Items.Clear();
 			AlbArtLB.Items.Clear();
+
+			_playlists = Global.sql.GetPlaylistsUser(LoginInfo.id);
+			for (int i = 0; i < _playlists.Count; i++)
+			{
+				PlaylistsCB.Items.Add(_playlists[i].nome);
+			}
 
 			_artists = artists;
 			_tracks = tracks;
@@ -195,6 +202,12 @@ namespace PAP
 					(window as MainWindow).ContentSwitch.Content = new ArtistUC(_albums[AlbArtLB.SelectedIndex].Musicas[0].artista.id);
 				}
 			}
+		}
+
+		//Musicas
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			Global.sql.InserirPlaylist(PlaylistsCB.SelectedItem.ToString(), _tracks[MusMusLB.SelectedIndex].id);
 		}
 	}
 }

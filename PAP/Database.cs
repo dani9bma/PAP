@@ -1113,7 +1113,7 @@ namespace PAP
 		public List<Playlist> GetTodasPlaylists(int cod)
 		{
 			List<Playlist> playlists = new List<Playlist>();
-			string sql = "SELECT id_playlist, nome FROM playlists WHERE id_user = " + cod;
+			string sql = "SELECT id_playlist, nome FROM playlists WHERE id_user = " + cod + " AND id_musica = -1";
 			MySqlCommand cmd = new MySqlCommand(sql, _conn);
 			MySqlDataReader rdr = cmd.ExecuteReader();
 			int art = -1;
@@ -1189,6 +1189,26 @@ namespace PAP
 			rdr.Close();
 
 			return user;
+		}
+
+		public List<Playlist> GetPlaylistsUser(int id)
+		{
+			List<Playlist> playlists = new List<Playlist>();
+
+			string sql = "SELECT id_playlist, nome FROM playlists WHERE id_user = " + id + " AND id_musica = -1";
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			MySqlDataReader rdr = cmd.ExecuteReader();
+
+			while (rdr.Read())
+			{
+				Playlist playlist = new Playlist();
+				playlist.id = int.Parse(rdr[0].ToString());
+				playlist.nome = rdr[1].ToString();
+				playlists.Add(playlist);
+			}
+			rdr.Close();
+
+			return playlists;
 		}
 
 		public bool RegistarUtilizador(string username, string password)
