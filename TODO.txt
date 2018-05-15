@@ -2,3 +2,5 @@
 Meter a tocar musicas pelo disco externo
 Criar o sistema de subscrições
 tocar musica na pesquisa
+Artistas mais ouvidos na pagina principal
+Melhorar o design

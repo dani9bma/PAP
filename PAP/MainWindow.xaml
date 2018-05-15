@@ -28,16 +28,23 @@
         <Button Content="Artistas Favoritos" HorizontalAlignment="Left" Margin="0,34,0,0" VerticalAlignment="Top" Width="204"  Click="FavoriteArtists_Click"/>
         <Button Content="Musicas Favoritas" HorizontalAlignment="Left" Margin="0,64,0,0" VerticalAlignment="Top" Width="204" Click="FavoriteTracks_Click"/>
         <Button Content="Albums Favoritos" HorizontalAlignment="Left" Margin="0,96,0,0" VerticalAlignment="Top" Width="204" Click="FavoriteAlbums_Click"/>
-        <ContentControl Name="ContentSwitch" HorizontalAlignment="Left" Margin="404,84,0,0" VerticalAlignment="Top" Height="580" Width="800"/>
-        <TextBox Name="SearchTB" HorizontalAlignment="Left" Height="23" Margin="364,32,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" ToolTip="Procurar" />
+        <ContentControl Name="ContentSwitch" HorizontalAlignment="Left" Margin="406,80,0,0" VerticalAlignment="Top" Height="580" Width="800"/>
+        <TextBox Name="SearchTB" HorizontalAlignment="Left" Height="34" Margin="364,32,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="153" ToolTip="Procurar" />
         <ListBox Visibility="Hidden" Name="SearchLB" HorizontalAlignment="Left" Height="221" Margin="243,68,0,0" VerticalAlignment="Top" Width="317"/>
         <Button Name="RegistarBtn" Content="Registar" HorizontalAlignment="Left" Margin="777,48,0,0" VerticalAlignment="Top" Width="92" Click="RegistarBtn_Click"/>
         <Button Name="AdminBtn" Content="Admin" HorizontalAlignment="Left" Margin="874,10,0,0" VerticalAlignment="Top" Width="93" Visibility="Hidden" Click="AdminBtn_Click" />
-        <Button Name="HomeBtn" Content="Home" HorizontalAlignment="Left" Margin="243,20,0,0" VerticalAlignment="Top" Width="75" Height="46" Click="HomeBtn_Click"/>
+        <Button Name="HomeBtn" HorizontalAlignment="Left" Margin="243,20,0,0" VerticalAlignment="Top" Width="56" Height="54" Click="HomeBtn_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="res/home.png"/>
+            </Button.Background>
+        </Button>
         <Button Content="Proxima" HorizontalAlignment="Left" Margin="289,395,0,0" VerticalAlignment="Top" Width="75" />
         <Button Content="Anterior" HorizontalAlignment="Left" Margin="209,395,0,0" VerticalAlignment="Top" Width="75" />
-        <Button Content="Tema" HorizontalAlignment="Left" Margin="777,11,0,0" VerticalAlignment="Top" Width="92" Click="MudarTema"/>
-        <Button Name="SearchBtn" Content="Procurar" HorizontalAlignment="Left" Margin="522,34,0,0" VerticalAlignment="Top" Width="94" Click="SearchBtn_Click"/>
+        <Button Name="SearchBtn" HorizontalAlignment="Left" Margin="537,34,0,0" VerticalAlignment="Top" Width="37" Click="SearchBtn_Click" Height="41">
+            <Button.Background>
+                <ImageBrush ImageSource="res/search.png"/>
+            </Button.Background>
+        </Button>
         <Button Content="Criar Playlist" HorizontalAlignment="Left" Margin="10,632,0,0" VerticalAlignment="Top" Width="194" Click="Button_Click"/>
     </Grid>
 </Window>
