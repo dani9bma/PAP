@@ -283,7 +283,8 @@ namespace PAP
 		//Quando se clica na playlist
 		private void ListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
 		{
-			ContentSwitch.Content = new PlaylistsUC(playlistsLB.SelectedItem.ToString());
+			int id = playlists[playlistsLB.SelectedIndex].id;
+			ContentSwitch.Content = new PlaylistsUC(id);
 		}
 
 		private void HomeBtn_Click(object sender, RoutedEventArgs e)
@@ -295,8 +296,18 @@ namespace PAP
 		{
 			string input = Microsoft.VisualBasic.Interaction.InputBox("Digite o nome da Playlist", "Popup", "Default", -1, -1);
 			Global.sql.InserirPlaylist(input, -1);
-
+			playlists.Clear();
+			playlists = Global.sql.GetTodasPlaylists(LoginInfo.id);
 			playlistsLB.Items.Add(input);
+		}
+
+		private void DeletePlaylist_Click(object sender, RoutedEventArgs e)
+		{
+			int SI = playlistsLB.SelectedIndex;
+			int id = playlists[SI].id;
+			Global.sql.DeletePlaylist(id);
+			playlistsLB.Items.RemoveAt(SI);
+			playlists.RemoveAt(SI);
 		}
 	}
 }

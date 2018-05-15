@@ -14,15 +14,23 @@
 
     <Grid>
         <MediaElement Name="MediaPlayer" HorizontalAlignment="Left" Height="22" Margin="1240,667,0,0" VerticalAlignment="Top" Width="32" Volume="1" UnloadedBehavior="Manual" LoadedBehavior="Manual"/>
-        <Button Name="StopButton" Content="Stop" HorizontalAlignment="Left" Margin="289,335,0,0" VerticalAlignment="Top" Width="75" Click="StopButton_Click"/>
-        <Button Name="PlayButton" Content="Play" HorizontalAlignment="Left" Margin="209,335,0,0" VerticalAlignment="Top" Width="75" Click="PlayButton_Click"/>
-        <Slider Name="VolumeSlider" HorizontalAlignment="Left" Margin="209,372,0,0" VerticalAlignment="Top" Width="145" ValueChanged="VolumeSlider_ValueChanged" Maximum="1" Value="0.5"/>
-        <Label Name="UsernameLabel" Content="" HorizontalAlignment="Left" Margin="1055,45,0,0" VerticalAlignment="Top" Width="207"/>
-        <Label Name="LoggedAsLabel" Content="Logged as" HorizontalAlignment="Left" Margin="972,45,0,0" VerticalAlignment="Top" Width="78"/>
+        <Button Name="StopButton" Content="" HorizontalAlignment="Left" Margin="304,592,0,0" VerticalAlignment="Top" Width="43" Click="StopButton_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="res/pause.png"/>
+            </Button.Background>
+        </Button>
+        <Button Name="PlayButton" Content="" HorizontalAlignment="Left" Margin="256,592,0,0" VerticalAlignment="Top" Width="43" Click="PlayButton_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="res/play.png"/>
+            </Button.Background>
+        </Button>
+        <Slider Name="VolumeSlider" HorizontalAlignment="Left" Margin="209,560,0,0" VerticalAlignment="Top" Width="186" ValueChanged="VolumeSlider_ValueChanged" Maximum="1" Value="0.5" Height="20"/>
+        <Label Name="UsernameLabel" Content="" HorizontalAlignment="Left" Margin="1082,48,-82,0" VerticalAlignment="Top" Width="206"/>
+        <Label Name="LoggedAsLabel" Content="Logado Como" HorizontalAlignment="Left" Margin="980,48,0,0" VerticalAlignment="Top" Width="102"/>
         <Button Name="LoginBtn" Content="Logout" HorizontalAlignment="Left" Margin="874,48,0,0" VerticalAlignment="Top" Width="93" Click="LoginBtn_Click"/>
-        <GroupBox Header="" HorizontalAlignment="Left" VerticalAlignment="Top" Height="627" Width="204">
-            <GroupBox Header="Playlists" Margin="0,95,0,0" VerticalAlignment="Top" Height="481">
-                <ListBox Name="playlistsLB" HorizontalAlignment="Left" Height="432" Margin="10,10,0,-14" VerticalAlignment="Top" Width="154" SelectionChanged="ListBox_SelectionChanged"/>
+        <GroupBox Header="" HorizontalAlignment="Left" VerticalAlignment="Top" Height="580" Width="204">
+            <GroupBox Header="Playlists" Margin="0,95,0,-4" VerticalAlignment="Top" Height="436">
+                <ListBox Name="playlistsLB" HorizontalAlignment="Left" Height="386" Margin="10,10,0,0" VerticalAlignment="Top" Width="154" SelectionChanged="ListBox_SelectionChanged"/>
             </GroupBox>
         </GroupBox>
         <Button Content="Artistas Favoritos" HorizontalAlignment="Left" Margin="0,34,0,0" VerticalAlignment="Top" Width="204"  Click="FavoriteArtists_Click"/>
@@ -33,18 +41,27 @@
         <ListBox Visibility="Hidden" Name="SearchLB" HorizontalAlignment="Left" Height="221" Margin="243,68,0,0" VerticalAlignment="Top" Width="317"/>
         <Button Name="RegistarBtn" Content="Registar" HorizontalAlignment="Left" Margin="777,48,0,0" VerticalAlignment="Top" Width="92" Click="RegistarBtn_Click"/>
         <Button Name="AdminBtn" Content="Admin" HorizontalAlignment="Left" Margin="874,10,0,0" VerticalAlignment="Top" Width="93" Visibility="Hidden" Click="AdminBtn_Click" />
-        <Button Name="HomeBtn" HorizontalAlignment="Left" Margin="243,20,0,0" VerticalAlignment="Top" Width="56" Height="54" Click="HomeBtn_Click">
+        <Button Name="HomeBtn" HorizontalAlignment="Left" Margin="304,38,0,0" VerticalAlignment="Top" Width="37" Height="34" Click="HomeBtn_Click">
             <Button.Background>
                 <ImageBrush ImageSource="res/home.png"/>
             </Button.Background>
         </Button>
-        <Button Content="Proxima" HorizontalAlignment="Left" Margin="289,395,0,0" VerticalAlignment="Top" Width="75" />
-        <Button Content="Anterior" HorizontalAlignment="Left" Margin="209,395,0,0" VerticalAlignment="Top" Width="75" />
-        <Button Name="SearchBtn" HorizontalAlignment="Left" Margin="537,34,0,0" VerticalAlignment="Top" Width="37" Click="SearchBtn_Click" Height="41">
+        <Button Content="" HorizontalAlignment="Left" Margin="352,592,0,0" VerticalAlignment="Top" Width="43" >
+            <Button.Background>
+                <ImageBrush ImageSource="res/next.png"/>
+            </Button.Background>
+        </Button>
+        <Button Content="" HorizontalAlignment="Left" Margin="209,592,0,0" VerticalAlignment="Top" Width="42" >
+            <Button.Background>
+                <ImageBrush ImageSource="res/previous.png"/>
+            </Button.Background>
+        </Button>
+        <Button Name="SearchBtn" HorizontalAlignment="Left" Margin="537,38,0,0" VerticalAlignment="Top" Width="37" Click="SearchBtn_Click" Height="34">
             <Button.Background>
                 <ImageBrush ImageSource="res/search.png"/>
             </Button.Background>
         </Button>
         <Button Content="Criar Playlist" HorizontalAlignment="Left" Margin="10,632,0,0" VerticalAlignment="Top" Width="194" Click="Button_Click"/>
+        <Button Content="Eliminar Playlist" HorizontalAlignment="Left" Margin="10,592,0,0" VerticalAlignment="Top" Width="194" Click="DeletePlaylist_Click"/>
     </Grid>
 </Window>

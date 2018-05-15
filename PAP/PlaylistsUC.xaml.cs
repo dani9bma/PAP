@@ -22,15 +22,14 @@ namespace PAP
 	{
 		List<Musica> musicas = new List<Musica>();
 
-		public PlaylistsUC(string nome)
+		public PlaylistsUC(int id)
 		{
 			InitializeComponent();
-			InitWindow(nome);
+			InitWindow(id);
 		}
 
-		private void InitWindow(string nome)
+		private void InitWindow(int id)
 		{
-			int id = Global.sql.GetPlaylistByNome(nome);
 			musicas = Global.sql.GetPlaylistsMusicas(id);
 			
 			for(int i = 0; i < musicas.Count; i++)

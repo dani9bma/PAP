@@ -3,3 +3,4 @@ Meter a tocar musicas pelo disco externo
 Criar o sistema de subscrições
 tocar musica na pesquisa
 Artistas mais ouvidos na pagina principal
+Fix Bug: quando criada uma nova playlist quando pesquisamos e clicamos na playlist nao funciona
