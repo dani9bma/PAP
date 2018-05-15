@@ -2,6 +2,5 @@
 Meter a tocar musicas pelo disco externo
 tocar musica na pesquisa
 Artistas mais ouvidos na pagina principal
-Adicionar o remover musica da playlist
 Adicionar o remover artista/musica/album dos favoritos
 Fix Bug: quando criada uma nova playlist quando pesquisamos e clicamos na playlist nao funciona

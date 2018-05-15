@@ -213,6 +213,13 @@ namespace PAP
 			cmd.ExecuteNonQuery();
 		}
 
+		public void DeleteMusicaPlaylist(int id_playlist, int id_musica)
+		{
+			string sql = "DELETE FROM playlists WHERE id_playlist = " + id_playlist + " AND id_user = " + LoginInfo.id + " AND id_musica = " + id_musica;
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			cmd.ExecuteNonQuery();
+		}
+
 		public int GetPlaylistsCount()
 		{
 			string sql = "SELECT COUNT(id_playlist) FROM playlists";

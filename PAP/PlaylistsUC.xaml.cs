@@ -21,10 +21,12 @@ namespace PAP
 	public partial class PlaylistsUC : UserControl
 	{
 		List<Musica> musicas = new List<Musica>();
+		int id_playlist = 0;
 
 		public PlaylistsUC(int id)
 		{
 			InitializeComponent();
+			id_playlist = id;
 			InitWindow(id);
 		}
 
@@ -36,6 +38,13 @@ namespace PAP
 			{
 				TracksLB.Items.Add(musicas[i].Nome);
 			}
+		}
+
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			int SI = TracksLB.SelectedIndex;
+			int id_musica = musicas[SI].id;
+			Global.sql.DeleteMusicaPlaylist(id_playlist, id_musica);
 		}
 	}
 }
