@@ -1,6 +1,7 @@
 ﻿Tocar as musicas seguidas
 Meter a tocar musicas pelo disco externo
-tocar musica na pesquisa
+tocar musica na pesquisa/Favoritos
 Artistas mais ouvidos na pagina principal
-Adicionar o remover artista/musica/album dos favoritos
+Validacoes
 Fix Bug: quando criada uma nova playlist quando pesquisamos e clicamos na playlist nao funciona
+Clicar com o botao direito para abrir a pagina do artista/album e botao esquerdo so para selecionar

@@ -144,6 +144,9 @@
     <Compile Include="FavoriteAlbumsAdminUC.xaml.cs">
       <DependentUpon>FavoriteAlbumsAdminUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FavoriteSongUC.xaml.cs">
+      <DependentUpon>FavoriteSongUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FavoriteAlbumUC.xaml.cs">
       <DependentUpon>FavoriteAlbumUC.xaml</DependentUpon>
     </Compile>
@@ -224,6 +227,10 @@
     <Page Include="FavoriteAlbumsAdminUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FavoriteSongUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="FavoriteAlbumUC.xaml">
       <SubType>Designer</SubType>

@@ -209,5 +209,31 @@ namespace PAP
 		{
 			Global.sql.InserirPlaylist(PlaylistsCB.SelectedItem.ToString(), _tracks[MusMusLB.SelectedIndex].id);
 		}
+
+		private void AddFavorites_Click(object sender, RoutedEventArgs e)
+		{
+			if (LoginInfo.username != "" && LoginInfo.id != -1)
+			{
+				AddToFavorite();
+			}
+			else
+			{
+				LoginWindow login = new LoginWindow();
+				login.Show();
+			}
+		}
+
+		/*
+		 * type:
+		 *	1: Track
+		 *	2: Artist
+		 *	3: Album
+		 */
+		private void AddToFavorite()
+		{
+			int pos = MusMusLB.SelectedIndex;
+			int cod = _tracks[pos].id;
+			Global.sql.InserirMusicasFavoritas(cod, LoginInfo.id);
+		}
 	}
 }

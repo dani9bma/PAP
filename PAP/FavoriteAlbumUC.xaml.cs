@@ -54,5 +54,15 @@ namespace PAP
 				}
 			}
 		}
+
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			int pos = FavoriteAlbumsLB.SelectedIndex;
+			int cod = Global.sql.GetCodigoAlbum(Albums[pos].Nome);
+			Global.sql.RemoverAlbumsFavoritos(cod, LoginInfo.id);
+			FavoriteAlbumsLB.Items.RemoveAt(pos);
+			Albums.Clear();
+			InitWindow();
+		}
 	}
 }

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="PAP.FavoriteArtistsUC"
+﻿<UserControl x:Class="PAP.FavoriteSongUC"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,8 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="536" d:DesignWidth="800">
     <Grid>
-        <ListBox x:Name="FavoriteArtistsLB" HorizontalAlignment="Left" Height="406" Margin="259,56,0,0" VerticalAlignment="Top" Width="229" SelectionChanged="FavoriteArtistsLB_SelectionChanged"/>
-        <Button Content="Remover Artista dos Favoritos" HorizontalAlignment="Left" Margin="259,467,0,0" VerticalAlignment="Top" Width="229" Click="Button_Click"/>
+        <ListBox x:Name="FavoriteSongsLB" HorizontalAlignment="Left" Height="383" Margin="259,56,0,0" VerticalAlignment="Top" Width="229" SelectionChanged="FavoriteArtistsLB_SelectionChanged"/>
+        <Button Content="Remover Musica dos Favoritos" HorizontalAlignment="Left" Margin="259,470,0,0" VerticalAlignment="Top" Width="229" Click="Button_Click"/>
 
     </Grid>
 </UserControl>

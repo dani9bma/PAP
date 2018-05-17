@@ -216,7 +216,7 @@ namespace PAP
 		{
 			if (LoginInfo.username != "")
 			{
-				ContentSwitch.Content = new MusicUC();
+				ContentSwitch.Content = new FavoriteSongUC();
 			}
 			else
 			{
@@ -246,22 +246,8 @@ namespace PAP
 				_tracks.Add(m[i]);
 			}
 
-			for (int i = 0; i < _tracks.Count; i++)
-			{
-				SearchLB.Items.Add(_tracks[i].Nome);
-			}
-
 			_artists = _spotify.ProcurarArtistas(SearchTB.Text, 10);
-			for (int i = 0; i < _artists.Count; i++)
-			{
-				SearchLB.Items.Add(_artists[i].Nome);
-			}
-
 			_albums = _spotify.ProcurarAlbums(SearchTB.Text, 10);
-			for (int i = 0; i < _albums.Count; i++)
-			{
-				SearchLB.Items.Add(_albums[i].Nome);
-			}
 
 			ContentSwitch.Content = new SearchUC(_tracks, _artists, _albums);
 		}

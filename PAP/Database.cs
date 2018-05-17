@@ -181,8 +181,31 @@ namespace PAP
 
 		public void InserirArtistasFavoritos(int id_artista, int id_user)
 	    {
-			//TODO: Verificar se artista ja foi adicionado aos favoritos
 			string sql = "INSERT INTO artistas_favoritos (id_artista, id_user) VALUES (" + id_artista + ", " + id_user + ")";
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			cmd.ExecuteNonQuery();
+		}
+
+		public void RemoverMusicasFavoritas(int id_musica, int id_user)
+		{
+			//TODO: Verificar se artista ja foi adicionado aos favoritos
+			string sql = "DELETE FROM musicas_favoritas WHERE id_musica = " + id_musica + " AND id_user = " + id_user;
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			cmd.ExecuteNonQuery();
+		}
+
+		public void RemoverAlbumsFavoritos(int id_album, int id_user)
+		{
+			//TODO: Verificar se artista ja foi adicionado aos favoritos
+			string sql = "DELETE FROM albums_favoritos WHERE id_album = " + id_album + " AND id_user = " + id_user;
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			cmd.ExecuteNonQuery();
+		}
+
+		public void RemoverArtistasFavoritos(int id_artista, int id_user)
+		{
+			//TODO: Verificar se artista ja foi adicionado aos favoritos
+			string sql = "DELETE FROM artistas_favoritos WHERE id_artista = " + id_artista + " AND id_user = " + id_user;
 			MySqlCommand cmd = new MySqlCommand(sql, _conn);
 			cmd.ExecuteNonQuery();
 		}
