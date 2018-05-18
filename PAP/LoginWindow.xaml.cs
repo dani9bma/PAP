@@ -61,5 +61,11 @@ namespace PAP
 			}
 
 		}
+
+		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			MainWindow w = new MainWindow();
+			w.Show();
+		}
 	}
 }

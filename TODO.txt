@@ -2,4 +2,3 @@
 Meter a tocar musicas pelo disco externo
 tocar musica na pesquisa/Favoritos
 Artistas mais ouvidos na pagina principal
-Validacoes

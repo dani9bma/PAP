@@ -10,7 +10,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.FontWeight="Medium"
         TextElement.FontSize="14"
-        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto" Closing="Window_Closing">
     <Grid>
         <Button x:Name="LoginBtn" Content="Login" HorizontalAlignment="Left" Margin="245,123,0,0" VerticalAlignment="Top" Width="83" Height="26" Click="loginBtn_Click"/>
         <TextBox x:Name="UsernameTb" HorizontalAlignment="Left" Height="26" Margin="245,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>

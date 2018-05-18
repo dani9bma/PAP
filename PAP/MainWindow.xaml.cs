@@ -200,14 +200,15 @@ namespace PAP
 
 		private void FavoriteArtists_Click(object sender, RoutedEventArgs e)
 		{
-
 			if (LoginInfo.username != "")
 			{
 				ContentSwitch.Content = new FavoriteArtistsUC();
 			}
 			else
 			{
-				MessageBox.Show("Precisa de fazer login para ver os seus artistas favoritos");
+				LoginWindow w = new LoginWindow();
+				w.Show();
+				this.Close();
 			}
 
 		}
@@ -220,7 +221,9 @@ namespace PAP
 			}
 			else
 			{
-				MessageBox.Show("Precisa de fazer login para ver as suas musicas favoritas");
+				LoginWindow w = new LoginWindow();
+				w.Show();
+				this.Close();
 			}
 		}
 
@@ -232,7 +235,9 @@ namespace PAP
 			}
 			else
 			{
-				MessageBox.Show("Precisa de fazer login para ver as suas musicas favoritas");
+				LoginWindow w = new LoginWindow();
+				w.Show();
+				this.Close();
 			}
 		}
 
@@ -268,25 +273,40 @@ namespace PAP
 
 		private void HomeBtn_Click(object sender, RoutedEventArgs e)
 		{
-			ContentSwitch.Content = new MainUC();
+			MainWindow w = new MainWindow();
+			w.Show();
+			this.Close();
 		}
 
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
-			string input = Microsoft.VisualBasic.Interaction.InputBox("Digite o nome da Playlist", "Popup", "Default", -1, -1);
-			Global.sql.InserirPlaylist(input, -1);
-			playlists.Clear();
-			playlists = Global.sql.GetTodasPlaylists(LoginInfo.id);
-			playlistsLB.Items.Add(input);
+			if(LoginInfo.username == "")
+			{
+				LoginWindow w = new LoginWindow();
+				w.Show();
+				this.Close();
+			}
+			else
+			{
+				string input = Microsoft.VisualBasic.Interaction.InputBox("Digite o nome da Playlist", "Popup", "Default", -1, -1);
+				Global.sql.InserirPlaylist(input, -1);
+				playlists.Clear();
+				playlists = Global.sql.GetTodasPlaylists(LoginInfo.id);
+				playlistsLB.Items.Add(input);
+			}
+			
 		}
 
 		private void DeletePlaylist_Click(object sender, RoutedEventArgs e)
 		{
 			int SI = playlistsLB.SelectedIndex;
-			int id = playlists[SI].id;
-			Global.sql.DeletePlaylist(id);
-			playlistsLB.Items.RemoveAt(SI);
-			playlists.RemoveAt(SI);
+			if(SI != -1)
+			{
+				int id = playlists[SI].id;
+				Global.sql.DeletePlaylist(id);
+				playlistsLB.Items.RemoveAt(SI);
+				playlists.RemoveAt(SI);
+			}
 		}
 
 		private void playlistsLB_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)

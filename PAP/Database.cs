@@ -1276,7 +1276,7 @@ namespace PAP
 			return playlists;
 		}
 
-		public bool RegistarUtilizador(string username, string password)
+		public bool RegistarUtilizador(string username, string password, string nome)
         {
             if (username.Contains("'"))
             {
@@ -1294,8 +1294,13 @@ namespace PAP
 				MessageBox.Show("Tem de preencher a password");
 				return false;
 			}
+			else if(nome == "")
+			{
+				MessageBox.Show("Tem de preencher o nome");
+				return false;
+			}
 
-            string sql = "INSERT INTO users (username, password) VALUES ('" + username + "', '" + password + "')";
+            string sql = "INSERT INTO users (username, password, nome) VALUES ('" + username + "', '" + password + "', '" + nome + "')";
             MySqlCommand cmd = new MySqlCommand(sql, _conn);
             cmd.ExecuteNonQuery();
 

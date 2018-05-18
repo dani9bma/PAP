@@ -215,6 +215,13 @@ namespace PAP
 			{
 				LoginWindow login = new LoginWindow();
 				login.Show();
+				foreach (Window window in Application.Current.Windows)
+				{
+					if (window.GetType() == typeof(MainWindow))
+					{
+						(window as MainWindow).Close();
+					}
+				}
 			}
 		}
 
