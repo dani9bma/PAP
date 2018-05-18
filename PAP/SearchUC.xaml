@@ -13,7 +13,7 @@
         <ListBox x:Name="ArtArtLB2" Height="146" Margin="218,38,213,0" VerticalAlignment="Top" SelectionChanged="ArtArtLB2_SelectionChanged"/>
         <ListBox x:Name="ArtArtLB3" Height="146" Margin="411,38,11,0" VerticalAlignment="Top" SelectionChanged="ArtArtLB3_SelectionChanged"/>
         <ListBox x:Name="MusArtLB" Height="113" Margin="218,266,213,0" VerticalAlignment="Top" ScrollViewer.ScrollChanged="lbx3_ScrollChanged" SelectionChanged="MusArtLB_SelectionChanged"/>
-        <ListBox x:Name="MusMusLB" Height="113" Margin="25,266,406,0" VerticalAlignment="Top" ScrollViewer.ScrollChanged="lbx4_ScrollChanged" SelectionChanged="MusMusLB_SelectionChanged"/>
+        <ListBox x:Name="MusMusLB" Height="113" Margin="25,266,406,0" VerticalAlignment="Top" ScrollViewer.ScrollChanged="lbx4_ScrollChanged" MouseDoubleClick="MusMusLB_MouseDoubleClick"/>
         <Label Content="Musica" HorizontalAlignment="Left" Margin="25,235,0,0" VerticalAlignment="Top" Width="188" Foreground="#DD0080FF"/>
         <Label Content="Artista" HorizontalAlignment="Left" Margin="218,235,0,0" VerticalAlignment="Top" Width="188" Foreground="#DD0080FF"/>
         <ListBox x:Name="AlbArtLB" Height="113" Margin="218,455,213,0" VerticalAlignment="Top" ScrollViewer.ScrollChanged="lbx1_ScrollChanged" SelectionChanged="AlbArtLB_SelectionChanged"/>

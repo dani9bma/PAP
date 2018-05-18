@@ -166,11 +166,6 @@ namespace PAP
 			}
 		}
 
-		private void MusMusLB_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			//TODO: Play music
-		}
-
 		private void MusArtLB_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			foreach (Window window in Application.Current.Windows)
@@ -234,6 +229,11 @@ namespace PAP
 			int pos = MusMusLB.SelectedIndex;
 			int cod = _tracks[pos].id;
 			Global.sql.InserirMusicasFavoritas(cod, LoginInfo.id);
+		}
+
+		private void MusMusLB_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+		{
+			//TODO Play music
 		}
 	}
 }

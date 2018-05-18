@@ -42,13 +42,6 @@ namespace PAP
 			}
 		}
 
-		private void FavoriteArtistsLB_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			int pos = FavoriteSongsLB.SelectedIndex;
-			// Musicas[pos].Nome
-			// Tocar Musica
-		}
-
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
 			int pos = FavoriteSongsLB.SelectedIndex;
@@ -57,6 +50,13 @@ namespace PAP
 			FavoriteSongsLB.Items.RemoveAt(pos);
 			Musicas.Clear();
 			InitWindow();
+		}
+
+		private void FavoriteSongsLB_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+		{
+			int pos = FavoriteSongsLB.SelectedIndex;
+			// Musicas[pos].Nome
+			// Tocar Musica
 		}
 	}
 }

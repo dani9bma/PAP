@@ -43,7 +43,17 @@ namespace PAP
 			}
 		}
 
-		private void FavoriteArtistsLB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			int pos = FavoriteArtistsLB.SelectedIndex;
+			int cod = Global.sql.GetCodigoAlbum(Artistas[pos].Nome);
+			Global.sql.RemoverAlbumsFavoritos(cod, LoginInfo.id);
+			FavoriteArtistsLB.Items.RemoveAt(pos);
+			Artistas.Clear();
+			InitWindow();
+		}
+
+		private void FavoriteArtistsLB_MouseDoubleClick(object sender, MouseButtonEventArgs e)
 		{
 			int pos = FavoriteArtistsLB.SelectedIndex;
 			int cod = Global.sql.GetCodigoArtista(Artistas[pos].Nome);
@@ -54,16 +64,6 @@ namespace PAP
 					(window as MainWindow).ContentSwitch.Content = new ArtistUC(cod);
 				}
 			}
-		}
-
-		private void Button_Click(object sender, RoutedEventArgs e)
-		{
-			int pos = FavoriteArtistsLB.SelectedIndex;
-			int cod = Global.sql.GetCodigoAlbum(Artistas[pos].Nome);
-			Global.sql.RemoverAlbumsFavoritos(cod, LoginInfo.id);
-			FavoriteArtistsLB.Items.RemoveAt(pos);
-			Artistas.Clear();
-			InitWindow();
 		}
 	}
 }
