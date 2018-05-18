@@ -3,4 +3,3 @@ Meter a tocar musicas pelo disco externo
 tocar musica na pesquisa/Favoritos
 Artistas mais ouvidos na pagina principal
 Validacoes
-Fix Bug: quando criada uma nova playlist quando pesquisamos e clicamos na playlist nao funciona

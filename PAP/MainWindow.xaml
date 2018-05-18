@@ -30,7 +30,7 @@
         <Button Name="LoginBtn" Content="Logout" HorizontalAlignment="Left" Margin="874,48,0,0" VerticalAlignment="Top" Width="93" Click="LoginBtn_Click"/>
         <GroupBox Header="" HorizontalAlignment="Left" VerticalAlignment="Top" Height="580" Width="204">
             <GroupBox Header="Playlists" Margin="0,95,0,-4" VerticalAlignment="Top" Height="436">
-                <ListBox Name="playlistsLB" HorizontalAlignment="Left" Height="386" Margin="10,10,0,0" VerticalAlignment="Top" Width="154" SelectionChanged="ListBox_SelectionChanged"/>
+                <ListBox Name="playlistsLB" HorizontalAlignment="Left" Height="386" Margin="10,10,0,0" VerticalAlignment="Top" Width="154" MouseDoubleClick="playlistsLB_MouseDoubleClick"/>
             </GroupBox>
         </GroupBox>
         <Button Content="Artistas Favoritos" HorizontalAlignment="Left" Margin="0,34,0,0" VerticalAlignment="Top" Width="204"  Click="FavoriteArtists_Click"/>

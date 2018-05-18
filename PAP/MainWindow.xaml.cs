@@ -266,13 +266,6 @@ namespace PAP
 			this.Close();
 		}
 
-		//Quando se clica na playlist
-		private void ListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-		{
-			int id = playlists[playlistsLB.SelectedIndex].id;
-			ContentSwitch.Content = new PlaylistsUC(id);
-		}
-
 		private void HomeBtn_Click(object sender, RoutedEventArgs e)
 		{
 			ContentSwitch.Content = new MainUC();
@@ -294,6 +287,12 @@ namespace PAP
 			Global.sql.DeletePlaylist(id);
 			playlistsLB.Items.RemoveAt(SI);
 			playlists.RemoveAt(SI);
+		}
+
+		private void playlistsLB_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+		{
+			int id = playlists[playlistsLB.SelectedIndex].id;
+			ContentSwitch.Content = new PlaylistsUC(id);
 		}
 	}
 }
