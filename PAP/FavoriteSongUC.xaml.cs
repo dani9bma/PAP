@@ -54,9 +54,18 @@ namespace PAP
 
 		private void FavoriteSongsLB_MouseDoubleClick(object sender, MouseButtonEventArgs e)
 		{
-			int pos = FavoriteSongsLB.SelectedIndex;
-			// Musicas[pos].Nome
-			// Tocar Musica
+			string nome = FavoriteSongsLB.SelectedItem.ToString();
+			string nomeArtista = Musicas[FavoriteSongsLB.SelectedIndex].artista.Nome;
+			string final = Global.RootMusic + @"PAPMusic\" + nome + " - " + nomeArtista + @".mp4";
+
+			foreach (Window window in Application.Current.Windows)
+			{
+				if (window.GetType() == typeof(MainWindow))
+				{
+					(window as MainWindow).MediaPlayer.Source = new Uri(final);
+					(window as MainWindow).MediaPlayer.Play();
+				}
+			}
 		}
 	}
 }

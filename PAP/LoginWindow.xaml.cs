@@ -33,8 +33,6 @@ namespace PAP
 				{
 					LoginInfo.username = "admin";
 					LoginInfo.id = -2;
-					var mainWindow = new MainWindow();
-					mainWindow.Show();
 					this.Close();
 				}
 				else
@@ -54,8 +52,6 @@ namespace PAP
 			{
 				if(Global.sql.LoginUtilizador(UsernameTb.Text, PasswordTb.Password.ToString()))
 				{
-					var mainWindow = new MainWindow();
-					mainWindow.Show();
 					this.Close();
 				}
 			}

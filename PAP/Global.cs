@@ -9,5 +9,6 @@ namespace PAP
 	static class Global
 	{
 		public static Database sql = new Database();
+		public static string RootMusic = @"G:\";
 	}
 }

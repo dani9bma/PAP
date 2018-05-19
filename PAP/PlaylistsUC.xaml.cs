@@ -46,5 +46,21 @@ namespace PAP
 			int id_musica = musicas[SI].id;
 			Global.sql.DeleteMusicaPlaylist(id_playlist, id_musica);
 		}
+
+		private void TracksLB_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+		{
+			string nome = TracksLB.SelectedItem.ToString();
+			string nomeArtista = musicas[TracksLB.SelectedIndex].artista.Nome;
+			string final = Global.RootMusic + @"PAPMusic\" + nome + " - " + nomeArtista + @".mp4";
+
+			foreach (Window window in Application.Current.Windows)
+			{
+				if (window.GetType() == typeof(MainWindow))
+				{
+					(window as MainWindow).MediaPlayer.Source = new Uri(final);
+					(window as MainWindow).MediaPlayer.Play();
+				}
+			}
+		}
 	}
 }

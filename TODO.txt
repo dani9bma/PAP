@@ -1,4 +1,5 @@
 ﻿Tocar as musicas seguidas
-Meter a tocar musicas pelo disco externo
-tocar musica na pesquisa/Favoritos
 Artistas mais ouvidos na pagina principal
+Meter o artista na pagina dos albums/musicas/Albums_favoritos/musicas_favoritas/playlists
+Possibilidade de adicionar musica aos favoritos atraves da pagina dos artistas/albums
+Melhorar a pesquisa

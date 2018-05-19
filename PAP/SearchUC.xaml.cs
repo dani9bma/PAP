@@ -240,7 +240,19 @@ namespace PAP
 
 		private void MusMusLB_MouseDoubleClick(object sender, MouseButtonEventArgs e)
 		{
-			//TODO Play music
+			string nome = MusMusLB.SelectedItem.ToString();
+			string nomeArtista = MusArtLB.Items[MusMusLB.SelectedIndex].ToString();
+			string final = Global.RootMusic + @"PAPMusic\" + nome + " - " + nomeArtista + @".mp4";
+
+			foreach (Window window in Application.Current.Windows)
+			{
+				if (window.GetType() == typeof(MainWindow))
+				{
+					(window as MainWindow).MediaPlayer.Source = new Uri(final);
+					(window as MainWindow).MediaPlayer.Play();
+				}
+			}
 		}
+
 	}
 }

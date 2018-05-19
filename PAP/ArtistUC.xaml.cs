@@ -44,43 +44,6 @@ namespace PAP
 			}
 		}
 
-		private async void ArtistTracksLB_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			int pos = ArtistTracksLB.SelectedIndex;
-
-			Console.WriteLine(musicas[pos].Nome);
-			Console.WriteLine(musicas[pos].artista.Nome);
-
-			MediaElement Player = new MediaElement();
-
-			foreach (Window window in Application.Current.Windows)
-			{
-				if (window.GetType() == typeof(MainWindow))
-				{
-					Player = (window as MainWindow).MediaPlayer;
-				}
-			}
-
-			Player.Source = null;
-			Uri source = null;
-			try
-			{
-				await Global.sql.DownloadFiles(musicas[pos].Nome);
-				source = new Uri(Path.GetTempPath() + "music.mp4");
-			}
-			catch (Exception ex)
-			{
-				MessageBox.Show("A musica que selecionou nao poderá ser ouvida");
-			}
-
-			if (source != null)
-				Player.Source = source;
-			else
-				Player.Source = null;
-			Player.Play();
-			Console.WriteLine(Player.Source);
-		}
-
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
 			if (LoginInfo.username != "" && LoginInfo.id != -1)
@@ -104,6 +67,23 @@ namespace PAP
 		private void AddToFavorite()
 		{
 			Global.sql.InserirArtistasFavoritos(codArt, LoginInfo.id);
+		}
+
+		private void ArtistTracksLB_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+		{
+			string nome = ArtistTracksLB.SelectedItem.ToString();
+			string nomeArtista = ArtistName.Content.ToString();
+			string final = Global.RootMusic + @"PAPMusic\" + nome + " - " + nomeArtista + @".mp4";
+
+			foreach (Window window in Application.Current.Windows)
+			{
+				if (window.GetType() == typeof(MainWindow))
+				{
+					(window as MainWindow).MediaPlayer.Source = new Uri(final);
+					(window as MainWindow).MediaPlayer.Play();
+				}
+			}
+
 		}
 	}
 }
