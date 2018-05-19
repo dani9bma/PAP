@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
@@ -23,6 +24,19 @@ namespace PAP
 		public MainWindow()
 		{
 			InitializeComponent();
+
+			//Get Music Disk
+			DriveInfo[] myDrives = DriveInfo.GetDrives();
+
+			foreach (DriveInfo drive in myDrives)
+			{
+				if(drive.VolumeLabel == "EXT")
+				{
+					Global.RootMusic = drive.Name;
+				}
+			}
+
+
 			UsernameLabel.Content = LoginInfo.username;
 			if (LoginInfo.username == "")
 			{
