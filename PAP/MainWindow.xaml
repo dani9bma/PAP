@@ -10,7 +10,7 @@
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.FontWeight="Medium"
         TextElement.FontSize="14"
-        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto" Closing="Window_Closing">
 
     <Grid>
         <MediaElement Name="MediaPlayer" HorizontalAlignment="Left" Height="22" Margin="1240,667,0,0" VerticalAlignment="Top" Width="32" Volume="1" UnloadedBehavior="Manual" LoadedBehavior="Manual"/>

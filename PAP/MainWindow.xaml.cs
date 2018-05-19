@@ -328,5 +328,10 @@ namespace PAP
 			int id = playlists[playlistsLB.SelectedIndex].id;
 			ContentSwitch.Content = new PlaylistsUC(id);
 		}
+
+		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			MediaPlayer.Pause();
+		}
 	}
 }

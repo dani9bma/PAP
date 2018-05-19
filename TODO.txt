@@ -3,3 +3,4 @@ Artistas mais ouvidos na pagina principal
 Meter o artista na pagina dos albums/musicas/Albums_favoritos/musicas_favoritas/playlists
 Possibilidade de adicionar musica aos favoritos atraves da pagina dos artistas/albums
 Melhorar a pesquisa
+Fazer com que o "home" button abre a pagina dos artistas mais ouvidos
