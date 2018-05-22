@@ -90,6 +90,10 @@ namespace PAP
 		{
 			string nome = FavoriteSongsLB.SelectedItem.ToString();
 			string nomeArtista = Musicas[FavoriteSongsLB.SelectedIndex].artista.Nome;
+			int codArt = Musicas[FavoriteSongsLB.SelectedIndex].artista.id;
+			if (LoginInfo.username != "")
+				Global.sql.InserirArtistaOuvido(codArt, nomeArtista);
+
 			string final = Global.RootMusic + @"PAPMusic\" + nome + " - " + nomeArtista + @".mp4";
 
 			foreach (Window window in Application.Current.Windows)

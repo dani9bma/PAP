@@ -80,6 +80,8 @@ namespace PAP
 		{
 			string nome = ArtistTracksLB.SelectedItem.ToString();
 			string nomeArtista = ArtistName.Content.ToString();
+			if (LoginInfo.username != "")
+				Global.sql.InserirArtistaOuvido(codArt, nomeArtista);
 			string final = Global.RootMusic + @"PAPMusic\" + nome + " - " + nomeArtista + @".mp4";
 
 			foreach (Window window in Application.Current.Windows)

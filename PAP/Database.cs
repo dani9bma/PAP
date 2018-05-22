@@ -229,6 +229,33 @@ namespace PAP
 			
 		}
 
+		public void InserirArtistaOuvido(int id_artista, string nome)
+		{
+			string sql = "SELECT id_artista, ouvido FROM artistas_ouvidos";
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			MySqlDataReader rdr = cmd.ExecuteReader();
+			while (rdr.Read())
+			{
+				int cod = int.Parse(rdr[0].ToString());
+				int ouvido = int.Parse(rdr[1].ToString());
+
+				if(id_artista == cod)
+				{
+					rdr.Close();
+
+					int o = ouvido + 1;
+
+					sql = "UPDATE artistas_ouvidos SET ouvido = " + o + " WHERE id_artista = " + id_artista;
+					cmd = new MySqlCommand(sql, _conn);
+					cmd.ExecuteNonQuery();
+				}
+			}
+
+			sql = "INSERT INTO artistas_ouvidos (id_artista, nome, id_user, ouvido) VALUES (" + id_artista + ", '" + nome + "' , " + LoginInfo.id + ", " + 0 + ")";
+			cmd = new MySqlCommand(sql, _conn);
+			cmd.ExecuteNonQuery();
+		}
+
 		public void DeletePlaylist(int id_playlist)
 		{
 			string sql = "DELETE FROM playlists WHERE id_playlist = " + id_playlist + " AND id_user = " + LoginInfo.id;
@@ -258,6 +285,71 @@ namespace PAP
 			rdr.Close();
 
 			return -1;
+		}
+
+		public List<Artista> GetArtistasOuvidos(int id_user)
+		{
+			List<Artista> artistas = new List<Artista>();
+
+			string sql = "SELECT id_artista, nome FROM artistas_ouvidos WHERE id_user = " + id_user + " ORDER BY ouvido DESC";
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			MySqlDataReader rdr = cmd.ExecuteReader();
+
+			while (rdr.Read())
+			{
+				Artista artista = new Artista();
+				artista.id = int.Parse(rdr[0].ToString());
+				artista.Nome = rdr[1].ToString();
+				artistas.Add(artista);
+			}
+			rdr.Close();
+
+			if(artistas.Count < 6)
+			{
+				sql = "SELECT id_artista, nome FROM artistas_ouvidos ORDER BY ouvido DESC";
+				cmd = new MySqlCommand(sql, _conn);
+				rdr = cmd.ExecuteReader();
+
+				while (rdr.Read())
+				{
+					Artista artista = new Artista();
+					artista.id = int.Parse(rdr[0].ToString());
+					artista.Nome = rdr[1].ToString();
+
+					bool add = true;
+
+					for(int i = 0; i < artistas.Count; i++)
+					{
+						if (artistas[i].id == artista.id)
+							add = false;
+					}
+
+					if(add)
+						artistas.Add(artista);
+				}
+				rdr.Close();
+			}
+			else
+			{
+				for(int i = 0; i < artistas.Count; i++)
+				{
+					sql = "SELECT img FROM artistas WHERE id_artista = " + artistas[i].id;
+					cmd = new MySqlCommand(sql, _conn);
+					rdr = cmd.ExecuteReader();
+
+					if (rdr.Read())
+					{
+						Artista artista = new Artista();
+						artista.id = artistas[i].id;
+						artista.Nome = artistas[i].Nome;
+						artista.Img = rdr[0].ToString();
+						artistas[i] = artista;
+					}
+					rdr.Close();
+				}
+			}
+
+			return artistas;
 		}
 
 		public List<PlaylistFavoritas> GetPlaylistsNomes()

@@ -242,6 +242,10 @@ namespace PAP
 		{
 			string nome = MusMusLB.SelectedItem.ToString();
 			string nomeArtista = MusArtLB.Items[MusMusLB.SelectedIndex].ToString();
+			int codArt = _tracks[MusMusLB.SelectedIndex].artista.id;
+			if(LoginInfo.username != "")
+				Global.sql.InserirArtistaOuvido(codArt, nomeArtista);
+
 			string final = Global.RootMusic + @"PAPMusic\" + nome + " - " + nomeArtista + @".mp4";
 
 			foreach (Window window in Application.Current.Windows)

@@ -135,6 +135,9 @@
     <Compile Include="AlterarUtilizador.xaml.cs">
       <DependentUpon>AlterarUtilizador.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ArtistasOuvidos.xaml.cs">
+      <DependentUpon>ArtistasOuvidos.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ArtistsAdminUC.xaml.cs">
       <DependentUpon>ArtistsAdminUC.xaml</DependentUpon>
     </Compile>
@@ -213,6 +216,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AlterarUtilizador.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ArtistasOuvidos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
