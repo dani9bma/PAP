@@ -7,13 +7,14 @@
              mc:Ignorable="d" 
              d:DesignHeight="536" d:DesignWidth="800">
     <Grid>
-        <Label x:Name="AlbumName" FontSize="20" Content="AlbumName" HorizontalAlignment="Left" Margin="270,29,0,0" VerticalAlignment="Top" Height="38" Width="491"/>
-        <ListBox x:Name="AlbumTracksLB" HorizontalAlignment="Left" Height="451" Margin="270,85,0,0" VerticalAlignment="Top" Width="278" MouseDoubleClick="AlbumTracksLB_MouseDoubleClick" />
+        <Label x:Name="AlbumName" FontSize="20" Content="AlbumTracksLB" HorizontalAlignment="Left" Margin="270,29,0,0" VerticalAlignment="Top" Height="38" Width="491"/>
+        <ListBox x:Name="AlbumTracksLB" HorizontalAlignment="Left" Height="410" Margin="270,126,0,0" VerticalAlignment="Top" Width="278" MouseDoubleClick="AlbumTracksLB_MouseDoubleClick" />
         <Button Content="Adicionar aos Favoritos" HorizontalAlignment="Left" Margin="10,126,0,0" VerticalAlignment="Top" Width="240" Click="Button_Click"/>
         <Button Content="Adicionar a Playlist" HorizontalAlignment="Left" Margin="10,196,0,0" VerticalAlignment="Top" Width="240" Click="AdicionarPlaylist_Click"/>
         <ComboBox Name="PlaylistsCB" HorizontalAlignment="Left" Margin="10,163,0,0" VerticalAlignment="Top" Width="240"/>
         <Button Content="Adicionar Musica aos Favoritos" HorizontalAlignment="Left" Margin="10,270,0,0" VerticalAlignment="Top" Width="240" Click="AddFavorite_Click"/>
         <Button Content="Adicionar Musica a playlist" HorizontalAlignment="Left" Margin="10,233,0,0" VerticalAlignment="Top" Width="240" Click="AddPlaylist_Click"/>
+        <Label x:Name="ArtName" FontSize="15" Content="NameArt" HorizontalAlignment="Left" Margin="270,67,0,0" VerticalAlignment="Top" Height="38" Width="491"/>
 
     </Grid>
 </UserControl>

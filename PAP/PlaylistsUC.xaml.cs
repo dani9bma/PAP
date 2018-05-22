@@ -37,6 +37,7 @@ namespace PAP
 			for(int i = 0; i < musicas.Count; i++)
 			{
 				TracksLB.Items.Add(musicas[i].Nome);
+				ArtistsLB.Items.Add(musicas[i].artista.Nome);
 			}
 		}
 
@@ -61,6 +62,39 @@ namespace PAP
 					(window as MainWindow).MediaPlayer.Play();
 				}
 			}
+		}
+
+		public Visual GetDescendantByType(Visual element, Type type)
+		{
+			if (element == null) return null;
+			if (element.GetType() == type) return element;
+			Visual foundElement = null;
+			if (element is FrameworkElement)
+			{
+				(element as FrameworkElement).ApplyTemplate();
+			}
+			for (int i = 0; i < VisualTreeHelper.GetChildrenCount(element); i++)
+			{
+				Visual visual = VisualTreeHelper.GetChild(element, i) as Visual;
+				foundElement = GetDescendantByType(visual, type);
+				if (foundElement != null)
+					break;
+			}
+			return foundElement;
+		}
+
+		private void lbx1_ScrollChanged(object sender, ScrollChangedEventArgs e)
+		{
+			ScrollViewer _listboxScrollViewer1 = GetDescendantByType(TracksLB, typeof(ScrollViewer)) as ScrollViewer;
+			ScrollViewer _listboxScrollViewer2 = GetDescendantByType(ArtistsLB, typeof(ScrollViewer)) as ScrollViewer;
+			_listboxScrollViewer1.ScrollToVerticalOffset(_listboxScrollViewer2.VerticalOffset);
+		}
+
+		private void lbx2_ScrollChanged(object sender, ScrollChangedEventArgs e)
+		{
+			ScrollViewer _listboxScrollViewer1 = GetDescendantByType(TracksLB, typeof(ScrollViewer)) as ScrollViewer;
+			ScrollViewer _listboxScrollViewer2 = GetDescendantByType(ArtistsLB, typeof(ScrollViewer)) as ScrollViewer;
+			_listboxScrollViewer2.ScrollToVerticalOffset(_listboxScrollViewer1.VerticalOffset);
 		}
 	}
 }

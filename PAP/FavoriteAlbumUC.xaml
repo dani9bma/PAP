@@ -7,8 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="536" d:DesignWidth="800">
     <Grid>
-        <ListBox x:Name="FavoriteAlbumsLB" HorizontalAlignment="Left" Height="383" Margin="259,40,0,0" VerticalAlignment="Top" Width="229" MouseDoubleClick="FavoriteAlbumsLB_MouseDoubleClick"/>
+        <ListBox x:Name="FavoriteAlbumsLB" HorizontalAlignment="Left" Height="383" Margin="134,58,0,0" VerticalAlignment="Top" Width="229" ScrollViewer.ScrollChanged="lbx1_ScrollChanged" MouseDoubleClick="FavoriteAlbumsLB_MouseDoubleClick"/>
         <Button Content="Remover Album dos Favoritos" HorizontalAlignment="Left" Margin="259,470,0,0" VerticalAlignment="Top" Width="229" Click="Button_Click"/>
+        <ListBox x:Name="ArtistsLB" HorizontalAlignment="Left" Height="383" Margin="368,58,0,0" VerticalAlignment="Top" Width="229" ScrollViewer.ScrollChanged="lbx2_ScrollChanged"/>
 
     </Grid>
 </UserControl>

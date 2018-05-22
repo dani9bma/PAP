@@ -42,6 +42,8 @@ namespace PAP
 				musica = Global.sql.ProcurarMusica(album.Musicas[i].id);
 				musicas.Add(musica);
 			}
+
+			ArtName.Content = musicas[0].artista.Nome;
 	
 			for (int i = 0; i < musicas.Count; i++)
 			{

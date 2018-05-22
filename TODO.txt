@@ -1,5 +1,4 @@
 ﻿Tocar as musicas seguidas
 Artistas mais ouvidos na pagina principal
-Meter o artista na pagina dos albums/musicas/Albums_favoritos/musicas_favoritas/playlists
 Melhorar a pesquisa
 Fazer com que o "home" button abre a pagina dos artistas mais ouvidos

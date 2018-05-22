@@ -495,6 +495,11 @@ namespace PAP
 			}
 			rdr.Close();
 
+			for(int i = 0; i < album.Musicas.Count; i++)
+			{
+				album.Musicas[i] = ProcurarMusica(album.Musicas[i].id);
+			}
+
 			return album;
 		}
 		//Retorna Musica procurando pelo codigo

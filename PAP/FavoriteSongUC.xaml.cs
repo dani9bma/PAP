@@ -39,6 +39,7 @@ namespace PAP
 				Musica musica = Global.sql.ProcurarMusica(codMusicas[i].id);
 				Musicas.Add(musica);
 				FavoriteSongsLB.Items.Add(musica.Nome);
+				ArtistsLB.Items.Add(musica.artista.Nome);
 			}
 		}
 
@@ -50,6 +51,39 @@ namespace PAP
 			FavoriteSongsLB.Items.RemoveAt(pos);
 			Musicas.Clear();
 			InitWindow();
+		}
+
+		public Visual GetDescendantByType(Visual element, Type type)
+		{
+			if (element == null) return null;
+			if (element.GetType() == type) return element;
+			Visual foundElement = null;
+			if (element is FrameworkElement)
+			{
+				(element as FrameworkElement).ApplyTemplate();
+			}
+			for (int i = 0; i < VisualTreeHelper.GetChildrenCount(element); i++)
+			{
+				Visual visual = VisualTreeHelper.GetChild(element, i) as Visual;
+				foundElement = GetDescendantByType(visual, type);
+				if (foundElement != null)
+					break;
+			}
+			return foundElement;
+		}
+
+		private void lbx1_ScrollChanged(object sender, ScrollChangedEventArgs e)
+		{
+			ScrollViewer _listboxScrollViewer1 = GetDescendantByType(FavoriteSongsLB, typeof(ScrollViewer)) as ScrollViewer;
+			ScrollViewer _listboxScrollViewer2 = GetDescendantByType(ArtistsLB, typeof(ScrollViewer)) as ScrollViewer;
+			_listboxScrollViewer1.ScrollToVerticalOffset(_listboxScrollViewer2.VerticalOffset);
+		}
+
+		private void lbx2_ScrollChanged(object sender, ScrollChangedEventArgs e)
+		{
+			ScrollViewer _listboxScrollViewer1 = GetDescendantByType(FavoriteSongsLB, typeof(ScrollViewer)) as ScrollViewer;
+			ScrollViewer _listboxScrollViewer2 = GetDescendantByType(ArtistsLB, typeof(ScrollViewer)) as ScrollViewer;
+			_listboxScrollViewer2.ScrollToVerticalOffset(_listboxScrollViewer1.VerticalOffset);
 		}
 
 		private void FavoriteSongsLB_MouseDoubleClick(object sender, MouseButtonEventArgs e)
