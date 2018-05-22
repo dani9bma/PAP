@@ -21,6 +21,7 @@ namespace PAP
 	public partial class ArtistUC : UserControl
 	{
 		List<Musica> musicas = new List<Musica>();
+		List<Playlist> _playlists = new List<Playlist>();
 		int codArt;
 
 		public ArtistUC(int cod)
@@ -41,6 +42,12 @@ namespace PAP
 			for (int i = 0; i < musicas.Count; i++)
 			{
 				ArtistTracksLB.Items.Add(musicas[i].Nome);
+			}
+
+			_playlists = Global.sql.GetPlaylistsUser(LoginInfo.id);
+			for (int i = 0; i < _playlists.Count; i++)
+			{
+				PlaylistsCB.Items.Add(_playlists[i].nome);
 			}
 		}
 
@@ -84,6 +91,38 @@ namespace PAP
 				}
 			}
 
+		}
+
+		private void AddFavorite_Click(object sender, RoutedEventArgs e)
+		{
+			if (LoginInfo.username != "" && LoginInfo.id != -1)
+			{
+				AddToFavorite_Music();
+			}
+			else
+			{
+				LoginWindow login = new LoginWindow();
+				login.Show();
+				foreach (Window window in Application.Current.Windows)
+				{
+					if (window.GetType() == typeof(MainWindow))
+					{
+						(window as MainWindow).Close();
+					}
+				}
+			}
+		}
+
+		private void AddToFavorite_Music()
+		{
+			int pos = ArtistTracksLB.SelectedIndex;
+			int cod = musicas[pos].id;
+			Global.sql.InserirMusicasFavoritas(cod, LoginInfo.id);
+		}
+
+		private void AddPlaylist_Click(object sender, RoutedEventArgs e)
+		{
+			Global.sql.InserirPlaylist(PlaylistsCB.SelectedItem.ToString(), musicas[ArtistTracksLB.SelectedIndex].id);
 		}
 	}
 }

@@ -28,13 +28,21 @@ namespace PAP
 			//Get Music Disk
 			DriveInfo[] myDrives = DriveInfo.GetDrives();
 
-			foreach (DriveInfo drive in myDrives)
+			try
 			{
-				if(drive.VolumeLabel == "EXT")
+				foreach (DriveInfo drive in myDrives)
 				{
-					Global.RootMusic = drive.Name;
+					if (drive.VolumeLabel == "EXT")
+					{
+						Global.RootMusic = drive.Name;
+					}
 				}
 			}
+			catch(Exception ex)
+			{
+				Console.WriteLine(ex.Source);
+			}
+			
 
 
 			UsernameLabel.Content = LoginInfo.username;

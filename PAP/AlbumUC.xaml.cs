@@ -102,5 +102,37 @@ namespace PAP
 				}
 			}
 		}
+
+		private void AddFavorite_Click(object sender, RoutedEventArgs e)
+		{
+			if (LoginInfo.username != "" && LoginInfo.id != -1)
+			{
+				AddToFavorite_Music();
+			}
+			else
+			{
+				LoginWindow login = new LoginWindow();
+				login.Show();
+				foreach (Window window in Application.Current.Windows)
+				{
+					if (window.GetType() == typeof(MainWindow))
+					{
+						(window as MainWindow).Close();
+					}
+				}
+			}
+		}
+
+		private void AddToFavorite_Music()
+		{
+			int pos = AlbumTracksLB.SelectedIndex;
+			int cod = musicas[pos].id;
+			Global.sql.InserirMusicasFavoritas(cod, LoginInfo.id);
+		}
+
+		private void AddPlaylist_Click(object sender, RoutedEventArgs e)
+		{
+			Global.sql.InserirPlaylist(PlaylistsCB.SelectedItem.ToString(), musicas[AlbumTracksLB.SelectedIndex].id);
+		}
 	}
 }

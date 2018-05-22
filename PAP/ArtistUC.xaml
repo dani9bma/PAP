@@ -10,7 +10,10 @@
         <Image x:Name="ArtistPicture"  HorizontalAlignment="Left" Height="121" Margin="68,29,0,0" VerticalAlignment="Top" Width="182"/>
         <Label x:Name="ArtistName" FontSize="20" Content="ArtistLabel" HorizontalAlignment="Left" Margin="270,29,0,0" VerticalAlignment="Top" Height="38" Width="491"/>
         <ListBox x:Name="ArtistTracksLB" HorizontalAlignment="Left" Height="451" Margin="270,85,0,0" VerticalAlignment="Top" Width="278" MouseDoubleClick="ArtistTracksLB_MouseDoubleClick"/>
-        <Button Content="Adicionar aos Favoritos" HorizontalAlignment="Left" Margin="62,175,0,0" VerticalAlignment="Top" Width="188" Click="Button_Click"/>
+        <Button Content="Adicionar aos Favoritos" HorizontalAlignment="Left" Margin="10,175,0,0" VerticalAlignment="Top" Width="240" Click="Button_Click"/>
+        <Button Content="Adicionar Musica aos Favoritos" HorizontalAlignment="Left" Margin="10,212,0,0" VerticalAlignment="Top" Width="240" Click="AddFavorite_Click"/>
+        <Button Content="Adicionar a playlist" HorizontalAlignment="Left" Margin="10,281,0,0" VerticalAlignment="Top" Width="240" Click="AddPlaylist_Click"/>
+        <ComboBox x:Name="PlaylistsCB"  HorizontalAlignment="Left" Margin="10,249,0,0" VerticalAlignment="Top" Width="240"/>
 
     </Grid>
 </UserControl>
