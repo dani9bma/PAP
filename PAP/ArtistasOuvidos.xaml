@@ -7,18 +7,18 @@
              mc:Ignorable="d" 
              d:DesignHeight="580" d:DesignWidth="619">
     <Grid>
-        <Image Name="Image_1"  HorizontalAlignment="Left" Height="125" Margin="30,46,0,0" VerticalAlignment="Top" Width="160"/>
-        <Image Name="Image_2" HorizontalAlignment="Left" Height="125" Margin="422,46,0,0" VerticalAlignment="Top" Width="160"/>
-        <Image Name="Image_3" HorizontalAlignment="Left" Height="125" Margin="221,46,0,0" VerticalAlignment="Top" Width="160"/>
-        <Image Name="Image_4" HorizontalAlignment="Left" Height="125" Margin="30,269,0,0" VerticalAlignment="Top" Width="160"/>
-        <Image Name="Image_5" HorizontalAlignment="Left" Height="125" Margin="422,269,0,0" VerticalAlignment="Top" Width="160"/>
-        <Image Name="Image_6" HorizontalAlignment="Left" Height="125" Margin="221,269,0,0" VerticalAlignment="Top" Width="160"/>
-        <Label Name="Label_1" Content="Label" HorizontalAlignment="Left" Margin="30,176,0,0" VerticalAlignment="Top" Width="160" Height="32"/>
-        <Label Name="Label_2" Content="Label" HorizontalAlignment="Left" Margin="221,176,0,0" VerticalAlignment="Top" Width="160" Height="32"/>
-        <Label Name="Label_3" Content="Label" HorizontalAlignment="Left" Margin="422,176,0,0" VerticalAlignment="Top" Width="160" Height="32"/>
-        <Label Name="Label_4" Content="Label" HorizontalAlignment="Left" Margin="30,410,0,0" VerticalAlignment="Top" Width="160" Height="32"/>
-        <Label Name="Label_5" Content="Label" HorizontalAlignment="Left" Margin="221,410,0,0" VerticalAlignment="Top" Width="160" Height="32"/>
-        <Label Name="Label_6"  Content="Label" HorizontalAlignment="Left" Margin="422,410,0,0" VerticalAlignment="Top" Width="160" Height="32"/>
+        <Image Name="Image_1"  HorizontalAlignment="Left" Height="125" Margin="30,46,0,0" VerticalAlignment="Top" Width="160" MouseLeftButtonDown="Image_1_MouseLeftButtonDown"/>
+        <Image Name="Image_2" HorizontalAlignment="Left" Height="125" Margin="221,46,0,0" VerticalAlignment="Top" Width="160" MouseLeftButtonDown="Image_2_MouseLeftButtonDown"/>
+        <Image Name="Image_3" HorizontalAlignment="Left" Height="125" Margin="422,51,0,0" VerticalAlignment="Top" Width="160" MouseLeftButtonDown="Image_3_MouseLeftButtonDown"/>
+        <Image Name="Image_4" HorizontalAlignment="Left" Height="125" Margin="30,269,0,0" VerticalAlignment="Top" Width="160" MouseLeftButtonDown="Image_4_MouseLeftButtonDown"/>
+        <Image Name="Image_5" HorizontalAlignment="Left" Height="125" Margin="221,269,0,0" VerticalAlignment="Top" Width="160" MouseLeftButtonDown="Image_5_MouseLeftButtonDown"/>
+        <Image Name="Image_6" HorizontalAlignment="Left" Height="125" Margin="422,269,0,0" VerticalAlignment="Top" Width="160" MouseLeftButtonDown="Image_6_MouseLeftButtonDown"/>
+        <Label Name="Label_1" Content="" HorizontalAlignment="Left" Margin="30,176,0,0" VerticalAlignment="Top" Width="160" Height="32" MouseDoubleClick="Label_1_MouseDoubleClick"/>
+        <Label Name="Label_2" Content="" HorizontalAlignment="Left" Margin="221,176,0,0" VerticalAlignment="Top" Width="160" Height="32" MouseDoubleClick="Label_2_MouseDoubleClick"/>
+        <Label Name="Label_3" Content="" HorizontalAlignment="Left" Margin="422,176,0,0" VerticalAlignment="Top" Width="160" Height="32" MouseDoubleClick="Label_3_MouseDoubleClick"/>
+        <Label Name="Label_4" Content="" HorizontalAlignment="Left" Margin="30,410,0,0" VerticalAlignment="Top" Width="160" Height="32" MouseDoubleClick="Label_4_MouseDoubleClick"/>
+        <Label Name="Label_5" Content="" HorizontalAlignment="Left" Margin="221,410,0,0" VerticalAlignment="Top" Width="160" Height="32" MouseDoubleClick="Label_5_MouseDoubleClick"/>
+        <Label Name="Label_6"  Content="" HorizontalAlignment="Left" Margin="422,410,0,0" VerticalAlignment="Top" Width="160" Height="32" MouseDoubleClick="Label_6_MouseDoubleClick"/>
 
     </Grid>
 </UserControl>

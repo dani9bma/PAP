@@ -251,6 +251,8 @@ namespace PAP
 				}
 			}
 
+			rdr.Close();
+
 			sql = "INSERT INTO artistas_ouvidos (id_artista, nome, id_user, ouvido) VALUES (" + id_artista + ", '" + nome + "' , " + LoginInfo.id + ", " + 0 + ")";
 			cmd = new MySqlCommand(sql, _conn);
 			cmd.ExecuteNonQuery();
@@ -329,25 +331,24 @@ namespace PAP
 				}
 				rdr.Close();
 			}
-			else
-			{
-				for(int i = 0; i < artistas.Count; i++)
-				{
-					sql = "SELECT img FROM artistas WHERE id_artista = " + artistas[i].id;
-					cmd = new MySqlCommand(sql, _conn);
-					rdr = cmd.ExecuteReader();
 
-					if (rdr.Read())
-					{
-						Artista artista = new Artista();
-						artista.id = artistas[i].id;
-						artista.Nome = artistas[i].Nome;
-						artista.Img = rdr[0].ToString();
-						artistas[i] = artista;
-					}
-					rdr.Close();
+			for(int i = 0; i < artistas.Count; i++)
+			{
+				sql = "SELECT img FROM artistas WHERE id_artista = " + artistas[i].id;
+				cmd = new MySqlCommand(sql, _conn);
+				rdr = cmd.ExecuteReader();
+
+				if (rdr.Read())
+				{
+					Artista artista = new Artista();
+					artista.id = artistas[i].id;
+					artista.Nome = artistas[i].Nome;
+					artista.Img = rdr[0].ToString();
+					artistas[i] = artista;
 				}
+				rdr.Close();
 			}
+			
 
 			return artistas;
 		}

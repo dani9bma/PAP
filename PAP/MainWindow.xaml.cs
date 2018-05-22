@@ -19,11 +19,12 @@ namespace PAP
 		private List<Musica> _tracks = new List<Musica>();
 		private List<Album> _albums = new List<Album>();
 		private List<Playlist> playlists = new List<Playlist>();
-		private bool dark = true;
-
+		
 		public MainWindow()
 		{
 			InitializeComponent();
+
+			ContentSwitch.Content = new ArtistasOuvidos();
 
 			//Get Music Disk
 			DriveInfo[] myDrives = DriveInfo.GetDrives();
@@ -295,9 +296,7 @@ namespace PAP
 
 		private void HomeBtn_Click(object sender, RoutedEventArgs e)
 		{
-			MainWindow w = new MainWindow();
-			w.Show();
-			this.Close();
+			ContentSwitch.Content = new ArtistasOuvidos();
 		}
 
 		private void Button_Click(object sender, RoutedEventArgs e)
