@@ -1,5 +1,3 @@
 ﻿Tocar as musicas seguidas
-Acabar os artistas mais ouvidos
 Melhorar a pesquisa
-Fazer com que o "home" button abre a pagina dos artistas mais ouvidos
-Fazer a cena de adicionar imagem
+Erro quando pesquisa e nao existe nada

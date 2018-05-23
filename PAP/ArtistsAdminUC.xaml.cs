@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace PAP
 	public partial class ArtistsAdminUC : UserControl
 	{
 		List<Artista> artistas = new List<Artista>();
+		string newDest;
 
 		public ArtistsAdminUC()
 		{
@@ -122,15 +124,58 @@ namespace PAP
 
 		private void Button_Click_1(object sender, RoutedEventArgs e)
 		{
-			if (NameTxt.Text.Length > 0 && ImgTxt.Text.Length > 0 && MusicNameTxt.Text.Length > 0)
+			if (NameTxt.Text.Length > 0 && MusicNameTxt.Text.Length > 0 && newDest.Length > 0)
 			{
-				Global.sql.InserirArtistas(NameTxt.Text, ImgTxt.Text);
+				Global.sql.InserirArtistas(NameTxt.Text, newDest);
 				int cod = Global.sql.GetCodigoArtista(NameTxt.Text);
 				Global.sql.InserirMusicas(MusicNameTxt.Text, cod);
 			}
 			else
 			{
 				MessageBox.Show("Tem de preencher todos os campos");
+			}
+		}
+
+		private void Button_Click_2(object sender, RoutedEventArgs e)
+		{
+			Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+			dlg.DefaultExt = ".png";
+			dlg.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files (*.png)|*.png|JPG Files (*.jpg)|*.jpg|GIF Files (*.gif)|*.gif";
+
+			
+			Nullable<bool> result = dlg.ShowDialog();
+
+			if (result == true)
+			{
+				string path = dlg.FileName;
+				string filename = dlg.SafeFileName;
+				ImgTxt.Text = path;
+				string current = Directory.GetCurrentDirectory();
+				current = current.Replace(@"\", @"/");
+				string replace = "";
+				if (Directory.Exists(current + "/Images"))
+				{
+					newDest = current + @"/Images/" + filename;
+					replace = current + @"/" + filename;
+				}
+				else
+				{
+					Directory.CreateDirectory(current + "/Images");
+					newDest = current + @"/Images/" + filename;
+					replace = current + @"/" + filename;
+				}
+				
+				if(File.Exists(newDest))
+				{
+					File.Replace(path, newDest, replace);
+					File.Delete(replace);
+					File.Copy(newDest, path);
+				}
+				else
+				{
+					File.Copy(path, newDest);
+				}
 			}
 		}
 	}

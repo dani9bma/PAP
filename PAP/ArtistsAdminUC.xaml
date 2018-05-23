@@ -16,9 +16,10 @@
         <Label Content="Nome:" HorizontalAlignment="Left" Margin="506,88,0,0" VerticalAlignment="Top"/>
         <Label Content="Imagem:" HorizontalAlignment="Left" Margin="490,120,0,0" VerticalAlignment="Top"/>
         <TextBox Name="NameTxt" HorizontalAlignment="Left" Height="24" Margin="556,92,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-        <TextBox Name="ImgTxt" HorizontalAlignment="Left" Height="24" Margin="556,120,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="ImgTxt" IsReadOnly="True" HorizontalAlignment="Left" Height="24" Margin="556,120,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Button Content="Inserir Artista" HorizontalAlignment="Left" Margin="494,210,0,0" VerticalAlignment="Top" Width="182" Height="26" Click="Button_Click_1"/>
         <Label Content="Nome da Musica:" HorizontalAlignment="Left" Margin="434,150,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="MusicNameTxt" HorizontalAlignment="Left" Height="24" Margin="556,150,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Abrir" HorizontalAlignment="Left" Margin="681,120,0,0" VerticalAlignment="Top" Width="90" Height="26" Click="Button_Click_2"/>
     </Grid>
 </UserControl>

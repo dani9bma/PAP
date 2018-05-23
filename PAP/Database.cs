@@ -131,8 +131,9 @@ namespace PAP
             List<Artista> art = ProcurarArtistas(nome, 1);
             if (nome.Contains("'"))
                 nome = nome.Replace("'", " ");
-            if (img == art[0].Img)
-                return;
+			if(art.Count > 0)
+				if (img == art[0].Img)
+					return;
             string sql = "INSERT INTO artistas (nome, img) VALUES ('" + nome + "', '" + img + "')";
             MySqlCommand cmd = new MySqlCommand(sql, _conn);
             cmd.ExecuteNonQuery();
@@ -512,9 +513,15 @@ namespace PAP
 			return new Artista();
 		}
 
-		public void AlterarArtista(int cod, string nome)
+		public void AlterarArtista(int cod, string nome, string img)
 		{
-			string sql = "UPDATE artistas SET nome = '" + nome + "' WHERE id_artista = " + cod;
+			if(img == "")
+			{
+				Artista artista = ProcurarArtista(cod);
+				img = artista.Img;
+			}
+
+			string sql = "UPDATE artistas SET nome = '" + nome + "' , img = '" + img + "' WHERE id_artista = " + cod;
 			MySqlCommand cmd = new MySqlCommand(sql, _conn);
 			cmd.ExecuteNonQuery();
 		}
