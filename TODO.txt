@@ -1,3 +1,5 @@
 ﻿Tocar as musicas seguidas
 Melhorar a pesquisa
 Erro quando pesquisa e nao existe nada
+Manual de utilizador
+Relatorio
