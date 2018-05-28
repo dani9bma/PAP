@@ -1,5 +1,5 @@
-﻿Tocar as musicas seguidas
-Melhorar a pesquisa
+﻿Melhorar a pesquisa
 Erro quando pesquisa e nao existe nada
+Adicionar barra de tamanho da musica
 Manual de utilizador
 Relatorio
