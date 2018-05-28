@@ -340,5 +340,39 @@ namespace PAP
 		{
 			MediaPlayer.Pause();
 		}
+
+		private void MediaPlayer_MediaEnded(object sender, RoutedEventArgs e)
+		{
+			if (Global.playlist_index == Global.playlist_max_index)
+				Global.playlist_index = -1;
+			string nome = Global.playlist[Global.playlist_index + 1].Nome;
+			string nomeArtista = Global.playlist[Global.playlist_index + 1].artista.Nome;
+			string final = Global.RootMusic + @"PAPMusic\" + nome + " - " + nomeArtista + @".mp4";
+			MediaPlayer.Source = new Uri(final);
+			MediaPlayer.Play();
+			Global.playlist_index++;
+		}
+
+		private void Button_Click_1(object sender, RoutedEventArgs e)
+		{
+			if (Global.playlist_index == Global.playlist_max_index)
+				Global.playlist_index = -1;
+			string nome = Global.playlist[Global.playlist_index + 1].Nome;
+			string nomeArtista = Global.playlist[Global.playlist_index + 1].artista.Nome;
+			string final = Global.RootMusic + @"PAPMusic\" + nome + " - " + nomeArtista + @".mp4";
+			MediaPlayer.Source = new Uri(final);
+			MediaPlayer.Play();
+			Global.playlist_index++;
+		}
+
+		private void Button_Click_2(object sender, RoutedEventArgs e)
+		{
+			string nome = Global.playlist[Global.playlist_index - 1].Nome;
+			string nomeArtista = Global.playlist[Global.playlist_index - 1].artista.Nome;
+			string final = Global.RootMusic + @"PAPMusic\" + nome + " - " + nomeArtista + @".mp4";
+			MediaPlayer.Source = new Uri(final);
+			MediaPlayer.Play();
+			Global.playlist_index--;
+		}
 	}
 }

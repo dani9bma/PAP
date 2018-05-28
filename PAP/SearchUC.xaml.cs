@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -247,6 +248,18 @@ namespace PAP
 				Global.sql.InserirArtistaOuvido(codArt, nomeArtista);
 
 			string final = Global.RootMusic + @"PAPMusic\" + nome + " - " + nomeArtista + @".mp4";
+
+			Global.playlist_index = MusMusLB.SelectedIndex;
+			Global.playlist_max_index = MusMusLB.Items.Count - 1;
+
+			Global.playlist.Clear();
+			for (int i = 0; i < MusMusLB.Items.Count; i++)
+			{
+				Musica musica = new Musica();
+				musica.Nome = MusMusLB.Items[i].ToString();
+				musica.artista.Nome = MusArtLB.Items[i].ToString();
+				Global.playlist.Add(musica);
+			}
 
 			foreach (Window window in Application.Current.Windows)
 			{

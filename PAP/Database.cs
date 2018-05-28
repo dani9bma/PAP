@@ -249,6 +249,8 @@ namespace PAP
 					sql = "UPDATE artistas_ouvidos SET ouvido = " + o + " WHERE id_artista = " + id_artista;
 					cmd = new MySqlCommand(sql, _conn);
 					cmd.ExecuteNonQuery();
+
+					return;
 				}
 			}
 
@@ -420,7 +422,8 @@ namespace PAP
 
 			while (rdr.Read())
 			{
-			 	ids.Add(int.Parse(rdr[0].ToString()));
+				if(int.Parse(rdr[0].ToString()) != -1)
+			 		ids.Add(int.Parse(rdr[0].ToString()));
 			}
 
 			rdr.Close();

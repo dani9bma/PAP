@@ -13,7 +13,7 @@
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto" Closing="Window_Closing">
 
     <Grid>
-        <MediaElement Name="MediaPlayer" HorizontalAlignment="Left" Height="22" Margin="1240,667,0,0" VerticalAlignment="Top" Width="32" Volume="1" UnloadedBehavior="Manual" LoadedBehavior="Manual"/>
+        <MediaElement Name="MediaPlayer" HorizontalAlignment="Left" Height="22" Margin="1240,667,0,0" VerticalAlignment="Top" Width="32" Volume="1" UnloadedBehavior="Manual" LoadedBehavior="Manual" MediaEnded="MediaPlayer_MediaEnded"/>
         <Button Name="StopButton" Content="" HorizontalAlignment="Left" Margin="304,592,0,0" VerticalAlignment="Top" Width="43" Click="StopButton_Click">
             <Button.Background>
                 <ImageBrush ImageSource="res/pause.png"/>
@@ -46,12 +46,12 @@
                 <ImageBrush ImageSource="res/home.png"/>
             </Button.Background>
         </Button>
-        <Button Content="" HorizontalAlignment="Left" Margin="352,592,0,0" VerticalAlignment="Top" Width="43" >
+        <Button Content="" HorizontalAlignment="Left" Margin="352,592,0,0" VerticalAlignment="Top" Width="43" Click="Button_Click_1" >
             <Button.Background>
                 <ImageBrush ImageSource="res/next.png"/>
             </Button.Background>
         </Button>
-        <Button Content="" HorizontalAlignment="Left" Margin="209,592,0,0" VerticalAlignment="Top" Width="42" >
+        <Button Content="" HorizontalAlignment="Left" Margin="209,592,0,0" VerticalAlignment="Top" Width="42" Click="Button_Click_2" >
             <Button.Background>
                 <ImageBrush ImageSource="res/previous.png"/>
             </Button.Background>

@@ -84,6 +84,19 @@ namespace PAP
 				Global.sql.InserirArtistaOuvido(codArt, nomeArtista);
 			string final = Global.RootMusic + @"PAPMusic\" + nome + " - " + nomeArtista + @".mp4";
 
+			Global.playlist_index = ArtistTracksLB.SelectedIndex;
+			Global.playlist_max_index = ArtistTracksLB.Items.Count - 1;
+
+
+			Global.playlist.Clear();
+			for (int i = 0; i < ArtistTracksLB.Items.Count; i++)
+			{
+				Musica musica = new Musica();
+				musica.Nome = ArtistTracksLB.Items[i].ToString();
+				musica.artista.Nome = nomeArtista;
+				Global.playlist.Add(musica);
+			}
+
 			foreach (Window window in Application.Current.Windows)
 			{
 				if (window.GetType() == typeof(MainWindow))

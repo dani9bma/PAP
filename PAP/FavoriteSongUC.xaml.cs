@@ -96,6 +96,18 @@ namespace PAP
 
 			string final = Global.RootMusic + @"PAPMusic\" + nome + " - " + nomeArtista + @".mp4";
 
+			Global.playlist_index = FavoriteSongsLB.SelectedIndex;
+			Global.playlist_max_index = FavoriteSongsLB.Items.Count - 1;
+
+			Global.playlist.Clear();
+			for (int i = 0; i < FavoriteSongsLB.Items.Count; i++)
+			{
+				Musica musica = new Musica();
+				musica.Nome = FavoriteSongsLB.Items[i].ToString();
+				musica.artista.Nome = FavoriteSongsLB.Items[i].ToString();
+				Global.playlist.Add(musica);
+			}
+
 			foreach (Window window in Application.Current.Windows)
 			{
 				if (window.GetType() == typeof(MainWindow))
