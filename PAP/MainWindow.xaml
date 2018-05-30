@@ -12,6 +12,11 @@
         TextElement.FontSize="14"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto" Closing="Window_Closing">
 
+    <Window.Resources>
+        <Image x:Key="volume" Source="/res/volume.png" Width="80" Height="50"/>
+        <Image x:Key="volume-off" Source="/res/volume-off.png" Width="80" Height="50"/>
+    </Window.Resources>
+
     <Grid>
         <MediaElement Name="MediaPlayer" HorizontalAlignment="Left" Height="22" Margin="1240,667,0,0" VerticalAlignment="Top" Width="32" Volume="1" UnloadedBehavior="Manual" LoadedBehavior="Manual" MediaEnded="MediaPlayer_MediaEnded"/>
         <Button Name="StopButton" Content="" HorizontalAlignment="Left" Margin="304,592,0,0" VerticalAlignment="Top" Width="43" Click="StopButton_Click">
@@ -24,7 +29,7 @@
                 <ImageBrush ImageSource="res/play.png"/>
             </Button.Background>
         </Button>
-        <Slider Name="VolumeSlider" HorizontalAlignment="Left" Margin="209,560,0,0" VerticalAlignment="Top" Width="186" ValueChanged="VolumeSlider_ValueChanged" Maximum="1" Value="0.5" Height="20"/>
+        <Slider Name="VolumeSlider" HorizontalAlignment="Left" Margin="256,560,0,0" VerticalAlignment="Top" Width="139" ValueChanged="VolumeSlider_ValueChanged" Maximum="1" Value="0.5" Height="20"/>
         <Label Name="UsernameLabel" Content="" HorizontalAlignment="Left" Margin="1082,48,-82,0" VerticalAlignment="Top" Width="206"/>
         <Label Name="LoggedAsLabel" Content="Logado Como" HorizontalAlignment="Left" Margin="980,48,0,0" VerticalAlignment="Top" Width="102"/>
         <Button Name="LoginBtn" Content="Logout" HorizontalAlignment="Left" Margin="874,48,0,0" VerticalAlignment="Top" Width="93" Click="LoginBtn_Click"/>
@@ -63,5 +68,10 @@
         </Button>
         <Button Content="Criar Playlist" HorizontalAlignment="Left" Margin="10,632,0,0" VerticalAlignment="Top" Width="194" Click="Button_Click"/>
         <Button Content="Eliminar Playlist" HorizontalAlignment="Left" Margin="10,592,0,0" VerticalAlignment="Top" Width="194" Click="DeletePlaylist_Click"/>
+        <Button Name="VolumeBtn" Content="" HorizontalAlignment="Left" Margin="209,555,0,0" VerticalAlignment="Top" Width="42" Click="MuteSoundButton" >
+            <Button.Background>
+                <ImageBrush ImageSource="res/volume.png"/>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>

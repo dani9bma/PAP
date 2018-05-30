@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using SpotifyAPI.Web.Models;
 
 namespace PAP
@@ -373,6 +374,25 @@ namespace PAP
 			MediaPlayer.Source = new Uri(final);
 			MediaPlayer.Play();
 			Global.playlist_index--;
+		}
+
+		private void MuteSoundButton(object sender, RoutedEventArgs e)
+		{
+			if (MediaPlayer.Volume == 0)
+			{
+				MediaPlayer.Volume = VolumeSlider.Value;
+				var brush = new ImageBrush();
+				brush.ImageSource = new BitmapImage(new Uri("res/volume.png", UriKind.Relative));
+				VolumeBtn.Background = brush;
+			}
+			else
+			{
+				MediaPlayer.Volume = 0;
+				var brush = new ImageBrush();
+				brush.ImageSource = new BitmapImage(new Uri("res/volume-off.png", UriKind.Relative));
+				VolumeBtn.Background = brush;
+			}
+
 		}
 	}
 }
