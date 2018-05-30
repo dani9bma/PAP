@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 using SpotifyAPI.Web.Models;
 
 namespace PAP
@@ -20,7 +21,8 @@ namespace PAP
 		private List<Musica> _tracks = new List<Musica>();
 		private List<Album> _albums = new List<Album>();
 		private List<Playlist> playlists = new List<Playlist>();
-		
+		public DispatcherTimer mediaPlayerTimer;
+
 		public MainWindow()
 		{
 			InitializeComponent();
@@ -69,6 +71,26 @@ namespace PAP
 				playlistsLB.Items.Add(playlists[i].nome);
 			}
 
+		}
+		
+		public void MediaPlayerTimer_Tick(object sender, EventArgs e)
+		{
+			if (MediaPlayer.Source != null && MediaPlayer.NaturalDuration.HasTimeSpan) /* We will check if the source is null, and if the media element has a time span and if the answer is yes we execute the following code */
+			{
+				SongSizeSlider.Maximum = MediaPlayer.NaturalDuration.TimeSpan.TotalSeconds; /*This will set the maxim value (seconds) of the slider. I like to put it here in the Timer_Tick because I don't like to create a new mediaPlayer every time I open a song so this parameter will not update if I don't call that function again. Putting it here makes sure will always have the right value if songs are changing */
+
+				SongSizeSlider.Value = MediaPlayer.Position.TotalSeconds; /* Here be careful because in some tutorial online, you will find Position.Seconds which is not a good solution because everytime the seconds arrive to 60, they reset from 1 again so will not work properly. */
+
+			}
+			else
+			{
+				SongSizeSlider.Value = 0; //We don't want the slider to stay in some strange position if the song ends//
+			}
+		}
+		
+		private void SongSizeSlider_PreviewMouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+		{
+			MediaPlayer.Position = TimeSpan.FromSeconds(SongSizeSlider.Value);
 		}
 
 		/*

@@ -73,5 +73,6 @@
                 <ImageBrush ImageSource="res/volume.png"/>
             </Button.Background>
         </Button>
+        <Slider Name="SongSizeSlider" HorizontalAlignment="Left" Margin="209,645,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.833,0" Width="186" PreviewMouseLeftButtonUp="SongSizeSlider_PreviewMouseLeftButtonUp" />
     </Grid>
 </Window>

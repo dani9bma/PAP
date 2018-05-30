@@ -1,18 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace PAP
 {
@@ -266,6 +258,10 @@ namespace PAP
 				if (window.GetType() == typeof(MainWindow))
 				{
 					(window as MainWindow).MediaPlayer.Source = new Uri(final);
+					(window as MainWindow).mediaPlayerTimer = new DispatcherTimer();
+					(window as MainWindow).mediaPlayerTimer.IsEnabled = true;
+					(window as MainWindow).mediaPlayerTimer.Interval = TimeSpan.FromMilliseconds(1000);
+					(window as MainWindow).mediaPlayerTimer.Tick += (window as MainWindow).MediaPlayerTimer_Tick;
 					(window as MainWindow).MediaPlayer.Play();
 				}
 			}
