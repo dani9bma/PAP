@@ -441,55 +441,42 @@ namespace PAP
 		public List<Artista> ProcurarArtistas(string nome, int qtd)
         {
 			//TODO: Mudar o nome das vars
-			Artista[] musica = new Artista[qtd];
+			List<Artista> artistas = new List<Artista>();
 			string sql = "SELECT nome, id_artista, img FROM artistas WHERE nome LIKE '%" + nome + "%'";
 			MySqlCommand cmd = new MySqlCommand(sql, _conn);
 			MySqlDataReader rdr = cmd.ExecuteReader();
 			string art = "";
 			//int artId = -1;
 
-			for (int i = 0; i < qtd; i++)
+			while (rdr.Read())
 			{
-				if (rdr.Read())
+				if (art != rdr[0].ToString() /*|| artId != int.Parse(rdr[1].ToString())*/)
 				{
-					if (art != rdr[0].ToString() /*|| artId != int.Parse(rdr[1].ToString())*/)
-					{
-						//var m = rdr[1].ToString();
-						art = rdr[0].ToString();
-						//artId = int.Parse(rdr[1].ToString());
-						musica[i].Nome = art;
-						musica[i].id = int.Parse(rdr[1].ToString());
-						musica[i].Img = rdr[2].ToString();
-					}
-					else
-					{
-						musica[i].Nome = "";
-						musica[i].id = -1;
-						musica[i].Img = "";
-					}
+					Artista artista = new Artista();
+					//var m = rdr[1].ToString();
+					art = rdr[0].ToString();
+					//artId = int.Parse(rdr[1].ToString());
+					artista.Nome = art;
+					artista.id = int.Parse(rdr[1].ToString());
+					artista.Img = rdr[2].ToString();
+					artistas.Add(artista);
 				}
 				else
 				{
-					musica[i].Nome = "";
-					musica[i].id = -1;
-					musica[i].Img = "";
+					Artista artista = new Artista();
+					artista.Nome = "";
+					artista.id = -1;
+					artista.Img = "";
+					artistas.Add(artista);
 				}
 			}
 
 			rdr.Close();
 
-			List<Artista> mu = new List<Artista>();
-			for (int i = 0; i < musica.Length; i++)
-			{
-				if (musica[i].Nome != "")
-				{
-					mu.Add(musica[i]);
-				}
-			}
 
-			if (mu.Count > 0)
+			if (artistas.Count > 0)
 			{
-				return mu;
+				return artistas;
 			}
 
 			return new List<Artista>();
@@ -702,12 +689,15 @@ namespace PAP
             {
                 if (art != rdr[0].ToString() || artId != int.Parse(rdr[1].ToString()))
                 {
-                    var m = rdr[1].ToString();
                     art = rdr[0].ToString();
                     artId = int.Parse(rdr[1].ToString());
 					Musica musica = new Musica();
                     musica.Nome = art;
-                    musica.artista = artista[int.Parse(m) - 1];
+					for(int i = 0; i < artista.Count; i++)
+					{
+						if(artista[i].id == (artId - 1))
+							musica.artista = artista[artId - 1];
+					}
 	                musica.id = int.Parse(rdr[2].ToString());
 					musicas.Add(musica);
                 }

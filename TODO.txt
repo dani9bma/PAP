@@ -1,4 +1,3 @@
-﻿Melhorar a pesquisa
-Erro quando pesquisa e nao existe nada
+﻿Subscricoes (pode criar mais de 2 playlists, pode adicionar artistas favoritos/ albums favoritos / musicas favoritas)
 Manual de utilizador
 Relatorio

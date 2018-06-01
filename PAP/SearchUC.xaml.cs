@@ -62,17 +62,17 @@ namespace PAP
 			}
 			else
 			{
-				for (int i = 0; i < (_artists.Count - 1); i++)
+				for (int i = 0; i < (_artists.Count); i++)
 					ArtArtLB.Items.Add(_artists[i].Nome);
 			}
 
-			for (int i = 0; i < (_tracks.Count - 1); i++)
+			for (int i = 0; i < (_tracks.Count); i++)
 			{
 				MusMusLB.Items.Add(_tracks[i].Nome);
 				MusArtLB.Items.Add(_tracks[i].artista.Nome);
 			}
 
-			for (int i = 0; i < (_albums.Count - 1); i++)
+			for (int i = 0; i < (_albums.Count); i++)
 			{
 				AlbAlbLB.Items.Add(_albums[i].Nome);
 				AlbArtLB.Items.Add(_albums[i].Musicas[0].artista.Nome);
