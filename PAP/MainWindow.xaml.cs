@@ -36,9 +36,12 @@ namespace PAP
 			{
 				foreach (DriveInfo drive in myDrives)
 				{
-					if (drive.VolumeLabel == "EXT")
+					if(drive.DriveType != DriveType.CDRom)
 					{
-						Global.RootMusic = drive.Name;
+						if (drive.VolumeLabel == "EXT")
+						{
+							Global.RootMusic = drive.Name;
+						}
 					}
 				}
 			}
