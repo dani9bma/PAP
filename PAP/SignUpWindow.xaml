@@ -13,12 +13,14 @@
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto" Closing="Window_Closing">
     <Grid>
         <Button x:Name="RegBtn" Content="Registar" HorizontalAlignment="Left" Margin="245,142,0,0" VerticalAlignment="Top" Width="83" Height="26" Click="loginBtn_Click"/>
-        <TextBox x:Name="UsernameTb" HorizontalAlignment="Left" Height="27" Margin="245,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Username:" HorizontalAlignment="Left" Margin="160,79,0,0" VerticalAlignment="Top" Width="80"/>
-        <Label Content="Password:"  HorizontalAlignment="Left" Margin="160,111,0,0" VerticalAlignment="Top" Width="80" Height="26"/>
-        <PasswordBox x:Name="PasswordTb" HorizontalAlignment="Left" Margin="245,111,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="NomeTb" HorizontalAlignment="Left" Height="28" Margin="245,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Nome:" HorizontalAlignment="Left" Margin="183,47,0,0" VerticalAlignment="Top" Width="57"/>
+        <TextBox x:Name="UsernameTb" HorizontalAlignment="Left" Height="27" Margin="244,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Username:" HorizontalAlignment="Left" Margin="159,42,0,0" VerticalAlignment="Top" Width="80"/>
+        <Label Content="Password:"  HorizontalAlignment="Left" Margin="159,74,0,0" VerticalAlignment="Top" Width="80" Height="26"/>
+        <PasswordBox x:Name="PasswordTb" HorizontalAlignment="Left" Margin="244,74,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="NomeTb" HorizontalAlignment="Left" Height="28" Margin="244,9,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Nome:" HorizontalAlignment="Left" Margin="182,10,0,0" VerticalAlignment="Top" Width="57"/>
+        <Label Content="Confimar Password:"  HorizontalAlignment="Left" Margin="100,105,0,0" VerticalAlignment="Top" Width="139" Height="26"/>
+        <PasswordBox x:Name="ConfPasswordTB" HorizontalAlignment="Left" Margin="244,105,0,0" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>

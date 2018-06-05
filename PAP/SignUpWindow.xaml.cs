@@ -28,8 +28,15 @@ namespace PAP
 		{
 			if(Global.sql.RegistarUtilizador(UsernameTb.Text, PasswordTb.Password.ToString(), NomeTb.Text))
 			{
-				MessageBox.Show("Registado com sucesso");
-				this.Close();
+				if(PasswordTb.Password.ToString() == ConfPasswordTB.Password.ToString())
+				{
+					MessageBox.Show("Registado com sucesso");
+					this.Close();
+				}
+				else
+				{
+					MessageBox.Show("As passwords têm de corresponder");
+				}
 			}
 		}
 

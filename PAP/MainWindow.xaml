@@ -19,14 +19,9 @@
 
     <Grid>
         <MediaElement Name="MediaPlayer" HorizontalAlignment="Left" Height="22" Margin="1240,667,0,0" VerticalAlignment="Top" Width="32" Volume="1" UnloadedBehavior="Manual" LoadedBehavior="Manual" MediaEnded="MediaPlayer_MediaEnded"/>
-        <Button Name="StopButton" Content="" HorizontalAlignment="Left" Margin="304,592,0,0" VerticalAlignment="Top" Width="43" Click="StopButton_Click">
+        <Button Name="StopButton" Content="" HorizontalAlignment="Left" Margin="281,592,0,0" VerticalAlignment="Top" Width="43" Click="StopButton_Click">
             <Button.Background>
                 <ImageBrush ImageSource="res/pause.png"/>
-            </Button.Background>
-        </Button>
-        <Button Name="PlayButton" Content="" HorizontalAlignment="Left" Margin="256,592,0,0" VerticalAlignment="Top" Width="43" Click="PlayButton_Click">
-            <Button.Background>
-                <ImageBrush ImageSource="res/play.png"/>
             </Button.Background>
         </Button>
         <Slider Name="VolumeSlider" HorizontalAlignment="Left" Margin="256,560,0,0" VerticalAlignment="Top" Width="139" ValueChanged="VolumeSlider_ValueChanged" Maximum="1" Value="0.5" Height="20"/>
@@ -51,12 +46,12 @@
                 <ImageBrush ImageSource="res/home.png"/>
             </Button.Background>
         </Button>
-        <Button Content="" HorizontalAlignment="Left" Margin="352,592,0,0" VerticalAlignment="Top" Width="43" Click="Button_Click_1" >
+        <Button Content="" HorizontalAlignment="Left" Margin="329,592,0,0" VerticalAlignment="Top" Width="43" Click="Button_Click_1" >
             <Button.Background>
                 <ImageBrush ImageSource="res/next.png"/>
             </Button.Background>
         </Button>
-        <Button Content="" HorizontalAlignment="Left" Margin="209,592,0,0" VerticalAlignment="Top" Width="42" Click="Button_Click_2" >
+        <Button Content="" HorizontalAlignment="Left" Margin="234,592,0,0" VerticalAlignment="Top" Width="42" Click="Button_Click_2" >
             <Button.Background>
                 <ImageBrush ImageSource="res/previous.png"/>
             </Button.Background>

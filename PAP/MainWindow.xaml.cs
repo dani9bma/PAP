@@ -22,6 +22,7 @@ namespace PAP
 		private List<Album> _albums = new List<Album>();
 		private List<Playlist> playlists = new List<Playlist>();
 		public DispatcherTimer mediaPlayerTimer;
+		private bool IsPaused = false;
 
 		public MainWindow()
 		{
@@ -213,13 +214,22 @@ namespace PAP
 
 		private void StopButton_Click(object sender, RoutedEventArgs e)
 		{
-			if (MediaPlayer.CanPause)
+			if (!IsPaused)
+			{
 				MediaPlayer.Pause();
-		}
-
-		private void PlayButton_Click(object sender, RoutedEventArgs e)
-		{
-			MediaPlayer.Play();
+				var brush = new ImageBrush();
+				brush.ImageSource = new BitmapImage(new Uri("res/play.png", UriKind.Relative));
+				StopButton.Background = brush;
+				IsPaused = true;
+			}
+			else
+			{
+				MediaPlayer.Play();
+				var brush = new ImageBrush();
+				brush.ImageSource = new BitmapImage(new Uri("res/pause.png", UriKind.Relative));
+				StopButton.Background = brush;
+				IsPaused = false;
+			}
 		}
 		
 
