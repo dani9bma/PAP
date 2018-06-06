@@ -1,3 +1,4 @@
-﻿Subscricoes (pode criar mais de 2 playlists, pode adicionar artistas favoritos/ albums favoritos / musicas favoritas)
+﻿Subscricoes (pode criar mais de 2 playlists, pode adicionar artistas favoritos/ albums favoritos / musicas favoritas) ?
+Pagina alterar user
 Manual de utilizador
 Relatorio
