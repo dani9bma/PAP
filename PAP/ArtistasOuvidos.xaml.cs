@@ -110,6 +110,27 @@ namespace PAP
 					Image_6.Source = (ImageSource)converter.ConvertFromString(artistas[5].Img);
 					Label_6.Content = artistas[5].Nome;
 					break;
+
+				default:
+					converter = new ImageSourceConverter();
+					Image_1.Source = (ImageSource)converter.ConvertFromString(artistas[0].Img);
+					Label_1.Content = artistas[0].Nome;
+					converter = new ImageSourceConverter();
+					Image_2.Source = (ImageSource)converter.ConvertFromString(artistas[1].Img);
+					Label_2.Content = artistas[1].Nome;
+					converter = new ImageSourceConverter();
+					Image_3.Source = (ImageSource)converter.ConvertFromString(artistas[2].Img);
+					Label_3.Content = artistas[2].Nome;
+					converter = new ImageSourceConverter();
+					Image_4.Source = (ImageSource)converter.ConvertFromString(artistas[3].Img);
+					Label_4.Content = artistas[3].Nome;
+					converter = new ImageSourceConverter();
+					Image_5.Source = (ImageSource)converter.ConvertFromString(artistas[4].Img);
+					Label_5.Content = artistas[4].Nome;
+					converter = new ImageSourceConverter();
+					Image_6.Source = (ImageSource)converter.ConvertFromString(artistas[5].Img);
+					Label_6.Content = artistas[5].Nome;
+					break;
 			}
 		}
 
