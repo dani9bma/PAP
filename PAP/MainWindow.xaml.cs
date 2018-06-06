@@ -56,7 +56,8 @@ namespace PAP
 			UsernameLabel.Content = LoginInfo.username;
 			if (LoginInfo.username == "")
 			{
-				LoggedAsLabel.Content = "";
+				LoggedAs.Visibility = Visibility.Hidden;
+				UsernameLabel.Visibility = Visibility.Hidden;
 				LoginBtn.Content = "Login";
 			}
 			else
@@ -246,9 +247,10 @@ namespace PAP
 			{
 				LoginInfo.username = "";
 				LoginInfo.id = -1;
-				LoggedAsLabel.Content = "";
+				LoggedAs.Visibility = Visibility.Visible;
 				LoginBtn.Content = "Login";
 				UsernameLabel.Content = "";
+				UsernameLabel.Visibility = Visibility.Visible;
 				RegistarBtn.Visibility = Visibility.Visible;
 
 				MainWindow m = new MainWindow();
@@ -428,6 +430,11 @@ namespace PAP
 				VolumeBtn.Background = brush;
 			}
 
+		}
+		
+		private void UsernameLabel_Click(object sender, RoutedEventArgs e)
+		{
+			ContentSwitch.Content = new UserAlterarConta();
 		}
 	}
 }

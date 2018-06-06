@@ -24,6 +24,7 @@ namespace PAP
 		public string username;
 		public int id;
 		public string password;
+		public string nome;
 	}
 
 	public class ArtistasFavoritos
@@ -530,9 +531,9 @@ namespace PAP
 			cmd.ExecuteNonQuery();
 		}
 
-		public void AlterarUtilizador(int cod, string username, string password)
+		public void AlterarUtilizador(int cod, string username, string password, string nome)
 		{
-			string sql = "UPDATE users SET username = '" + username + "', password = '" + password + "' WHERE id_user = " + cod;
+			string sql = "UPDATE users SET username = '" + username + "', password = '" + password + "', nome = '" + nome + "' WHERE id_user = " + cod;
 			MySqlCommand cmd = new MySqlCommand(sql, _conn);
 			cmd.ExecuteNonQuery();
 		}
@@ -1339,7 +1340,7 @@ namespace PAP
 		public User GetUtilizador(int cod)
 		{
 			User user = new User();
-			string sql = "SELECT username, password FROM users WHERE id_user = " + cod;
+			string sql = "SELECT username, password, nome FROM users WHERE id_user = " + cod;
 			MySqlCommand cmd = new MySqlCommand(sql, _conn);
 			MySqlDataReader rdr = cmd.ExecuteReader();
 
@@ -1348,6 +1349,7 @@ namespace PAP
 				user.id = cod;
 				user.username = rdr[0].ToString();
 				user.password = rdr[1].ToString();
+				user.nome = rdr[2].ToString();
 			}
 			rdr.Close();
 

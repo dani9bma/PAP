@@ -39,7 +39,7 @@ namespace PAP
 
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
-			Global.sql.AlterarUtilizador(_cod, NameTxt.Text, PassTxt.Text);
+			Global.sql.AlterarUtilizador(_cod, NameTxt.Text, PassTxt.Text, NomeTxt.Text);
 			foreach (Window window in Application.Current.Windows)
 			{
 				if (window.GetType() == typeof(AdminMain))
