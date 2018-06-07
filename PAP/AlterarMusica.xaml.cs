@@ -40,7 +40,7 @@ namespace PAP
 			for(int i = 0; i < _artists.Count; i++)
 			{
 				ArtistaCB.Items.Add(_artists[i].Nome);
-				if (_artists[i].id == musica.id)
+				if (_artists[i].id == musica.artista.id)
 					ArtistaCB.SelectedIndex = i;
 			}
 		}

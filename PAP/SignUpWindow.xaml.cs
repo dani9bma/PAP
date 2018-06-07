@@ -26,7 +26,7 @@ namespace PAP
 
 		private void loginBtn_Click(object sender, RoutedEventArgs e)
 		{
-			if(Global.sql.RegistarUtilizador(UsernameTb.Text, PasswordTb.Password.ToString(), NomeTb.Text))
+			if(Global.sql.RegistarUtilizador(UsernameTb.Text, PasswordTb.Password.ToString(), NomeTb.Text, EmailTb.Text))
 			{
 				if(PasswordTb.Password.ToString() == ConfPasswordTB.Password.ToString())
 				{

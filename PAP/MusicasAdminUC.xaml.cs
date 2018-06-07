@@ -1,17 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Net.Mail;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace PAP
 {
@@ -21,7 +13,7 @@ namespace PAP
 	public partial class MusicasAdminUC : UserControl
 	{
 		List<Musica> musicas = new List<Musica>();
-		List<Artista> artistas = new List<Artista>();
+		List<Artista> artistas = Global.sql.GetTodosArtistasOrdered();
 
 		public MusicasAdminUC()
 		{
@@ -38,8 +30,6 @@ namespace PAP
 				idLB.Items.Add(musicas[i].id);
 				NomeMusicaLB.Items.Add(musicas[i].Nome);
 			}
-
-			artistas = Global.sql.GetTodosArtistas();
 
 			for(int i = 0; i < artistas.Count; i++)
 			{
@@ -134,8 +124,41 @@ namespace PAP
 			{
 				int pos = ArtistsCB.SelectedIndex;
 				Global.sql.InserirMusicas(NameTxt.Text, artistas[pos].id);
+				SendEmail(artistas[pos].id, NameTxt.Text, artistas[pos].Nome);
 			}
 
+		}
+
+		private void SendEmail(int cod, string musica, string artista)
+		{
+			List<User> users = Global.sql.GetUsersFromArtistasFav(cod);
+			for(int i = 0; i < users.Count; i++)
+			{
+				try
+				{
+					MailMessage mail = new MailMessage();
+					mail.To.Add(users[i].email);
+					mail.From = new MailAddress("daniel.assuncao9@gmail.com");
+					mail.Subject = "Nova Musica Publicada";
+
+					mail.Body = "Um dos seus artistas favoritos publicou uma nova musica: " + artista + " - " + musica;
+
+					mail.IsBodyHtml = true;
+					SmtpClient smtp = new SmtpClient();
+					smtp.Host = "smtp.gmail.com"; //Or Your SMTP Server Address
+					smtp.Credentials = new System.Net.NetworkCredential
+						 ("daniel.assuncao9@gmail.com", "daniel010900"); // ***use valid credentials***
+					smtp.Port = 587;
+
+					//Or your Smtp Email ID and Password
+					smtp.EnableSsl = true;
+					smtp.Send(mail);
+				}
+				catch (Exception ex)
+				{
+					Console.WriteLine("Exception in sendEmail:" + ex.Message);
+				}
+			}
 		}
 	}
 }

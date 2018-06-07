@@ -25,6 +25,7 @@ namespace PAP
 		public int id;
 		public string password;
 		public string nome;
+		public string email;
 	}
 
 	public class ArtistasFavoritos
@@ -1376,7 +1377,40 @@ namespace PAP
 			return playlists;
 		}
 
-		public bool RegistarUtilizador(string username, string password, string nome)
+		public List<User> GetUsersFromArtistasFav(int id)
+		{
+			List<User> users = new List<User>();
+
+			string sql = "SELECT id_user FROM artistas_favoritos WHERE id_artista = " + id;
+			MySqlCommand cmd = new MySqlCommand(sql, _conn);
+			MySqlDataReader rdr = cmd.ExecuteReader();
+
+			while (rdr.Read())
+			{
+				User user = new User();
+				user.id = int.Parse(rdr[0].ToString());
+				users.Add(user);
+			}
+			rdr.Close();
+
+
+			for(int i = 0; i < users.Count; i++)
+			{
+				sql = "SELECT email FROM users WHERE id_user = " + users[i].id;
+				cmd = new MySqlCommand(sql, _conn);
+				rdr = cmd.ExecuteReader();
+
+				if (rdr.Read())
+				{
+					users[i].email = rdr[0].ToString();
+				}
+				rdr.Close();
+			}
+
+			return users;
+		}
+
+		public bool RegistarUtilizador(string username, string password, string nome, string email)
         {
             if (username.Contains("'"))
             {
@@ -1399,8 +1433,13 @@ namespace PAP
 				MessageBox.Show("Tem de preencher o nome");
 				return false;
 			}
+			else if(email == "")
+			{
+				MessageBox.Show("Tem de preencher o email");
+				return false;
+			}
 
-            string sql = "INSERT INTO users (username, password, nome) VALUES ('" + username + "', '" + password + "', '" + nome + "')";
+            string sql = "INSERT INTO users (username, password, nome, email) VALUES ('" + username + "', '" + password + "', '" + nome + "' , '" + email + "')";
             MySqlCommand cmd = new MySqlCommand(sql, _conn);
             cmd.ExecuteNonQuery();
 

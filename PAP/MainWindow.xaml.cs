@@ -434,7 +434,16 @@ namespace PAP
 		
 		private void UsernameLabel_Click(object sender, RoutedEventArgs e)
 		{
-			ContentSwitch.Content = new UserAlterarConta();
+			if(LoginInfo.username == "admin")
+			{
+				AdminMain window = new AdminMain();
+				window.Show();
+				this.Close();
+			}
+			else
+			{
+				ContentSwitch.Content = new UserAlterarConta();
+			}
 		}
 	}
 }

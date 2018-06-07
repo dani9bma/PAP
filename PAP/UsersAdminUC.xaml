@@ -11,17 +11,19 @@
         <Label Content="Nome do Utilizador" HorizontalAlignment="Left" Margin="154,111,0,0" VerticalAlignment="Top"/>
         <ListBox x:Name="idLB" HorizontalAlignment="Left" Height="361" Margin="73,155,0,0" VerticalAlignment="Top" Width="76" ScrollViewer.ScrollChanged="lbx2_ScrollChanged" SelectionChanged="idLB_SelectionChanged" />
         <ListBox x:Name="NomeUtilLB" HorizontalAlignment="Left" Height="361" Margin="149,155,0,0" VerticalAlignment="Top" Width="119" ScrollViewer.ScrollChanged="lbx1_ScrollChanged" SelectionChanged="NomeUtilLB_SelectionChanged"/>
-        <Button Content="Eliminar Utilizador" HorizontalAlignment="Left" Margin="464,290,0,0" VerticalAlignment="Top" Width="173" Height="24" Click="Button_Click"/>
-        <Button Content="Alterar Utilizador" HorizontalAlignment="Left" Margin="464,336,0,0" VerticalAlignment="Top" Width="173" Height="24" Click="Eliminar_Click"/>
+        <Button Content="Eliminar Utilizador" HorizontalAlignment="Left" Margin="464,334,0,0" VerticalAlignment="Top" Width="173" Height="24" Click="Button_Click"/>
+        <Button Content="Alterar Utilizador" HorizontalAlignment="Left" Margin="464,380,0,0" VerticalAlignment="Top" Width="173" Height="24" Click="Eliminar_Click"/>
         <Label Content="Password" HorizontalAlignment="Left" Margin="288,111,0,0" VerticalAlignment="Top"/>
         <ListBox x:Name="PassUtilLB" HorizontalAlignment="Left" Height="361" Margin="268,155,0,0" VerticalAlignment="Top" Width="122" ScrollViewer.ScrollChanged="lbx3_ScrollChanged" SelectionChanged="PassUtilLB_SelectionChanged"/>
         <Label Content="Username:" HorizontalAlignment="Left" Margin="446,145,0,0" VerticalAlignment="Top"/>
         <Label Content="Password:" HorizontalAlignment="Left" Margin="446,175,0,0" VerticalAlignment="Top"/>
         <TextBox Name="UsernameTxt" HorizontalAlignment="Left" Height="31" Margin="517,140,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <PasswordBox Name="PasswordTxt" HorizontalAlignment="Left" Margin="517,176,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Inserir Utilizador" HorizontalAlignment="Left" Margin="464,221,0,0" VerticalAlignment="Top" Width="173" Height="24" Click="Button_Click_1"/>
+        <Button Content="Inserir Utilizador" HorizontalAlignment="Left" Margin="464,265,0,0" VerticalAlignment="Top" Width="173" Height="24" Click="Button_Click_1"/>
         <Label Content="Nome:" HorizontalAlignment="Left" Margin="463,117,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="NomeTxt" HorizontalAlignment="Left" Height="29" Margin="517,111,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Email:" HorizontalAlignment="Left" Margin="463,211,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="EmailTb" HorizontalAlignment="Left" Height="31" Margin="517,206,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </UserControl>

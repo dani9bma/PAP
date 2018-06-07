@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Mail;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -12,7 +13,7 @@ namespace PAP
 	public partial class AlbumAdminUC : UserControl
 	{
 		List<Album> albums = new List<Album>();
-		List<Artista> artistas = new List<Artista>();
+		List<Artista> artistas = Global.sql.GetTodosArtistasOrdered();
 
 		public AlbumAdminUC()
 		{
@@ -29,8 +30,6 @@ namespace PAP
 				idLB.Items.Add(albums[i].id);
 				NomeAlbumLB.Items.Add(albums[i].Nome);
 			}
-
-			artistas = Global.sql.GetTodosArtistas();
 
 			for (int i = 0; i < artistas.Count; i++)
 			{
@@ -128,8 +127,41 @@ namespace PAP
 				Global.sql.InserirAlbum(cod, NameTxt.Text, -1, artistas[pos].id);
 				idLB.Items.Add(cod);
 				NomeAlbumLB.Items.Add(NameTxt.Text);
+				SendEmail(artistas[pos].id, NameTxt.Text, artistas[pos].Nome);
 			}
 
+		}
+
+		private void SendEmail(int cod, string album, string artista)
+		{
+			List<User> users = Global.sql.GetUsersFromArtistasFav(cod);
+			for (int i = 0; i < users.Count; i++)
+			{
+				try
+				{
+					MailMessage mail = new MailMessage();
+					mail.To.Add(users[i].email);
+					mail.From = new MailAddress("daniel.assuncao9@gmail.com");
+					mail.Subject = "Novo Album Publicado";
+
+					mail.Body = "Um dos seus artistas favoritos publicou um novo album: " + artista + " - " + album;
+
+					mail.IsBodyHtml = true;
+					SmtpClient smtp = new SmtpClient();
+					smtp.Host = "smtp.gmail.com"; //Or Your SMTP Server Address
+					smtp.Credentials = new System.Net.NetworkCredential
+						 ("daniel.assuncao9@gmail.com", "daniel010900"); // ***use valid credentials***
+					smtp.Port = 587;
+
+					//Or your Smtp Email ID and Password
+					smtp.EnableSsl = true;
+					smtp.Send(mail);
+				}
+				catch (Exception ex)
+				{
+					Console.WriteLine("Exception in sendEmail:" + ex.Message);
+				}
+			}
 		}
 	}
 }
