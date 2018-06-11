@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace PAP
@@ -75,10 +76,26 @@ namespace PAP
 
 		private void AdicionarPlaylist_Click(object sender, RoutedEventArgs e)
 		{
-			for(int i = 0; i < musicas.Count; i++)
+			if (PlaylistsCB.SelectedItem != null)
 			{
-				Global.sql.InserirPlaylist(PlaylistsCB.SelectedItem.ToString(), musicas[i].id);
+				for (int i = 0; i < musicas.Count; i++)
+				{
+					Global.sql.InserirPlaylist(PlaylistsCB.SelectedItem.ToString(), musicas[i].id);
+				}
 			}
+			else
+			{
+				MessageBox.Show("Tem de selecionar uma playlist");
+				var brush = new SolidColorBrush();
+				var color = new Color();
+				color.R = 255;
+				color.G = 0;
+				color.B = 0;
+				color.A = 255;
+				brush.Color = color;
+				PlaylistsCB.BorderBrush = brush;
+			}
+			
 		}
 
 		private void AlbumTracksLB_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -146,7 +163,22 @@ namespace PAP
 
 		private void AddPlaylist_Click(object sender, RoutedEventArgs e)
 		{
-			Global.sql.InserirPlaylist(PlaylistsCB.SelectedItem.ToString(), musicas[AlbumTracksLB.SelectedIndex].id);
+			if (PlaylistsCB.SelectedItem != null)
+			{
+				Global.sql.InserirPlaylist(PlaylistsCB.SelectedItem.ToString(), musicas[AlbumTracksLB.SelectedIndex].id);
+			}
+			else
+			{
+				MessageBox.Show("Tem de selecionar uma playlist");
+				var brush = new SolidColorBrush();
+				var color = new Color();
+				color.R = 255;
+				color.G = 0;
+				color.B = 0;
+				color.A = 255;
+				brush.Color = color;
+				PlaylistsCB.BorderBrush = brush;
+			}
 		}
 	}
 }

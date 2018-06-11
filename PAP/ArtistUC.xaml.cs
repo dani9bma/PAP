@@ -54,6 +54,13 @@ namespace PAP
 			{
 				LoginWindow login = new LoginWindow();
 				login.Show();
+				foreach (Window window in Application.Current.Windows)
+				{
+					if (window.GetType() == typeof(MainWindow))
+					{
+						(window as MainWindow).Close();
+					}
+				}
 			}
 		}
 
@@ -134,7 +141,23 @@ namespace PAP
 
 		private void AddPlaylist_Click(object sender, RoutedEventArgs e)
 		{
-			Global.sql.InserirPlaylist(PlaylistsCB.SelectedItem.ToString(), musicas[ArtistTracksLB.SelectedIndex].id);
+			if(PlaylistsCB.SelectedItem != null)
+			{
+				Global.sql.InserirPlaylist(PlaylistsCB.SelectedItem.ToString(), musicas[ArtistTracksLB.SelectedIndex].id);
+			}
+			else
+			{
+				MessageBox.Show("Tem de selecionar uma playlist");
+				var brush = new SolidColorBrush();
+				var color = new Color();
+				color.R = 255;
+				color.G = 0;
+				color.B = 0;
+				color.A = 255;
+				brush.Color = color;
+				PlaylistsCB.BorderBrush = brush;
+			}
+			
 		}
 	}
 }

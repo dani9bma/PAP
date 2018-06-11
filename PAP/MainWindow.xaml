@@ -26,9 +26,9 @@
         </Button>
         <Slider Name="VolumeSlider" HorizontalAlignment="Left" Margin="256,560,0,0" VerticalAlignment="Top" Width="139" ValueChanged="VolumeSlider_ValueChanged" Maximum="1" Value="0.5" Height="20"/>
         <Button Name="LoginBtn" Content="Logout" HorizontalAlignment="Left" Margin="784,43,0,0" VerticalAlignment="Top" Width="93" Click="LoginBtn_Click"/>
-        <GroupBox Header="" HorizontalAlignment="Left" VerticalAlignment="Top" Height="580" Width="204">
-            <GroupBox Header="Playlists" Margin="0,95,0,-4" VerticalAlignment="Top" Height="436">
-                <ListBox Name="playlistsLB" HorizontalAlignment="Left" Height="386" Margin="10,10,0,0" VerticalAlignment="Top" Width="154" MouseDoubleClick="playlistsLB_MouseDoubleClick"/>
+        <GroupBox Header="" HorizontalAlignment="Left" VerticalAlignment="Top" Height="624" Width="204">
+            <GroupBox Header="Playlists" Margin="0,95,0,-5" VerticalAlignment="Top" Height="481">
+                <ListBox Name="playlistsLB" HorizontalAlignment="Left" Height="426" Margin="10,10,0,-53" VerticalAlignment="Top" Width="154" SelectionChanged="playlistsLB_SelectionChanged"/>
             </GroupBox>
         </GroupBox>
         <Button Content="Artistas Favoritos" HorizontalAlignment="Left" Margin="0,34,0,0" VerticalAlignment="Top" Width="204"  Click="FavoriteArtists_Click"/>
@@ -60,7 +60,6 @@
             </Button.Background>
         </Button>
         <Button Content="Criar Playlist" HorizontalAlignment="Left" Margin="10,632,0,0" VerticalAlignment="Top" Width="194" Click="Button_Click"/>
-        <Button Content="Eliminar Playlist" HorizontalAlignment="Left" Margin="10,592,0,0" VerticalAlignment="Top" Width="194" Click="DeletePlaylist_Click"/>
         <Button Name="VolumeBtn" Content="" HorizontalAlignment="Left" Margin="209,555,0,0" VerticalAlignment="Top" Width="42" Click="MuteSoundButton" >
             <Button.Background>
                 <ImageBrush ImageSource="res/volume.png"/>

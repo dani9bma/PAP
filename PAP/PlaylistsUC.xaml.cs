@@ -15,11 +15,13 @@ namespace PAP
 	{
 		List<Musica> musicas = new List<Musica>();
 		int id_playlist = 0;
+		int SI = -1;
 
-		public PlaylistsUC(int id)
+		public PlaylistsUC(int id, int index)
 		{
 			InitializeComponent();
 			id_playlist = id;
+			SI = index;
 			InitWindow(id);
 		}
 
@@ -108,6 +110,21 @@ namespace PAP
 			ScrollViewer _listboxScrollViewer1 = GetDescendantByType(TracksLB, typeof(ScrollViewer)) as ScrollViewer;
 			ScrollViewer _listboxScrollViewer2 = GetDescendantByType(ArtistsLB, typeof(ScrollViewer)) as ScrollViewer;
 			_listboxScrollViewer2.ScrollToVerticalOffset(_listboxScrollViewer1.VerticalOffset);
+		}
+
+		private void EliminarPlaylist_Click(object sender, RoutedEventArgs e)
+		{
+			Global.sql.DeletePlaylist(id_playlist);
+			foreach (Window window in Application.Current.Windows)
+			{
+				if (window.GetType() == typeof(MainWindow))
+				{
+					(window as MainWindow).ContentSwitch.Content = new ArtistasOuvidos();
+					(window as MainWindow).playlistsLB.SelectionChanged -= (window as MainWindow).playlistsLB_SelectionChanged;
+					(window as MainWindow).playlistsLB.Items.RemoveAt(SI);
+					(window as MainWindow).playlistsLB.SelectionChanged += (window as MainWindow).playlistsLB_SelectionChanged;
+				}
+			}
 		}
 	}
 }

@@ -356,24 +356,6 @@ namespace PAP
 			
 		}
 
-		private void DeletePlaylist_Click(object sender, RoutedEventArgs e)
-		{
-			int SI = playlistsLB.SelectedIndex;
-			if(SI != -1)
-			{
-				int id = playlists[SI].id;
-				Global.sql.DeletePlaylist(id);
-				playlistsLB.Items.RemoveAt(SI);
-				playlists.RemoveAt(SI);
-			}
-		}
-
-		private void playlistsLB_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-		{
-			int id = playlists[playlistsLB.SelectedIndex].id;
-			ContentSwitch.Content = new PlaylistsUC(id);
-		}
-
 		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
 		{
 			MediaPlayer.Pause();
@@ -444,6 +426,12 @@ namespace PAP
 			{
 				ContentSwitch.Content = new UserAlterarConta();
 			}
+		}
+
+		public void playlistsLB_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+		{
+			int id = playlists[playlistsLB.SelectedIndex].id;
+			ContentSwitch.Content = new PlaylistsUC(id, playlistsLB.SelectedIndex);
 		}
 	}
 }

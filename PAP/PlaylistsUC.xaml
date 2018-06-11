@@ -8,10 +8,11 @@
              d:DesignHeight="536" d:DesignWidth="800">
     <Grid>
         <ListBox Name="TracksLB" HorizontalAlignment="Left" Height="364" Margin="169,68,0,0" VerticalAlignment="Top" Width="217" ScrollViewer.ScrollChanged="lbx2_ScrollChanged" MouseDoubleClick="TracksLB_MouseDoubleClick"/>
-        <Button Content="Remover Musica" HorizontalAlignment="Left" Margin="287,459,0,0" VerticalAlignment="Top" Width="227" Height="31" Click="Button_Click"/>
+        <Button Content="Remover Musica" HorizontalAlignment="Left" Margin="159,465,0,0" VerticalAlignment="Top" Width="227" Height="31" Click="Button_Click"/>
         <ListBox x:Name="ArtistsLB" HorizontalAlignment="Left" Height="364" Margin="391,68,0,0" VerticalAlignment="Top" Width="217" ScrollViewer.ScrollChanged="lbx1_ScrollChanged" MouseDoubleClick="TracksLB_MouseDoubleClick"/>
         <Label Content="Musica" HorizontalAlignment="Left" Margin="171,24,0,0" VerticalAlignment="Top" Width="167" Height="39" FontSize="17"/>
         <Label Content="Artista" HorizontalAlignment="Left" Margin="391,24,0,0" VerticalAlignment="Top" Width="167" Height="39" FontSize="17"/>
+        <Button Content="Eliminar Playlist" HorizontalAlignment="Left" Margin="391,465,0,0" VerticalAlignment="Top" Width="227" Height="31" Click="EliminarPlaylist_Click"/>
 
     </Grid>
 </UserControl>

@@ -195,7 +195,22 @@ namespace PAP
 		//Musicas
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
-			Global.sql.InserirPlaylist(PlaylistsCB.SelectedItem.ToString(), _tracks[MusMusLB.SelectedIndex].id);
+			if (PlaylistsCB.SelectedItem != null)
+			{
+				Global.sql.InserirPlaylist(PlaylistsCB.SelectedItem.ToString(), _tracks[MusMusLB.SelectedIndex].id);
+			}
+			else
+			{
+				MessageBox.Show("Tem de selecionar uma playlist");
+				var brush = new SolidColorBrush();
+				var color = new Color();
+				color.R = 255;
+				color.G = 0;
+				color.B = 0;
+				color.A = 255;
+				brush.Color = color;
+				PlaylistsCB.BorderBrush = brush;
+			}
 		}
 
 		private void AddFavorites_Click(object sender, RoutedEventArgs e)
