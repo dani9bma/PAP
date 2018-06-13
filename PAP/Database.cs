@@ -1418,6 +1418,12 @@ namespace PAP
                 return false;
             }
 
+			if(!email.Contains("@"))
+			{
+				MessageBox.Show("O email está incorreto");
+				return false;
+			}
+
 			if(username == "")
 			{
 				MessageBox.Show("Tem de preencher o username");
