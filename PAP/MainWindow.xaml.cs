@@ -33,7 +33,7 @@ namespace PAP
 			//Get Music Disk
 			DriveInfo[] myDrives = DriveInfo.GetDrives();
 
-			try
+			/*try
 			{
 				foreach (DriveInfo drive in myDrives)
 				{
@@ -49,7 +49,9 @@ namespace PAP
 			catch(Exception ex)
 			{
 				Console.WriteLine(ex.Source);
-			}
+			}*/
+
+			Global.RootMusic = Directory.GetDirectoryRoot(Directory.GetCurrentDirectory());
 			
 
 
